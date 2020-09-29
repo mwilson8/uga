@@ -1,0 +1,158 @@
+/*
+* StringFun.java
+* Author: Nicholas Walker
+* Submission Date: 2/27/2018
+*
+* Purpose: This is a basic string manipulation
+*
+* Statement of Academic Honesty:
+*
+* The following code represents my own work. I have neither
+* received nor given inappropriate assistance. I have not copied
+* or modified code from any source other than the course webpage
+* or the course textbook. I recognize that any unauthorized
+* assistance or plagiarism will be handled in accordance with
+* the University of Georgia's Academic Honesty Policy and the
+* policies of this course. I recognize that my work is based
+* on an assignment created by the Department of Computer
+* Science at the University of Georgia. Any publishing
+* or posting of source code for this project is strictly
+* prohibited unless you have written consent from the Department
+* of Computer Science at the University of Georgia.
+*/
+
+import java.util.Scanner;
+public class StringFun {
+
+	public static void main(String[] args) {
+		
+		Scanner input =  new Scanner(System.in); // Declare scanner object
+		
+		//Declare variables
+		String stringNew = "";
+		boolean testCondition = true;
+		
+		
+		//Ask user for the string
+		System.out.println("Enter the string to be manipulated");
+		String stringOrig = input.nextLine();
+		stringNew = stringOrig;
+		
+		while(testCondition)
+		{
+			
+			// ask user for the method to be used on the string
+			System.out.println("Enter your command (quit, print reverse, replace all, replace single, remove)");
+			
+			String method = input.nextLine();
+			//String clear = input.nextLine();
+			
+		
+			String subString1 = "", subString2 = "";
+			
+			//print reverse
+			if (method.equalsIgnoreCase("print reverse"))
+			{
+				String stringNew2 = "";
+				for (int i = stringNew.length(); i>0; i--)
+				{
+					stringNew2 = stringNew2 + stringNew.charAt(i-1);
+				}
+				stringNew = stringNew2;
+			
+			}
+			
+			
+			
+			//replace all
+			else if (method.equalsIgnoreCase("replace all"))
+			{
+				System.out.println("Enter the character to replace");
+				String oldChar = input.next();
+				
+				System.out.println("Enter the new character");
+				String newChar = input.next();
+				
+				
+				for(int i = 0; i<stringNew.length(); i++)
+				{
+					
+					if (stringNew.substring(i,i+1).equals(oldChar))
+					{
+						subString1 = stringNew.substring(0,i);
+						subString2 = stringNew.substring(i+1);
+						stringNew = subString1 + newChar + subString2;
+					}
+				}
+			
+			}
+			
+			
+			
+			//replace single
+			else if (method.equalsIgnoreCase("replace single"))
+			{
+				System.out.println("Enter the character to replace");
+				String oldChar = input.next();
+				
+				System.out.println("Enter the new character");
+				String newChar = input.next();
+				
+				System.out.println("Which " + oldChar + " would you like to replace?");
+				int indexReplace = input.nextInt();
+				int index = 0;
+				
+				for(int i = 0; i<stringNew.length(); i++)
+				{
+					
+					if (stringNew.substring(i,i+1).equals(oldChar))
+					{
+						index++;
+						if (index == indexReplace)
+						{
+							subString1 = stringNew.substring(0,i);
+							subString2 = stringNew.substring(i+1);
+							stringNew = subString1 + newChar + subString2;
+							break;
+						}
+					}
+				}
+			}
+				
+			
+			
+			
+			
+			
+			//remove
+			else if (method.equalsIgnoreCase("remove"))
+			{
+				System.out.println("Enter the character to remove");
+				String removeChar = input.next();
+				
+				for(int i = 0; i<stringNew.length(); i++)
+				{
+					
+					if (stringNew.substring(i,i+1).equals(removeChar))
+					{
+						subString1 = stringNew.substring(0,i);
+						subString2 = stringNew.substring(i+1);
+						stringNew = subString1 + subString2;
+					}
+				}
+				
+			}
+			
+			//quit
+			else if (method.equalsIgnoreCase("quit"))
+			{
+				testCondition = false;
+			}
+			
+			//print out new string to user
+			System.out.println("The new scentence is: " + stringNew);
+			
+		}
+	}
+
+}

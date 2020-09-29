@@ -1,0 +1,14 @@
+package test2;
+
+public class B extends A{
+
+	public B() {
+		System.out.println("Creating B, not explicity calling super");
+	}
+	
+	public B(int i){
+		super();
+		System.out.println("Creating B and calling super");
+	}
+
+}

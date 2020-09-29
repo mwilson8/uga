@@ -1,0 +1,258 @@
+import java.util.Scanner;
+public class StringFun 
+/*
+ * StringFun.java
+ * Author: Shad Arif
+ * Submission Date: 03/04/2018
+ *
+ * Purpose: This program takes in a string input from the user and allows the user 
+ * to execute 5 different commands on it. Each command will modify the string so 
+ * that the modified string will continue to be acted upon by different commands 
+ * until the user uses the quit command. 
+ *
+ * Statement of Academic Honesty:
+ *
+ * The following code represents my own work. I have neither
+ * received nor given inappropriate assistance. I have not copied
+ * or modified code from any source other than the course webpage
+ * or the course textbook. I recognize that any unauthorized
+ * assistance or plagiarism will be handled in accordance with
+ * the University of Georgia's Academic Honesty Policy and the
+ * policies of this course. I recognize that my work is based
+ * on an assignment created by the Department of Computer
+ * Science at the University of Georgia. Any publishing
+ * or posting of source code for this project is strictly
+ * prohibited unless you have written consent from the Department
+ * of Computer Science at the University of Georgia.
+ */
+{
+
+	public static void main(String[] args) 
+	{
+		String inputString = "", oldMod = "", command, newMod = "";
+		boolean quit = false, playAgain = false, replacedSingle = false;
+		Scanner keyboard = new Scanner(System.in);
+		char oldChar, newChar, removeChar = 0;
+		int charNumber, replaceCounter = 0, replaceSingleCounter = 0,removeCounter = 0;
+
+		System.out.println("Enter the string to be manipulated");
+		inputString = keyboard.nextLine();
+		oldMod = inputString;
+		newMod = oldMod;
+		while (!quit)
+		{
+			System.out.println("Enter your command (quit, print reverse,"
+					+ " replace all, replace single, remove)");
+			command = keyboard.nextLine().trim();
+
+			if (command.equalsIgnoreCase(("quit")))
+			{
+				quit = true;
+			}
+			//program will exit when user enters the quit command
+
+			else if (command.equalsIgnoreCase("print reverse"))
+			{
+				oldMod = newMod;
+				System.out.print("The new sentence is: ");
+				for (int i = oldMod.length()-1; i >= 0; i--)
+				{
+					System.out.print(oldMod.charAt(i));
+				}
+				System.out.println();
+			}
+			//Program prints out each letter starting from the last position to the first 
+			//in order to print it as reverse
+			else if (command.equalsIgnoreCase("replace all"))
+			{
+				oldMod = newMod;
+				newMod = "";
+				System.out.println("Enter a character to replace");
+				oldChar = keyboard.nextLine().charAt((0));
+				if (Character.isDigit(oldChar))
+				{
+					System.out.println("Error: this not a character.");
+					newMod = oldMod;
+					continue;
+				}
+				replaceCounter = 0;
+				for (int y = 0; y <oldMod.length(); y++)
+				{
+					if (oldMod.charAt(y) == oldChar)
+					{
+						replaceCounter++;
+					}
+				}
+				//Checks to see how many if any of the desired char are present
+				if (replaceCounter == 0)
+				{
+					System.out.println("Error: the letter you are trying to replace does not exit");
+					continue;
+				}
+				//if no chars are present of the desired type, program will return error
+
+
+				if (replaceCounter != 0)
+				{
+					System.out.println("Enter the new character");
+					newChar = keyboard.nextLine().charAt((0));
+					if (Character.isDigit(newChar))
+					{
+						System.out.println("Error: this is not a character.");
+						newMod = oldMod;
+						continue;
+					}
+					for (int i = 0; i < oldMod.length(); i++) 
+					{
+						if (oldMod.charAt((i)) == oldChar)
+						{
+							newMod = newMod + newChar;
+						}
+						else
+						{
+							newMod = newMod + oldMod.charAt(i);
+						}
+					}
+					//If a letter at a certain index is the desired letter to replace
+					//the program will print out the replacement
+					//otherwise the program prints out the regular char at that index
+					System.out.println("The new sentence is " + newMod);
+					continue;
+				}
+			}
+			else if (command.equalsIgnoreCase("replace single"))
+			{
+				oldMod = newMod;
+				newMod = "";
+
+				System.out.println("Enter a character to replace");
+				oldChar = keyboard.nextLine().charAt((0));
+				replaceSingleCounter = 0;
+				for (int z = 0; z <oldMod.length(); z++)
+				{
+					if (oldMod.charAt(z) == oldChar)
+					{
+						replaceSingleCounter++;
+					}
+				}
+				//checks to see if desired letter to replace exists at all if there are more than 0
+				if (replaceSingleCounter == 0)
+				{
+					System.out.println("Error: the letter you are trying to replace does not exit");
+					continue;
+				}
+				//tells user that the input is invalid bc the char does not exist in the string
+
+				if (replaceSingleCounter != 0)
+				{
+					if (Character.isDigit(oldChar))
+					{
+						System.out.println("Error: this not a character.");
+						newMod = oldMod;
+						continue;
+					}
+					//error checks the input
+					System.out.println("Enter the new character");
+					newChar = keyboard.nextLine().charAt((0));
+					if (Character.isDigit(newChar))
+					{
+						System.out.println("Error: this is not an input");
+						newMod = oldMod;
+						continue;
+					}
+					//error checks the input
+					System.out.println("Which " + oldChar + " would you like to replace?");
+					charNumber = keyboard.nextInt();
+					keyboard.nextLine();
+					if (replaceSingleCounter < charNumber)
+					{
+						System.out.println("Error. The sentence does not have a" + charNumber + "instance of" + newChar);
+						continue;
+					}
+					//tells user if instance of their desired replacement letter does not exist
+					int counter= 0;
+					for (int i = 0; i < oldMod.length(); i++)
+					{
+
+						if (oldMod.charAt(i) == oldChar) 
+						{
+							counter ++;
+
+						}
+						//counts letters
+						if (counter == charNumber)
+						{
+
+							newMod = oldMod.substring(0,i) + newChar + oldMod.substring(i+1);
+							replacedSingle = true;
+							break;
+						}
+						//if the char at the index i is equal to the desired instance to replace, it will do so
+						else
+						{
+							newMod = newMod+ oldMod.charAt(i);
+						}
+						//otherwise just prints out regular char that index
+					}
+					System.out.println("The new sentence is: "  + newMod);
+
+				}
+			}
+			else if (command.equalsIgnoreCase("remove"))
+			{
+				oldMod = newMod;
+				newMod = "";
+
+				System.out.println("Enter the character to remove");
+				removeChar = keyboard.next().charAt(0);
+				if (Character.isDigit(removeChar))
+				{
+					System.out.println("Error: this not a character.");
+					newMod = oldMod;
+					continue;
+				}
+				removeCounter = 0;
+				for (int z = 0; z <oldMod.length(); z++)
+				{
+					if (oldMod.charAt(z) == removeChar)
+					{
+						removeCounter++;
+					}
+				}
+				//checks to see if there are any instances of the character they seek to remove
+				if (removeCounter == 0)
+				{
+					System.out.println("Error: the letter you are trying to remove does not exit");
+					continue;
+				}
+				//Tells user that the letter to remove does not exist
+				for (int i = 0; i < oldMod.length(); i++)
+				{
+					if (removeChar == oldMod.charAt(i))
+					{
+						newMod = newMod;
+					}
+					//doesn't do anything if the char
+					else
+					{
+						newMod = newMod + oldMod.charAt(i);
+					}
+				}
+				if (removeCounter != 0)
+				{
+					System.out.println("The new sentence is: " + newMod);
+				}
+				keyboard.nextLine();
+			}
+			else
+			{ 
+				System.out.println("Error: Invalid command/");
+			}
+		} 
+
+	}
+}
+
+
+
+

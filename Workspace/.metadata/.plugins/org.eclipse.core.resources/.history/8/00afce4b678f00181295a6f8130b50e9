@@ -1,0 +1,802 @@
+package edu.uga.cs4370.logic;
+import java.sql.*;
+import java.util.ArrayList;
+
+import edu.uga.cs4370.objects.*;
+
+
+/**
+ * This class provides methods for accessing a bakery database
+ * @author Mitch Wilson
+ *
+ */
+public final class Database {
+
+	private static ArrayList<Connection> connections = new ArrayList<Connection>();
+	
+	private static final String DRIVE_NAME = "com.mysql.jdbc.Driver";
+
+	private static final String CONNECTION_URL = "jdbc:mysql://localhost:3306/cs4370_bakery"
+			+ "?autoReconnect=true&useSSL=false";
+
+	private static final String CONNECTION_USERNAME = "root";
+
+	private static final String CONNECTION_PASSWORD = "root";
+	
+	
+	/**
+	 * Returns true if the given username and given password correspond to an entry in the Users table,
+	 * false otherwise
+	 * @param username - the username to check 
+	 * @param password - the password to check
+	 * @return - {@code true} if the given password matches the database password, {@code false} otherwise
+	 */
+	public static boolean validateLogin(String username, String password){
+		
+		String query = "SELECT * FROM users WHERE username = '" + username + "';";
+		
+		Connection con = connect();
+		ResultSet rs;
+		String retrievedPassword = null;
+		try {
+			Statement stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			while (rs.next()){
+				retrievedPassword = rs.getString("password");
+			}
+		} catch (SQLException e) {
+			//System.err.println("Error retrieving login info");
+			return false;
+		} finally {
+			closeConnection(con);
+		}
+		return password.equals(retrievedPassword);		
+	}
+	
+	/**
+	 * Check if the given username exists. Usernames should be unique
+	 * @param username - the username to check for
+	 * @return {@code true} if the username is found in the system, {@code false} otherwise
+	 */
+	public static boolean userExists(String username){
+		
+		String query = "SELECT * FROM users WHERE username = '" + username + "';";
+		Connection con = connect();
+		ResultSet rs;
+		try {
+			Statement stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			return rs.next();			//if the result set is not empty, then the username exists
+			
+		} catch (SQLException e) {
+			//System.err.println("Error retrieving user info");
+			return false;
+		} finally {
+			closeConnection(con);
+		}
+		
+		
+	}
+	
+	/**
+	 * @see userExists(String)
+	 */
+	public static boolean userExists(User user){
+		return userExists(user.getUsername());
+	}
+	
+	
+	public static boolean addBakery(int id, String name, String address){
+		
+		String query = "INSERT INTO Bakeries VALUES (?,?,?)";
+		
+		Connection con = connect();
+		
+		try {
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+
+			preparedStmt.setInt(1, id);
+			preparedStmt.setString(2, name);
+			preparedStmt.setString(3, address);
+
+			preparedStmt.execute();
+
+			return true;
+			
+		} catch (SQLException e) {
+			//System.out.println("Erorr adding user");
+			return false;
+			
+		} finally {
+			closeConnection(con);
+		}
+	}
+	
+	
+public static boolean addMenuItem(int menuId, int productId){
+		
+		String query = "INSERT INTO Menus VALUES (?,?)";
+		
+		Connection con = connect();
+		
+		try {
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+
+			preparedStmt.setInt(1, menuId);
+			preparedStmt.setInt(2, productId);
+
+			preparedStmt.execute();
+
+			return true;
+			
+		} catch (SQLException e) {
+			//System.out.println("Erorr adding user");
+			return false;
+			
+		} finally {
+			closeConnection(con);
+		}
+	}
+
+
+public static boolean addProductAllergy(int productId, String allergy){
+	
+	String query = "INSERT INTO Product_Allergies VALUES (?,?)";
+	
+	Connection con = connect();
+	
+	try {
+		PreparedStatement preparedStmt = con.prepareStatement(query);
+
+		preparedStmt.setInt(1, productId);
+		preparedStmt.setString(2, allergy);
+
+		preparedStmt.execute();
+
+		return true;
+		
+	} catch (SQLException e) {
+		//System.out.println("Erorr adding user");
+		return false;
+		
+	} finally {
+		closeConnection(con);
+	}
+}
+	
+	/**
+	 * Adds the {@code user} to the database
+	 * @param user - the User to be added to the database along with any allergies found in
+	 * {@code user.getAllergies()}
+	 * @return {@code true} if the addition was successful, {@code false} otherwise
+	 */
+	public static boolean addUser(User user){
+		if (userExists(user.getUsername())){
+			System.err.println("Username already exists");
+			return false;
+		}
+		
+		Connection con = connect();
+
+		//id, username, password, first_name, last_name, email
+		String query = "INSERT INTO Users VALUES (null,?,?,?,?,?);";
+
+		try {
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+
+			preparedStmt.setString(1, user.getUsername());
+			preparedStmt.setString(2, user.getPassword());
+			preparedStmt.setString(3, user.getFirstName());
+			preparedStmt.setString(4, user.getLastName());
+			preparedStmt.setString(5, user.getEmail());
+
+			preparedStmt.execute();
+
+		} catch (SQLException e) {
+			//System.out.println("Erorr adding user");
+			return false;
+
+		} 
+		
+		try{
+			query = "INSERT INTO User_Allergy VALUES (?,?);";
+			//if the user has allergies, add them all to the database
+			//one at a time, using the same query above
+			if (! user.getAllergies().isEmpty()){
+				for (String s : user.getAllergies()){
+					PreparedStatement preparedStmt = con.prepareStatement(query);	
+					
+					preparedStmt.setInt(1, user.getID());
+					preparedStmt.setString(2, s);
+					
+					preparedStmt.execute();
+				}
+			}
+		} catch (SQLException e){
+			//System.err.println("Error adding user allergy");
+			return false;
+			
+		} finally {
+			closeConnection(con);
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Adds the {@code product} to the database
+	 * @param product - the User to be added to the database along with any allergies found in
+	 * {@code user.getAllergies()}
+	 * @return {@code true} if the addition was successful, {@code false} otherwise
+	 */
+	public static boolean addProduct(Product product){
+
+		Connection con = connect();
+
+		//id, type, name, price, description, img_src
+		String query = "INSERT INTO Products VALUES (?,?,?,?,?,?);";
+
+		try {
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+
+			preparedStmt.setInt(1, product.getID());
+			preparedStmt.setString(2, product.getType());
+			preparedStmt.setString(3, product.getName());
+			preparedStmt.setDouble(4, product.getPrice());
+			preparedStmt.setString(5, product.getDescription());
+			preparedStmt.setString(6, product.getSRC());
+
+			preparedStmt.execute();
+
+		} catch (SQLException e) {
+			//System.out.println("Erorr adding product");
+			return false;
+
+		} 
+		
+		try{
+			query = "INSERT INTO Product_Allergy VALUES (?,?);";
+			//if the product has allergies, add them all to the database
+			//one at a time, using the same query above
+			if (! product.getAllergies().isEmpty()){
+				for (String s : product.getAllergies()){
+					PreparedStatement preparedStmt = con.prepareStatement(query);	
+					
+					preparedStmt.setInt(1, product.getID());
+					preparedStmt.setString(2, s);
+					
+					preparedStmt.execute();
+				}
+			}
+		} catch (SQLException e){
+			//System.err.println("Error adding user allergy");
+			return false;
+			
+		} finally {
+			closeConnection(con);
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Adds the {@code products} to the database
+	 * @param products - the products to be added to the database along with any allergies found in
+	 * them
+	 * @return {@code true} if the addition was successful, {@code false} otherwise
+	 */
+	public static boolean addProducts(ArrayList<Product> products){
+		Connection con = connect();
+
+		/*
+		 * The implementation is more efficient than doing
+		 * for (Product product: products)
+		 * 	addProduct(product);
+		 * 
+		 * because it utilizes one connection rather than creating a new conection for each product
+		 */
+		for (Product product: products){
+
+			//id, type, name, price, description, img_src
+			String query = "INSERT INTO Products VALUES (?,?,?,?,?,?);";
+
+			try {
+				PreparedStatement preparedStmt = con.prepareStatement(query);
+
+				preparedStmt.setInt(1, product.getID());
+				preparedStmt.setString(2, product.getType());
+				preparedStmt.setString(3, product.getName());
+				preparedStmt.setDouble(4, product.getPrice());
+				preparedStmt.setString(5, product.getDescription());
+				preparedStmt.setString(6, product.getSRC());
+
+				preparedStmt.execute();
+
+			} catch (SQLException e) {
+				//System.out.println("Erorr adding product");
+				return false;
+
+			} 
+
+			try{
+				query = "INSERT INTO Product_Allergy VALUES (?,?);";
+				//if the product has allergies, add them all to the database
+				//one at a time, using the same query above
+				if (! product.getAllergies().isEmpty()){
+					for (String s : product.getAllergies()){
+						PreparedStatement preparedStmt = con.prepareStatement(query);	
+
+						preparedStmt.setInt(1, product.getID());
+						preparedStmt.setString(2, s);
+
+						preparedStmt.execute();
+					}
+				}
+
+			} catch (SQLException e){
+				//System.err.println("Error adding user allergy");
+				return false;
+				
+			} finally {
+				closeConnection(con);
+			}
+		}
+
+		return true;
+	}
+	
+	
+	/**
+	 * Adds the given allergy for the given user to the database
+	 * @param user - username cannot be null
+	 * @param allergy - the allergy to add
+	 * @return - true if the allergy was successfully added, false otherwise
+	 */
+	public static boolean addAllergy(User user, String allergy){
+		user = getUser(user.getUsername()); //replace the local variable with the the complete user profile
+		
+		Connection con = connect();
+
+		String query = "INSERT INTO User_Allergy VALUES (?,?);";
+
+		try {
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+
+			preparedStmt.setInt(1, user.getID());
+			preparedStmt.setString(2, allergy);
+
+			preparedStmt.execute();
+
+		} catch (SQLException e) {
+			//System.out.println("Error adding allergy");
+			return false;
+
+		} finally {
+			closeConnection(con);
+		}
+		return true;
+	
+	}
+	
+	/**
+	 * Adds the given allergy for the given product to the database
+	 * @param product
+	 * @param allergy
+	 * @return - true if the allergy was successfully added, false otherwise
+	 * 
+	 */
+	public static boolean addAllergy(Product product, String allergy){
+		//product = getProduct(product.getUsername()); //replace the local variable with the the complete user profile
+		
+		Connection con = connect();
+
+		String query = "INSERT INTO Product_Allergy VALUES (?,?);";
+
+		try {
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+
+			preparedStmt.setInt(1, product.getID());
+			preparedStmt.setString(2, allergy);
+
+			preparedStmt.execute();
+
+		} catch (SQLException e) {
+			//System.out.println("Error adding allergy");
+			return false;
+
+		} finally {
+			closeConnection(con);
+		}
+		return true;
+	
+	}
+	
+	/**
+	 * Adds the given product to the given user's cart
+	 * @param user - the User to modify
+	 * @param product - the product to add to the cart
+	 * @return - true if the product was successfully added, false otherwise
+	 * 
+	 */
+	public static boolean addItemToCart(User user, Product product){
+		
+		Connection con = connect();
+
+		String query = "INSERT INTO Shopping_Carts VALUES (?,?);";
+
+		try {
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+
+			preparedStmt.setInt(1, user.getID());
+			preparedStmt.setInt(2, product.getID());
+
+			preparedStmt.execute();
+
+		} catch (SQLException e) {
+			//System.out.println("Error adding allergy");
+			return false;
+
+		} finally {
+			closeConnection(con);
+		}
+		
+		return true;
+	
+	}
+	
+	
+	/**
+	 * Returns the complete user profile from the given user name, allergies & cart included
+	 * @param username - the username to search for; user should exist in the database
+	 * @return
+	 */
+	public static User getUser(String username){
+		
+		String query = "SELECT * FROM Users WHERE username = '" + username + "';";
+		Connection con = connect();
+		ResultSet rs;
+		User user = new User();
+		try {
+			Statement stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while (rs.next()){
+				user.setEmail(rs.getString("email"));
+				user.setFirstName(rs.getString("first_name"));
+				user.setLastName(rs.getString("last_name"));
+				user.setPassword(rs.getString("password"));
+				user.setId(rs.getInt("id"));
+			}
+			
+		} catch (SQLException e) {
+			//System.err.println("Error retrieving user info");
+			return null;
+		} 
+		
+		query = "SELECT ingredient_name from User_Allergy WHERE user_id = " + user.getID() + ";";
+		
+		
+		try {
+			
+			Statement stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while (rs.next()){
+				user.addAllergy(rs.getString("ingredient_name"));
+			}
+			
+		} catch (SQLException e){
+			//System.err.println("Error retrieving allergy for user");
+			return null;
+		} 
+		
+		
+		query = "SELECT * FROM Products p WHERE p.id IN "
+				+ "(SELECT s.product_id FROM Shopping_Carts s WHERE user_id =  " + user.getID() + ";";
+		
+		try {
+
+			Statement stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+
+			Product product = new Product();
+			while (rs.next()){
+				product.setDescription(rs.getString("description"));
+				product.setId(rs.getInt("id"));
+				product.setName(rs.getString("name"));
+				product.setPrice(rs.getDouble("price"));
+				product.setSRC(rs.getString("img_src"));
+				product.setType(rs.getString("type"));
+				
+				user.addToCart(product);
+			}
+
+		} catch (SQLException e){
+			//System.err.println("Error retrieving allergy for user");
+			return null;
+			
+		} finally {
+			closeConnection(con);
+		}
+		
+		
+		return user;
+	}
+	
+	/**
+	 * Returns the complete user profile from the given user name
+	 * @param id - the id of the User to be returned
+	 * @return - the User with the id {@code id}
+	 */
+	public static User getUser(int id){
+		
+		String query = "SELECT * FROM Users WHERE id = '" + id + "';";
+		Connection con = connect();
+		ResultSet rs;
+		User user = new User();
+		try {
+			Statement stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while (rs.next()){
+				user.setEmail(rs.getString("email"));
+				user.setFirstName(rs.getString("first_name"));
+				user.setLastName(rs.getString("last_name"));
+				user.setPassword(rs.getString("password"));
+				user.setId(rs.getInt("id"));
+				user.setUsername(rs.getString("username"));
+			}
+			
+		} catch (SQLException e) {
+			//System.err.println("Error retrieving user info");
+			return null;
+		}
+		
+		query = "SELECT ingredient_name from User_Allergy WHERE user_id = " + user.getID() + ";";
+		
+		
+		try {
+			
+			Statement stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while (rs.next()){
+				user.addAllergy(rs.getString("ingredient_name"));
+			}
+			
+		} catch (SQLException e){
+			//System.err.println("Error retrieving allergy for user");
+			return null;
+		} 
+		
+		query = "SELECT * FROM Products p WHERE p.id IN "
+				+ "(SELECT s.product_id FROM Shopping_Carts s WHERE user_id =  " + user.getID() + ";";
+		
+		try {
+
+			Statement stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+
+			Product product = new Product();
+			while (rs.next()){
+				product.setDescription(rs.getString("description"));
+				product.setId(rs.getInt("id"));
+				product.setName(rs.getString("name"));
+				product.setPrice(rs.getDouble("price"));
+				product.setSRC(rs.getString("img_src"));
+				product.setType(rs.getString("type"));
+				
+				user.addToCart(product);
+			}
+
+		} catch (SQLException e){
+			//System.err.println("Error retrieving allergy for user");
+			return null;
+			
+		} finally {
+			closeConnection(con);
+		}
+		
+		return user;
+	}
+	
+	
+	/**
+	 * Returns the complete user profile from the given user name
+	 * @param id - the id of the Product to be returned
+	 * @return - a Product with the id {@code id}
+	 */
+	public static Product getProduct(int id){
+		
+		String query = "SELECT * FROM Products WHERE id = '" + id + "';";
+		Connection con = connect();
+		ResultSet rs;
+		Product product = new Product();
+		try {
+			Statement stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while (rs.next()){
+				product.setDescription(rs.getString("description"));
+				product.setId(rs.getInt("id"));
+				product.setName(rs.getString("name"));
+				product.setPrice(rs.getDouble("price"));
+				product.setSRC(rs.getString("img_src"));
+				product.setType(rs.getString("type"));
+				
+			}
+			
+		} catch (SQLException e) {
+			//System.err.println("Error retrieving product info");
+			return null;
+		}
+		
+		query = "SELECT ingredient_name from Product_Allergy WHERE user_id = " + product.getID() + ";";
+		
+		
+		try {
+			
+			Statement stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while (rs.next()){
+				product.addAllergy(rs.getString("ingredient_name"));
+			}
+			
+		} catch (SQLException e){
+			//System.err.println("Error retrieving allergy for product");
+			return null;
+		} finally {
+			closeConnection(con);
+		}
+		
+		return product;
+	}
+	
+	/**
+	 * Return a List of all Products in the database
+	 * @return - a list of all Products in the database
+	 */
+	public static ArrayList<Product> getProducts(int bakeryId){
+		ArrayList<Product> list = new ArrayList<Product>();
+		
+		String query = "SELECT * FROM Products p WHERE p.id IN "
+				+ "(SELECT m.product_id FROM Menus m WHERE m.bakery_id = " + bakeryId + ");";
+		Connection con = connect();
+		ResultSet rs;
+		try {
+			Statement stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while (rs.next()){
+				Product p = new Product();
+				p.setDescription(rs.getString("description"));
+				p.setId(rs.getInt("id"));
+				p.setName(rs.getString("name"));
+				p.setPrice(rs.getDouble("price"));
+				p.setSRC(rs.getString("img_src"));
+				p.setType(rs.getString("type"));
+				
+				String query2 = "SELECT * FROM Product_Allergy WHERE product_id = '" + p.getID() + "';";
+				Statement stmt2 = con.createStatement();
+				ResultSet rs2 = stmt2.executeQuery(query2);
+				
+				while (rs2.next()){
+					p.addAllergy(rs2.getString("ingredient_name"));
+				}
+				
+				list.add(p);
+			}
+			
+		} catch (SQLException e) {
+			//System.err.println("Error retrieving user info");
+			return null;
+		} finally {
+			closeConnection(con);
+		}
+		
+		return list;
+	}
+	
+	public static ArrayList<User> getUsers(){
+		ArrayList<User> list = new ArrayList<User>();
+		
+		String query = "SELECT * FROM Users;";
+		Connection con = connect();
+		ResultSet rs;
+		
+		try {
+			Statement stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while (rs.next()){
+				User user = new User();
+				user.setEmail(rs.getString("email"));
+				user.setFirstName(rs.getString("first_name"));
+				user.setLastName(rs.getString("last_name"));
+				user.setPassword(rs.getString("password"));
+				user.setId(rs.getInt("id"));
+				user.setUsername(rs.getString("username"));
+				
+				String query2 = "SELECT * FROM User_Allergy WHERE user_id = '" + user.getID() + "';";
+				Statement stmt2 = con.createStatement();
+				ResultSet rs2 = stmt2.executeQuery(query2);
+				
+				while (rs2.next()){
+					user.addAllergy(rs2.getString("ingredient_name"));
+				}
+				
+				
+				
+				list.add(user);
+			}
+			
+		} catch (SQLException e) {
+			//System.err.println("Error retrieving users info");
+			return null;
+		}
+		
+		return list;
+	}
+
+	
+	/*
+	 ////////////////////////////////////////////////////////////////////////////////////////////*
+	 */
+	/**
+	 * Method for closing any remaining connections. This should be called at the end of the program
+	 * or any time there may be too many connections open (this could be avoided with different database
+	 * programming, but for now this is just a fail safe)
+	 */
+	public static void close(){
+		try{
+			for (Connection con : connections){
+				if (con != null && ! con.isClosed()){
+					con.close();
+					connections.remove(con);
+				}
+			}
+		} catch (SQLException e){
+			System.err.println("Error closing connection");
+		}
+	}
+	
+	/**
+	 * Open a connection to the database supplied from the variables in the @DatabaseAccess class
+	 * @return the Connection object
+	 * @author Mitch Wilson
+	 */
+	private static Connection connect() {
+		Connection con = null;
+		try {
+			Class.forName(DRIVE_NAME);
+			con = DriverManager.getConnection(CONNECTION_URL, CONNECTION_USERNAME, CONNECTION_PASSWORD);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		connections.add(con);
+		return con;
+	} // end of connect
+	
+	/**
+	 * Helper method to close the Connection when the query is completed
+	 * @param con - the Connection to be closed
+	 * @author Mitch Wilson
+	 */
+	private static void closeConnection(Connection con) {
+		try {
+			if (con != null) {
+				con.close();
+				if (con.isClosed()){
+					connections.remove(con);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	} // end of closeConnection
+	
+}

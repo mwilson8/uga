@@ -1,0 +1,21 @@
+ #ifndef DATATYPE_H
+ #define DATATYPE_H
+
+
+ enum Comparison{
+    GREATER,
+    LESS,
+    EQUAL,
+ };
+
+ class DataType{
+  private:
+   int value;
+
+  public:
+   explicit DataType(int value);
+
+   Comparison comparedTo(DataType &item);
+   int getValue() const;
+};
+#endif

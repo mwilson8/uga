@@ -1,0 +1,55 @@
+
+public class StudentSolution {
+	
+	public static void solve(char[][] board, String[] list){
+		
+	}
+	
+	@SuppressWarnings("unused")
+	public static void main (String[] args){
+
+		//used for testing the solution method
+		Wordsearch ws;
+		
+		//pulls a pre-made board that is more challenging
+		//words may overlap & go in all directions
+		ws = new Wordsearch();
+		
+		
+		//if you always want to get the same board, give an int
+		//values [0,4] are valid
+		ws = new Wordsearch(3);
+		
+		
+		//randomly creates a board and hides the words from the given list in the board
+		//an easier board to solve, as words won't be diagonal
+		ws = new Wordsearch((String[]) null);
+		
+		//this is the board you should pass to the solve method
+		//it contains the hidden words along with random filled letters
+		//we will test your method with boards like this one
+		ws.getBoard();
+		
+		/*proper calling of your method would be similar to what is below
+		*output of this method should be
+		*
+		*	WORD1 : (1,0) -> (3,7)
+		*	WORD2 : etc....
+		*/
+		solve(ws.getBoard(), ws.getList());
+		
+		//to more easily check if you got the right answer, you can look at the words
+		//as they are hidden without any superfluous letters
+		ws.getSimpleBoard();
+		
+		//you can print either of the boards by calling
+		Wordsearch.printThisBoard(ws.getBoard());
+		Wordsearch.printThisBoard(ws.getSimpleBoard());
+		
+		//these two lines will create 2 boards with the same words but hidden differently
+		//one will be randomly hidden and the other won't change
+		Wordsearch ws2 = new Wordsearch(3); //same board every time
+		Wordsearch ws3 = new Wordsearch(Wordsearch.medList); //words hidden differently every time
+		
+	}
+}

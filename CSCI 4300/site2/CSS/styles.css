@@ -1,0 +1,196 @@
+P {
+	font-family:Arial; color:#FFFFFF; line-height: 150%; margin-left: 1em; margin-right: 1em;
+} /* orange color: #FF9900 */ /* which looks better: white, black, or orange */
+
+
+BODY {
+	background-color:#999999; padding: 0; margin: 0;
+}
+
+
+TD, TH {
+	font-family: Arial
+}
+
+
+TD {
+	background-color:#4d4d4d; font-size: 15pt; padding-top:5px; padding-left:10px; padding-right:10px; padding-bottom: 5px; width: 100px; text-align: center;
+}
+
+
+TH {
+	background-color:#ffa11a; color:#FFFFFF; font-size: 20pt; padding-top:5px; padding-left:10px; padding-right:10px; text-align: center;
+}
+
+
+TABLE {
+	margin:auto
+}
+
+
+A {
+	text-decoration: none; color: white; 	
+}
+
+
+A:visited {
+	text-decoration: none; color: white;
+}
+
+
+A:hover {
+	text-decoration: underline; 
+}
+
+
+/*begin special classes*/
+
+p.caps {
+	text-transform:uppercase; font-weight:bold; font-size:25pt; text-align:center;
+}
+
+
+.special1{
+	color: white; text-indent: 50px; 
+}
+
+
+.footer {
+	position: relative;
+	text-align: left;
+	margin: 1em;
+	width: 100%;
+}
+
+
+.indent {
+	text-indent:50px;
+}
+
+
+/*so far just used in "bio"*/
+	.first {
+	margin:auto;		
+}
+
+	.photobanner {
+	height: 2px;
+	width: 100%;
+	text-align: center;
+	margin-top: 30px;
+}
+
+
+.container1 {
+	width: 100%;
+	height:300px; /*sets size of entire "header", coupled with above "photobanner" text-align tag keeps the header centered*/
+	position:absolute; 
+	margin: 0;
+} 
+.photobanner img {
+	height: 300px;
+	width: auto;/*sometimes it gets mad if this isn't in there,*/
+	border:1.5px;
+} /* sets size of pictures*/
+
+#sholder {
+	width: 100%;
+	height: 500px;
+	position: relative;
+
+
+}
+
+#sholder img {
+	width: 50%;
+	position: relative;
+	top: 20px;
+	left: 350px; /* so it resizes witht the page but it doesn't move with the page*/
+	/*need something equivalent to "float:center"*/
+}
+/*begin navigation panel styles*/
+
+#wrap	{
+		width: 100%;
+		height: 50px; 
+		margin: 0em; 
+		z-index: 99;
+		position: fixed;  /*makes it always stay locked to top, even when scrolling*/
+		top: 0px;
+		background-color: img src="http://c.fastcompany.net/multisite_files/fastcompany/poster/2014/01/3025003-poster-p-dog-2.jpg";
+		}
+	
+	.navbar		{
+				height: 50px;
+				padding: 0;
+				margin: auto;
+				position: absolute;
+				border-right: 1.5px solid #e68a00;
+				border-left: 1.5px solid #e68a00;
+				}
+			
+		.navbar li 	{
+					height: auto;
+					width: 200px; 
+					float: left; 
+					text-align: center; 
+					list-style: none; 
+					font: normal bold 12px/1.2em Arial, Verdana, Helvetica;  
+					padding: 0;
+					margin: 0;
+					background-color: #4d4d4d;	
+
+					}
+
+
+			.navbar a	{							
+						padding: 18px 0; 
+						border-left: 1px solid #ffa11a;
+						border-right: 1px solid #e68a00;
+						text-decoration: none;
+						color: white;
+						display: block;
+						}
+
+				.navbar li:hover, a:hover	{background-color: #999999;}
+								
+				.navbar li ul 	{
+								display: none;
+								height: auto;									
+								margin: 0;
+								padding: 0;								
+								}
+				
+				.navbar li:hover ul {
+									display: block;									
+									}
+									
+				.navbar li ul li	{
+									background-color: #4d4d4d;
+
+									}
+				
+				.navbar li ul li a 	{
+
+									border-left: 1px solid #e68a00; 
+									border-right: 1px solid #e68a00; 
+									border-top: 1px solid #ffa11a; 
+									border-bottom: 1px solid #e68a00; 
+									}
+				
+				.navbar li ul li a:hover	{
+					background-color: #999999;
+									}
+
+								
+
+					
+
+
+
+
+
+
+
+									
+

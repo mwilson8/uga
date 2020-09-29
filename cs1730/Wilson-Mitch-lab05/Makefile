@@ -1,0 +1,23 @@
+CC = g++
+DEBUG = -g -O0 -pedantic-errors
+CFLAGS = -Wall -std=c++11 -c -lncurses $(DEBUG)
+LFLAGS = -Wall -lncurses $(DEBUG)
+
+all: lab05 #lab05_2
+
+lab05: lab05.o
+	$(CC) $(LFLAGS) -o lab05 lab05.o
+
+lab05.o: lab05.cpp
+	$(CC) $(CFLAGS) lab05.cpp
+
+lab05_2.o: lab05_2.cpp
+	$(CC) $(CFLAGS) lab05_2.cpp
+
+lab05_2: lab05_2.o
+	$(CC) $(LFLAGS) -o lab05_2 lab05_2.o
+
+clean: 
+	rm -rf *.o
+	rm -rf lab05
+#	rm -rf lab05_2

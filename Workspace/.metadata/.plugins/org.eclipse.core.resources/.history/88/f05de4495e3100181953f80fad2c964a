@@ -1,0 +1,82 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+public class Board {
+
+	private static char[][][] allBoards; 
+	private static String [][] allLists;
+	private static String[][] allSolutions;
+
+	private char[][] board;
+	private String[] list;
+	private ArrayList<String> studentSolution;
+	private int boardIndex;
+	
+	public Board(){
+		//initialize
+		//int x = new Random().nextInt(allBoards.length);
+		int x = 0;
+		boardIndex = x;
+		board = allBoards[boardIndex];
+		list = allLists[x];
+		studentSolution = new ArrayList<String>();
+	}
+	
+	public Board(int x){
+		//initialize
+		boardIndex = x;
+		board = allBoards[boardIndex];
+		list = allLists[x];
+		studentSolution = new ArrayList<String>();
+	}
+	
+	public char[][] getBoard(){
+		//return copy
+		return Arrays.copyOf(board, board.length);
+	}
+	
+	public String[] getList(){
+		return Arrays.copyOf(list, list.length);
+	}
+	
+	public void addSolution(String word, int x1, int y1, int x2, int y2){
+		System.out.println("ADDED: " + word + " : (" + x1 + ", " + y1 + ") (" + x2 + ", " + y2 + ")");
+		studentSolution.add(word.toLowerCase() + " : (" + x1 + ", " + y1 + ") (" + x2 + ", " + y2 + ")");
+	}
+	
+	public void printSolutions(){
+		for (String s : studentSolution)
+			System.out.println(s);
+	}
+	
+	public boolean checkSolutions(){
+		for (String s : allSolutions[boardIndex]){
+			if (!studentSolution.contains(s))
+				return false;
+		}
+		return true;
+	}
+	
+	static {
+		allBoards = new char[5][][];
+		allBoards[0] = new char [][]{
+	            {'-','w','u','x','t','r','y','-','-','-'},
+	            {'-','-','-','-','r','e','v','l','-','s'},
+	            {'-','y','l','a','z','y','-','-','a','a'},
+	            {'-','k','a','m','i','c','i','i','-','n'},
+	            {'-','s','-','-','-','d','l','-','o','d'},
+	            {'-','e','-','-','a','o','-','h','r','b'},
+	            {'-','u','-','o','n','-','a','-','t','a'},
+	            {'-','l','r','g','-','w','-','-','n','r'},
+	            {'-','b','a','g','r','i','l','l','e','-'},
+	            {'-','m','h','e','d','g','e','s','c','-'}
+	    };
+	    
+	    allLists = new String [5][];
+	    allLists[0] = new String [] {"bluesky","magnolias","sandbar","wuxtry","broad",
+                "hedges","lazy","centro","grill", "amici","waho", };
+	    
+	    allSolutions = new String [5][];
+	    allSolutions[0] = new String [] {"wuxtry : (0, 1) (0, 6)","lazy : (2, 2) (2, 5)"};
+	}
+}

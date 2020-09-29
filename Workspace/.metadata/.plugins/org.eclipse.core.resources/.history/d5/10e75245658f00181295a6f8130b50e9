@@ -1,0 +1,106 @@
+package edu.uga.cs4370.logic;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import edu.uga.cs4370.objects.Product;
+
+public class DatabaseInitialization {
+
+	
+	public static void initialize(){
+		
+		//initializeProducts();
+		initializeBakeries();
+		
+		
+	}
+	
+	
+	private static void initializeProducts(){
+		
+		ArrayList<Product> list = new ArrayList<Product>();
+		
+		String filePath = "resources/products.csv";
+		
+		String line = "";
+		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+
+			Product p = new Product();
+			int count = 0;
+            while ((line = br.readLine()) != null) {
+
+                // use comma as separator
+                String[] split = line.split(",");
+
+                if (count == 0)
+                	continue;
+                
+                try{
+                	p = new Product();
+                	p.setId(Integer.parseInt(split[0]));
+                	p.setType(split[1]);
+                	p.setName(split[2]);
+                	p.setPrice(Double.parseDouble(split[3]));
+                	p.setDescription(split[4]);
+                	p.setSRC(split[5]);
+                	
+                	list.add(p);
+                	
+                	
+                } catch (Exception e){
+                	//e.printStackTrace();
+                	continue;
+                }
+
+                count ++;
+            }
+            Database.addProducts(list);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+		initializeProductAllergies();
+
+	}
+	
+	private static void initializeBakeries(){
+
+		String filePath = "resources/bakeries.csv";
+
+		String line = "";
+		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+
+
+			int count = 0;
+
+			while ((line = br.readLine()) != null) {
+
+				if (count == 0)
+					continue;
+				// use comma as separator
+				String[] split = line.split(",");
+				System.out.println(Arrays.toString(split));
+				
+				count ++;
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	private static void initializeMenus(){
+		
+		String filePath = "resources/menus.csv";
+	}
+	
+	private static void initializeProductAllergies(){
+		
+		String filePath = "resources/product_allergies.csv";
+	}
+}

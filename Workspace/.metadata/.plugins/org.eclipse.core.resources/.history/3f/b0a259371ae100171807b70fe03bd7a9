@@ -1,0 +1,291 @@
+import java.util.Arrays;
+import java.lang.Math;
+
+public class Stat {
+
+	private double[] data;
+	
+	public Stat() {
+		double[] d = {};
+	}
+	
+	public Stat(double[] d) {
+		
+		int length = d.length;
+		double[] s = new double[length];
+		for (int index = 0; index < length; index++) {
+			s[index] = d[index];
+		}
+		data = s;
+	}
+	
+
+	public Stat(float[] f) {
+		
+		int length = f.length;
+		double[] s = new double[length];
+		for (int index = 0; index < length; index++) {
+			s[index] = f[index];
+		}
+		data = s;
+	}
+	
+	public Stat(int[] i) {
+		
+		int length = i.length;
+		double[] s = new double[length];
+		for (int index = 0; index < length; index++) {
+			s[index] = i[index];
+		}
+		data = s;
+	}
+	
+
+	public Stat(long[] lo) {
+		
+		int length = lo.length;
+		double[] s = new double[length];
+		for (int index = 0; index < length; index++) {
+			s[index] = lo[index];
+		}
+		data = s;
+	}
+
+	public double[] getData() {
+		
+		int length = this.data.length;
+		double[] x = new double[length];
+		for (int index = 0; index < length; index++) {
+			x[index] = this.data[index];
+		}
+		return x;
+	}
+	
+	public void setData(float[] f) {
+		
+		int length = f.length;
+		double[] s = new double[length];
+		for (int index = 0; index < length; index++) {
+			s[index] = f[index];
+		}
+		data = s;
+		
+	}
+	
+	public void setData(double[] d) {
+		
+		int length = d.length;
+		double[] s = new double[length];
+		for (int index = 0; index < length; index++) {
+			s[index] = d[index];
+		}
+		data = s;
+		
+	}
+	
+	public void setData(int[] i) {
+		
+		int length = i.length;
+		double[] s = new double[length];
+		for (int index = 0; index < length; index++) {
+			s[index] = i[index];
+		}
+		data = s;
+		
+	}
+	
+	public void setData(long[] lo) {
+		
+		int length = lo.length;
+		double[] s = new double[length];
+		for (int index = 0; index < length; index++) {
+			s[index] = lo[index];
+		}
+		data = s;
+	}
+	
+	public boolean equals(Stat s) {
+		double[] w = s.getData();
+		if (w.length == data.length) {
+			for (int i = 0; i < data.length; i++) {
+				if (w[i] != data[i]) {
+					return false;
+				}
+			}
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	public void reset() {
+		double[] s = {};
+		data = s;
+	}
+	
+	public void append(double[] d) {
+		if(d != null) {
+			int dataLength = data.length;
+			int length = data.length + d.length;
+			double[] s = new double[length];
+			for(int z = 0; z < data.length; z++) {
+				s[z] = data[z];
+			}
+			for(int j = dataLength; j < length; j++) {
+				int jLength = j - dataLength;
+				s[j] = d[jLength];
+			}
+			data = s;
+		}
+	}
+	
+	public void append(int[] i) {
+		if(i != null) {
+			int dataLength = data.length;
+			int length = data.length + i.length;
+			double[] s = new double[length];
+			for(int z = 0; z < data.length; z++) {
+				s[z] = data[z];
+			}
+			for(int j = dataLength; j < length; j++) {
+				int jLength = j - dataLength;
+				s[j] = i[jLength];
+			}
+			data = s;
+		}
+	}
+	
+	public void append(long[] lo) {
+		if(lo != null) {
+			int dataLength = data.length;
+			int length = data.length + lo.length;
+			double[] s = new double[length];
+			for(int z = 0; z < data.length; z++) {
+				s[z] = data[z];
+			}
+			for(int j = dataLength; j < length; j++) {
+				int jLength = j - dataLength;
+				s[j] = lo[jLength];
+			}
+			data = s;
+		}
+	}
+	
+	public void append(float[] f) {
+		if(f != null) {
+			int dataLength = data.length;
+			int length = data.length + f.length;
+			double[] s = new double[length];
+			for(int z = 0; z < data.length; z++) {
+				s[z] = data[z];
+			}
+			for(int j = dataLength; j < length; j++) {
+				int jLength = j - dataLength;
+				s[j] = f[jLength];
+			}
+			data = s;
+		}
+	}
+	
+	public boolean isEmpty() {
+		if (data.length == 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public double max() {
+		if (data.length == 0) {
+			return Double.NaN;
+		}
+	    double maxValue = this.data[0];
+	    for (int i = 1; i < this.data.length; i++) {
+	        if (this.data[i] > maxValue) {
+	            maxValue = this.data[i];
+	        }
+	    }
+	    return maxValue;
+	}
+	
+	public double min() {
+		if (data.length == 0) {
+			return Double.NaN;
+		}
+	    double minValue = this.data[0];
+	    for (int i = 1; i < this.data.length; i++) {
+	        if (this.data[i] < minValue) {
+	            minValue = this.data[i];
+	        }
+	    }
+	    return minValue;
+	}
+	
+	public double average() {
+		double average = this.data[0];
+		int length = this.data.length;
+		
+	    for (int i = 1; i < this.data.length; i++) {
+	        average=+ this.data[i];
+	    }
+	    average = average / length;
+	    return average;
+	}
+	
+	public String toString() {
+		
+		String dataString = "[";
+		for (int i = 0; i < data.length; i++) {
+			dataString = dataString + Double.toString(data[i]);
+			if (i < data.length) {
+				dataString = dataString + ", ";
+			}
+		}
+		dataString = dataString + "]";
+		return dataString;
+		
+	}
+	
+	public double mode() {
+		if (data.length == 0) {
+			return Double.NaN;
+		}
+		int counter1 = 0;
+		double mode = Double.NaN;
+		
+		for (int i = 0; i < data.length; i++) {
+			int counter2 = 0;
+			for (int j = i + 1; j < data.length; j++) {
+				if (data[i] == data[j])
+					counter2++;
+			}
+			if (counter2 > counter1) {
+				counter1 = counter2;
+				mode = data[i];
+			}
+		}
+		return mode;
+	}
+	
+	public double variance() {
+		if (data.length == 0) {
+			return Double.NaN;
+		}
+		double mean = average();
+		double variance = 0;
+		int length = data.length;
+		for(int i = 0; i < length; i++) {
+			double d = data[i] - mean;
+			variance = variance + d * d;
+		}
+		variance = variance / length;
+		return variance;
+	}
+	
+	public double standardDeviation() {
+		double variance = variance();
+		double standardDeviation = Math.sqrt(variance);
+		return standardDeviation;
+	}
+}

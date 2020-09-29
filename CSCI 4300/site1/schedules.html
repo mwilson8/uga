@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<title>Schedules</title>
+	<link rel="stylesheet" href="styles.css">
+	
+	
+</head>
+<body onLoad="checkYear()"> <!--see if directed here from a year&season specific link or just generic--> 
+
+		<div id="wrap">
+		  <ul class="navbar">
+			 <li><a href="index.html">Home</a></li>
+			 <li><a href="bio.html">About Me</a>
+				<ul>
+				   <li><a href="bio.html">Bio</a></li>
+				   <li><a href="pictures.html">Pictures</a></li>
+				</ul>         
+			 </li> 
+			 <li><a href="schedules.html">Class Schedules</a>
+				<ul>
+				   		<li><a href="schedules.html?year=15&amp;season=fall">2015 Fall</a></li>
+				   		<li><a href="schedules.html?year=15&amp;eason=spring">2015 Spring</a></li>
+				   	
+				   <li><a href="schedules.html?year=14&amp;season=fall">2014 Fall</a></li> 
+			       <li><a href="schedules.html?year=14&amp;season=spring">2014 Spring</a></li>
+			       <li><a href="schedules.html?year=13&amp;season=fall">2013 Fall</a></li> 
+			       <li><a href="schedules.html?year=13&amp;season=spring">2013 Spring</a></li>
+			       <li><a href="schedules.html?year=12&amp;season=fall">2012 Fall</a></li>
+				</ul>         
+			 </li> 
+			 <li><a href="index.html">Useful Resources</a>
+				<ul>
+				   <li><a href="https://validator.w3.org">HTML Validation</a></li>
+				   <li><a href="http://www.w3schools.com/tags/default.asp">HTML Code Help</a></li>
+				   <li><a href="https://jigsaw.w3.org/css-validator/#validate_by_upload">CSS Validation</a></li>
+				   <li><a href="http://www.w3schools.com/css/">CSS Code Help</a></li>
+				   <li><a href="https://www.dropbox.com/">DropBox</a></li>
+				   <li><a href="https://github.com">GitHub</a></li>
+				</ul>         
+			 </li>
+			 <li><a href="mailto:mitch.wilson94@gmail.com?Subject=Website">Contact Me</a>
+				<ul>
+				   <li><a href="mailto:mitch.wilson94@gmail.com?Subject=Website">Email</a></li>
+				   <li><a href="contact.html">Social Media</a></li>
+				</ul>         
+			 </li>
+			 <li><a href="">Quick Links</a>
+				<ul>
+				   <li><a href="http://www.google.com">Google</a></li>
+				   <li><a href="http://www.cs.uga.edu">UGA Computer Science</a></li>
+				</ul>         
+			 </li>
+		  </ul>
+</div>
+				<!--end of navigation panel-->
+<p> <br></p> <!-- due to nav locked at top, need a break so not to run over title. try to work around this-->
+<p class="caps">My Class Schedules</p>
+
+
+<table style="float:center">
+	<tr> 
+		
+		<th colspan="6">Year</th>
+		
+	</tr>
+	<tr><th>Semester</th><td>2012</td><td>2013</td><td>2014</td><td>2015</td><td>2016</td></tr>
+	
+	<tr> 
+		<td> Spring</td>
+		
+		<th>*</th>
+		<td><input type="button" style="width: 100%" value="Spring 2013"onClick="spring13()"></td>
+		<td><input type="button" style="width: 100%" value="Spring 2014"onClick="spring14()"></td>
+		<td><input type="button" style="width: 100%" value="Spring 2015"onClick="spring15()"></td>
+		<td rowspan="2"><input type="button" style="width: 100%" value="2016"onClick="alert1()"></td>
+	</tr>	
+
+	<tr> 
+		<td> Fall </td>
+	
+		<td><input type="button" style="width: 100%" value="Fall 2012"onClick="fall12()"></td>
+		<td><input type="button" style="width: 100%" value="Fall 2013"onClick="fall13()"></td>
+		<td><input type="button" style="width: 100%" value="Fall 2014"onClick="fall14()"></td>
+		<td><input type="button" style="width: 100%" value="Fall 2015"onClick="fall15()"></td>
+		
+	</tr>
+
+		
+</table>			
+<p>		* Spring 2013 was the last semester of my senior year in high school.
+<br> 
+<br>
+</p>
+<!--links button actions to schedule picures-->
+<script type = "text/javascript">
+
+/* changes picture from other links*/
+ function checkYear(){
+    var yearVal = getParameterByName('year');
+    var seasonVal = getParameterByName('season');
+    if(yearVal && seasonVal){
+        document.getElementById("schedule").src = (seasonVal + yearVal + '.png');
+    }
+}
+
+/*http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript*/
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+       results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+/*end changing from other links*/
+
+/*functions to call picture from table links*/
+        function fall15() /*fall 2015*/
+        {
+            document.getElementById("schedule").src = "images/fall15.png";
+        }
+
+        function spring15() /*spring 2015*/
+        {
+            document.getElementById("schedule").src ="images/spring15.png";
+        } 
+
+        function fall14() /*fall 2014*/
+        {
+            document.getElementById("schedule").src = "images/fall14.png";
+        }
+
+        function spring14() /*spring 2014*/
+        {
+            document.getElementById("schedule").src = "images/spring14.png";
+        }
+		function fall13() /*fall 2013*/
+        {
+            document.getElementById("schedule").src = "images/fall13.png";
+        }
+
+        function spring13() /*spring 2013*/
+        {
+            document.getElementById("schedule").src = "images/spring13.png";
+        } 
+		
+		function fall12() /*fall 2012*/
+        {
+            document.getElementById("schedule").src = "images/fall12.png";
+        } 
+
+        function alert1() 
+        {
+            alert('Schedules for 2016 are coming soon')
+        } 
+
+        /*end call function*/
+        </script>
+			 <div id="sholder" style="float:center">
+			 <img src = "" id = "schedule" alt=""> <!--place where the image goes-->
+			</div>
+		<script type="text/javascript"> 
+		/*resizes pictures*/
+(function picResize() {
+
+var img = document.getElementById('container').firstChild;
+img.onload = picResize() {
+    if(img.height > img.width) {
+        img.height = '100%';
+        img.width = 'auto';
+    }
+};
+
+}());
+
+/* end resize */
+</script>	
+<!--ends changing pictures-->
+<!--HTML validation certificate-->
+<p class="footer">
+    <a href="http://validator.w3.org/check?uri=referer"><img
+      src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01 Strict" height="31" width="88"></a>
+  </p>	
+</body>
+</html>	

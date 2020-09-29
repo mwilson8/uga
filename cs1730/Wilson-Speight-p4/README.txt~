@@ -1,0 +1,29 @@
+1| Wilson, Mitch
+2| Speight, Trey
+
+To compile & link files:
+---
+$ make
+---
+
+To remove compiled files & executables:
+---
+$ make clean
+---
+
+To execute:
+---
+$ ./1730sh
+---
+
+
+NOTES:
+At some point during development, the 'exit' built-in stopped agreeing with us\
+we've messed with it a lot and it has something to do with ignoring/defaulting signals\
+but we can't seem to figure it out. 
+
+
+!!***running '$ exit' in our shell will log you off of the cluster/nike***!!
+
+
+however, '$ exit 35' will exit the shell with exit value 35, like it's supposed to...it's weird

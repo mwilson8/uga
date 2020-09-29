@@ -1,0 +1,19 @@
+Wilson-Speight-p3/:
+total 84
+-rw-------. 1 ugrad 6177 Nov  7 20:41 cal.cpp
+-rw-------. 1 ugrad 5037 Nov  1 17:04 cksum.cpp
+-rw-------. 1 ugrad  915 Nov  7 20:42 date.cpp
+-rw-------. 1 ugrad  262 Nov  1 17:05 env.cpp
+-rw-------. 1 ugrad   58 Nov  7 20:22 false.cpp
+-rw-------. 1 ugrad 1743 Nov  1 17:05 head.cpp
+-rw-------. 1 ugrad 1505 Nov  1 17:05 ln.cpp
+-rw-------. 1 ugrad 6975 Nov  7 20:46 ls.cpp
+-rw-------. 1 ugrad 1404 Nov  7 20:37 Makefile
+-rw-------. 1 ugrad 4445 Nov  7 10:02 mkdir.cpp
+-rw-------. 1 ugrad  271 Nov  7 20:44 pwd.cpp
+-rw-------. 1 ugrad  239 Nov  7 20:36 README
+-rw-------. 1 ugrad    0 Nov  7 20:51 rec75108
+-rw-------. 1 ugrad 4868 Nov  7 20:45 tail.cpp
+-rw-------. 1 ugrad   66 Nov  7 20:21 true.cpp
+-rw-------. 1 ugrad 6579 Nov  7 18:10 wc.cpp
+/home/ugrads/wilsonm/cs1730/Wilson-Speight-p3/:/home/work/cs1730a

@@ -1,0 +1,188 @@
+import java.util.Scanner;
+/*
+* StringFun.java
+* Author: Trinity Hobson
+* Submission Date: March 5, 2018 *
+* Purpose: This program will allow the user
+* to enter a string and the program will manipulate
+* the string based on the command that is entered.
+* Statement of Academic Honesty: *
+* The following code represents my own work. I have neither
+* received nor given inappropriate assistance. I have not copied
+* or modified code from any source other than the course web page
+* or the course textbook. I recognize that any unauthorized
+* assistance or plagiarism will be handled in accordance with
+* the University of Georgia's Academic Honesty Policy and the
+* policies of this course. I recognize that my work is based
+* on an assignment created by the Department of Computer
+* Science at the University of Georgia. Any publishing
+* or posting of source code for this project is strictly
+* prohibited unless you have written consent from the Department 
+* of Computer Science at the University of Georgia.
+*/
+public class StringFun {
+	
+	public static void main(String[] args) {
+	
+		
+		String userString;
+		boolean program = true;
+		String command;
+		String oldChar;
+		String newChar;
+		int i;
+		
+		Scanner keyboard = new Scanner(System.in);
+		System.out.println("Enter the string to be manipulated.");
+		
+		userString = keyboard.nextLine();		
+		
+		//while loop for entire program
+		while(program)
+		{
+			System.out.println("Enter your command (quit, print reverse, replace all, replace single, remove)");
+			command = keyboard.nextLine();
+
+			// if statement for print reverse
+			if(command.equalsIgnoreCase("print reverse"))				
+			{
+				for (int n = userString.length()-1; n >= 0; n--)
+				{
+					char m = userString.charAt(n);
+					System.out.print(m);
+				}
+			}
+			//if statement for replace all
+			else if (command.equalsIgnoreCase("replace all"))			
+			{
+				System.out.println("Enter the character to replace");
+				oldChar = keyboard.nextLine();
+				char o = oldChar.charAt(0);
+				System.out.println("Enter the new character");
+				newChar = keyboard.nextLine();
+				char n = newChar.charAt(0);
+				String newUserString = userString;
+			
+				//while "l" is less than the length of the string, evaluate each character and determine
+				//if it is equal to the new character
+				for (int l = 0; l < userString.length(); l++)
+				{
+					char k = userString.charAt(l);
+					//if the char at "l" is equal to the old character, replace it with the new character
+					if (k == o)
+					{
+						k = n;
+					}
+					//updating the user string
+					newUserString = newUserString.substring(newUserString.length()-userString.length()+1);
+					newUserString += k;	
+				}
+				if(userString.equals(newUserString))
+				{
+					System.out.println("Error: the letter you are trying to replace does not exist ");
+				}
+				else
+				{	
+					System.out.print("The new string is: " +newUserString);
+					userString = newUserString;
+				}
+			}
+			//if statement for replace single
+			else if (command.equalsIgnoreCase("replace single"))		
+			{
+				System.out.println("Enter the character to replace");
+				oldChar = keyboard.nextLine();
+				char o = oldChar.charAt(0);
+				System.out.println("Enter the new character");
+				newChar = keyboard.nextLine();
+				char n = newChar.charAt(0);
+				System.out.println("Which "+oldChar + " would you like to replace?" );
+				i = keyboard.nextInt();
+				keyboard.nextLine();
+				int count = 0;
+				String newUserString = userString;
+				
+				for (int l = 0; l < userString.length(); l++)
+				{
+					//if the character is equal to the old character and the index is equal to 
+					//the number the user entered, then replace the character with the new character
+					char k = userString.charAt(l);
+					if (k == o)
+					{
+						count++;
+						if (count == i)
+						{
+							k = n;
+							
+						}
+					}
+				//updating the user string
+					newUserString = newUserString.substring(newUserString.length()-userString.length()+1);
+					newUserString += k;
+				}
+				if(userString.equals(newUserString))
+				{
+					System.out.println("Error: the letter you are trying to replace does not exist ");
+				}
+				else
+				{	
+					System.out.print("The new string is: " +newUserString);
+					userString = newUserString;
+				}
+			}
+			///if statement for remove
+			else if (command.equalsIgnoreCase("remove"))				
+			{
+				System.out.println("Enter the character to remove");
+				oldChar = keyboard.nextLine();
+				char o = oldChar.charAt(0);
+				String newUserString = userString;
+				for (int l = 0; l < userString.length(); l++)
+				{
+					// if the character at index (l) is equal to the old character, then replace it with a space
+					char k = userString.charAt(l);
+					if (k == o)
+					{
+						k = ' ';
+					}
+					newUserString = newUserString.substring(newUserString.length()-userString.length()+1);
+					newUserString += k;	
+				}
+				if(userString.equals(newUserString))
+				{
+					System.out.println("Error: the letter you are trying to remove does not exist ");
+				}
+				else
+				{	
+					System.out.print("The new string is: " +newUserString);
+					userString = newUserString;
+				}
+			}
+			//If the user enters "quit" the program ends
+			else if (command.equalsIgnoreCase("quit"))				
+			{
+				program = false;
+				
+			}
+			else
+			{
+				System.out.println("Invalid command. Try again");
+			}
+			System.out.println();
+		} 
+	
+	}
+			
+}		
+
+			
+		
+			
+		
+	
+
+	
+	
+		
+
+

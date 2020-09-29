@@ -1,0 +1,49 @@
+Wilson_Han_assignment2/:
+total 12
+drwxr-xr-x 2 ugrad 4096 Mar 12 22:01 CircularLinkedList
+drwxr-xr-x 2 ugrad 4096 Mar 12 23:17 DoublyLinkedList
+-rw------- 1 ugrad  706 Mar 12 23:22 README
+-rw------- 1 ugrad    0 Mar 12 23:27 rec25429
+
+Wilson_Han_assignment2/CircularLinkedList:
+total 3516
+-rw-r--r-- 1 ugrad   3737 Mar 12 22:00 CircularLinkedList.cpp
+-rw-r--r-- 1 ugrad   3737 Mar 12 22:00 CircularLinkedList.cpp~
+-rw-r--r-- 1 ugrad    546 Mar 11 20:54 CircularLinkedList.h
+-rw------- 1 ugrad   5608 Mar 12 22:00 CircularLinkedList.o
+-rw------- 1 ugrad 638976 Mar 12 22:01 core.5572
+-rw------- 1 ugrad 634880 Mar 12 21:45 core.76297
+-rw------- 1 ugrad 491520 Mar 12 21:46 core.76366
+-rw------- 1 ugrad 491520 Mar 12 21:47 core.76490
+-rw------- 1 ugrad 634880 Mar 12 21:47 core.76556
+-rw------- 1 ugrad 634880 Mar 12 21:48 core.76661
+-rw------- 1 ugrad     28 Mar 12 21:39 input.txt
+-rw-r--r-- 1 ugrad    807 Mar 12 21:19 ItemType.cpp
+-rw-r--r-- 1 ugrad    793 Mar 11 22:59 ItemType.cpp~
+-rw-r--r-- 1 ugrad    299 Mar 11 21:29 ItemType.h
+-rw------- 1 ugrad   2984 Mar 12 21:19 ItemType.o
+-rwx------ 1 ugrad  16057 Mar 12 22:00 main
+-rw------- 1 ugrad   1554 Mar 12 21:52 main.cpp
+-rw------- 1 ugrad   1561 Mar 12 21:52 main.cpp~
+-rw------- 1 ugrad   6584 Mar 12 22:00 main.o
+
+Wilson_Han_assignment2/DoublyLinkedList:
+total 2968
+-rw------- 1 ugrad 495616 Mar 12 22:58 core.19373
+-rw------- 1 ugrad 495616 Mar 12 23:11 core.22174
+-rw------- 1 ugrad 495616 Mar 12 23:13 core.22483
+-rw------- 1 ugrad 495616 Mar 12 23:15 core.22910
+-rw------- 1 ugrad 495616 Mar 12 23:15 core.22955
+-rw------- 1 ugrad 495616 Mar 12 23:17 core.23490
+-rw-r--r-- 1 ugrad   3112 Mar 12 23:17 DoublyLinkedList.cpp
+-rw-r--r-- 1 ugrad   3106 Mar 12 23:15 DoublyLinkedList.cpp~
+-rw-r--r-- 1 ugrad    565 Mar 11 20:29 DoublyLinkedList.h
+-rw------- 1 ugrad   7296 Mar 12 23:17 DoublyLinkedList.o
+-rw------- 1 ugrad     28 Mar 12 22:56 input.txt
+-rw-r--r-- 1 ugrad    807 Mar 12 22:06 ItemType.cpp
+-rw-r--r-- 1 ugrad    299 Mar 11 20:29 ItemType.h
+-rw------- 1 ugrad   2984 Mar 12 22:06 ItemType.o
+-rwx------ 1 ugrad  16089 Mar 12 23:17 main
+-rw------- 1 ugrad   1550 Mar 12 22:56 main.cpp
+-rw------- 1 ugrad   6576 Mar 12 22:56 main.o
+/home/ugrads/wilsonm/Wilson_Han_assignment2/:/home/work/cs2720a

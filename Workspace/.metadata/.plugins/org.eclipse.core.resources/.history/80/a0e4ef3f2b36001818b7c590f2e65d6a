@@ -1,0 +1,166 @@
+/*
+* StringFun.java
+* Author: Nicholas Robertson
+* Submission Date: 2/14/2018
+*
+* Purpose: Allows the user to manipulate a string.
+*
+* Statement of Academic Honesty:
+*
+* The following code represents my own work. I have neither
+* received nor given inappropriate assistance. I have not copied
+* or modified code from any source other than the course webpage
+CSCI 1301: Lab 7
+* or the course textbook. I recognize that any unauthorized
+* assistance or plagiarism will be handled in accordance with
+* the University of Georgia's Academic Honesty Policy and the
+* policies of this course. I recognize that my work is based
+* on an assignment created by the Department of Computer
+* Science at the University of Georgia. Any publishing
+* or posting of source code for this project is strictly
+* prohibited unless you have written consent from the Department
+* of Computer Science at the University of Georgia.
+*/
+
+//importing scanner
+import java.util.Scanner;
+
+public class StringFun{
+	
+ public static void main(String[] args) {
+	 
+	 //variable declaration and initialization
+	 String userString, userCommand, characterToReplace, newCharacter, indexedCharacter;
+	 char character, desiredIndex;
+	 boolean quit = false, end, check;
+	 int index, indexCount, desiredIndexInt;
+	 
+	 
+	 //starting keyboard scanner
+	 Scanner keyboard = new Scanner(System.in);
+	 
+	 //taking user's string to be manipulated
+	 System.out.println("Enter the string to be manipulated");
+	 userString = keyboard.nextLine();
+	 
+	 while(!quit) {
+		 
+		 //taking user command to manipulate string
+		 System.out.print("Enter your command (quit, print reverse,");
+		 System.out.println(" replace all, replace single, remove)");
+		 userCommand = keyboard.nextLine();
+		 userCommand = userCommand.toLowerCase();
+		 
+		 //checking which manipulation the user would like
+		 if (userCommand.equals("print reverse")) {
+			 
+			 //finds letter starting at end of string and prints
+			 //each letter
+			 for(index = userString.length(); index > 0; index--) {
+				 character = userString.charAt(index - 1);
+				 System.out.print(character);
+			 }
+			 //formatting
+			 System.out.println();
+			 
+		 }
+		 else if (userCommand.equals("replace single")) {
+			 indexCount = 0;
+			 end = false;
+			 check = false;
+			 desiredIndexInt = 0;
+			 
+			 //taking in user input
+			 System.out.println("Enter the character to replace");
+			 characterToReplace = keyboard.nextLine();
+			 
+			 System.out.println("Enter the new character");
+			 newCharacter = keyboard.nextLine();
+			 
+			 System.out.println("Which " + characterToReplace + " would you like to replace?");
+			 desiredIndex = keyboard.nextLine().charAt(0);
+			 
+			 //checks if input number is a number
+			 if (Character.isDigit(desiredIndex)) {
+				 
+				 //converts char to int
+				 desiredIndexInt = Character.getNumericValue(desiredIndex);
+				 check = true;
+				 
+			 }
+			 else {
+				 //error message
+				 System.out.println("Invalid number");
+			 }
+			 
+			 //scans each letter of the word
+			 for(index = 0; index < userString.length(); index++) {
+				 indexedCharacter = userString.substring(index, index + 1);
+				 if (indexedCharacter.equals(characterToReplace) && !end) {
+					 indexCount++;
+					 //checks if the count has made it to the user's desired index
+					 if (indexCount == desiredIndexInt) {
+						 //replaces desired letter with the new letter
+						 userString = userString.substring(0, index) + newCharacter + userString.substring(index + 1);
+						 end = true;
+					 }
+				 }
+			 }
+			 //error checking
+			 if (indexCount != desiredIndexInt && check) {
+				 System.out.println("Error: the letter you are trying to replace does not exist");
+			 }
+			 else if (indexCount == 0 && check) {
+				 System.out.println("Error: the letter you are trying to replace does not exist");
+			 }
+			 //printing the new string if no errors
+			 else if (check) {
+				 System.out.println("The new sentance is:  " + userString);
+			 }
+			 
+		 } 
+		 else if (userCommand.equals("replace all")) {
+			 
+			 //taking user input
+			 System.out.println("Enter the character to replace");
+			 characterToReplace = keyboard.nextLine();
+		
+			 System.out.println("Enter the new character");
+			 newCharacter = keyboard.nextLine();
+			 
+			 //scans each letter of the word
+			 for(index = 0; index < userString.length(); index++) {
+				 indexedCharacter = userString.substring(index, index + 1);
+				 if (indexedCharacter.equals(characterToReplace)) {
+					 userString = userString.substring(0, index) + newCharacter + userString.substring(index + 1);
+					 }
+			 }
+			 //prints new string to user
+			 System.out.println("The new sentance is:  " + userString);
+			 
+			 
+		 }
+		 else if (userCommand.equals("remove")) {
+			 System.out.println("Enter the character to remove");
+			 characterToReplace = keyboard.nextLine();
+			 
+			 for(index = 0; index < userString.length(); index++) {
+				 indexedCharacter = userString.substring(index, index + 1);
+				 if (indexedCharacter.equals(characterToReplace)) {
+					 userString = userString.substring(0, index) + userString.substring(index + 1);
+					 }
+			 }
+			 System.out.println("The new sentance is:  " + userString);
+		 }
+		 else if (userCommand.equals("quit")) {
+			 quit = true; //ends loop
+		 }
+		 else {
+			 System.out.println("not a valid command");
+			 //nothing, loop starts over
+		 }
+	 
+	 }
+	 //nothing happens after loop ends
+ }
+}

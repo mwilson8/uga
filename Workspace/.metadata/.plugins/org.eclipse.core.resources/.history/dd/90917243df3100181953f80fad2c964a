@@ -1,0 +1,282 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+
+public class Board {
+
+	private char[][] board;
+	private String[] list;
+	private ArrayList<String> studentSolution;
+	private int boardIndex;
+
+	/**
+	 * Sets this objects' board to a random board, along
+	 * with the correct list to search for
+	 */
+	public Board(){
+		this(new Random().nextInt(allBoards.length));
+	}
+
+	/**
+	 * Sets this object's board to the specified board, along
+	 * with the correct list to search for
+	 * @param x - the board to use
+	 */
+	public Board(int x){
+		if (x >= allBoards.length)
+			throw new IllegalArgumentException("Invalid board number: " + x + 
+					"\nMust be between 0 and " + getNumberOfBoards());
+		
+		
+		boardIndex = x;
+		board = allBoards[boardIndex];
+		scramble();
+		list = allLists[boardIndex];
+		studentSolution = new ArrayList<String>();
+	}
+
+	public static int getNumberOfBoards(){
+		return allBoards.length;
+	}
+	/**
+	 * Returns a copy of this object's wordsearch board
+	 */
+	public char[][] getBoard(){
+		return Arrays.copyOf(board, board.length);
+	}
+
+	/**
+	 * Returns a copy of this object's word list
+	 */
+	public String[] getList(){
+		return Arrays.copyOf(list, list.length);
+	}
+
+	/**
+	 * Adds the suspected solution to the list of all suspected solutions
+	 * 
+	 * EXAMPLE: if we found the word "hello" running horizontally left to right, starting at 
+	 * (1,2) and ending at (1,6) then we would add that as a solution by calling this method 
+	 * in the following format: addSolution("hello", 1, 2, 1, 6); 
+	 * 
+	 * @param word - the found word
+	 * @param x1 - the x coordinate of the beginning of the word
+	 * @param y1 - the y coordinate of the beginning of the word
+	 * @param x2 - the x coordinate of the end of the word
+	 * @param y2 - the y coordinate of the end of the word
+	 */
+	public void addSolution(String word, int x1, int y1, int x2, int y2){
+		studentSolution.add(word.toLowerCase() 
+				+ " : (" + x1 + ", " + y1 + ") (" + x2 + ", " + y2 + ")");
+	}
+
+	/**
+	 * Prints all found solutions
+	 */
+	public void printSolutions(){
+		for (String s : studentSolution)
+			System.out.println(s);
+	}
+
+	/**
+	 * Prints solutions as copyable array.
+	 */
+	public void printSolutions(boolean b){
+		String soln = "allSolutions[" + boardIndex + "]";
+		soln += " = new String[]";
+		soln += " {\n";
+		for(String s: studentSolution){
+			soln += "\""+ s  +"\""+ ",\n";
+		}
+		System.out.println(soln.substring(0,soln.length()-2)+"};");
+	}
+
+	/**
+	 * Checks the found words against the correct solution to the puzzle
+	 * @return <code>true</code> if all words are found, even if extra words are found,
+	 * <code>false</code> if there was at least one word not found
+	 */
+	public boolean checkSolutions(){
+		String[] correctSolution = allSolutions[boardIndex]; //for debugging
+		for (String s : allSolutions[boardIndex]){
+			if (!studentSolution.contains(s))
+				return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Adds in random characters to the board to better hide the words
+	 */
+	private void scramble(){
+		final char[] consonants = 
+			{'b', 'c', 'd', 'f', 'g', 'h', 'j', 
+					'k', 'l', 'm', 'n', 'p', 'q', 'r', 
+					's', 't', 'v', 'w', 'x', 'y', 'z'};
+
+		for (int i = 0; i < board.length; i ++)
+			for (int j = 0; j < board[i].length; j++){
+				if (board[i][j] == ' ')
+					board[i][j] = consonants[new Random().nextInt(consonants.length)];
+			}
+	}
+
+	/*
+	 *	/////////stuff for behind the scenes book keeping
+	 *	/////////all possible boards and their accompanying solutions and lists are below
+	 *  
+	 */
+	private static char[][][] allBoards; 
+	private static String [][] allLists;
+	private static String[][] allSolutions;
+
+	/**
+	 * Initialize all the boards, lists, and correct solutions
+	 * this block runs before any constructor is called
+	 * We could have put this code in the constructor or initialization, but it's
+	 * down here to make the code more readable
+	 */
+	static {
+		final int NUM_BOARDS = 5;
+		allBoards = new char[NUM_BOARDS][][];
+		allLists = new String [NUM_BOARDS][];
+		allSolutions = new String [NUM_BOARDS][];
+
+		//board 1: Athens landmarks
+		allBoards[0] = new char [][]{
+				 //0   1   2   3   4   5   6   7   8   9 
+			/*0*/{' ','w','u','x','t','r','y',' ',' ',' '},
+			/*1*/{' ',' ',' ',' ','r','e','v','l',' ','s'},
+			/*2*/{' ','y','l','a','z','y',' ',' ','a','a'},
+			/*3*/{' ','k','a','m','i','c','i','i',' ','n'},
+			/*4*/{' ','s',' ',' ',' ','d','l',' ','o','d'},
+			/*5*/{' ','e',' ',' ','a','o',' ','h','r','b'},
+			/*6*/{' ','u',' ','o','n',' ','a',' ','t','a'},
+			/*7*/{' ','l','r','g',' ','w',' ',' ','n','r'},
+			/*8*/{' ','b','a','g','r','i','l','l','e',' '},
+			/*9*/{' ','m','h','e','d','g','e','s','c',' '}
+		};
+		allLists[0] = new String [] {"bluesky","magnolias","sandbar","wuxtry","broad",
+				"hedges","lazy","centro","grill", "amici","waho", };
+
+		allSolutions[0] = new String [] {"wuxtry : (0, 1) (0, 6)",
+				"sandbar : (1, 9) (7, 9)",
+				"lazy : (2, 2) (2, 5)",
+				"amici : (3, 2) (3, 6)",
+				"waho : (7, 5) (4, 8)",
+				"bluesky : (8, 1) (2, 1)",
+				"broad : (8, 1) (4, 5)",
+				"grill : (8, 3) (8, 7)",
+				"magnolias : (9, 1) (1, 9)",
+				"hedges : (9, 2) (9, 7)",
+		"centro : (9, 8) (4, 8)"};
+
+		allBoards[1] = new char[][] {
+			     //0   1   2   3   4   5   6   7   8   9   0   1   2 
+			/*0*/{' ',' ',' ',' ','b','e','r','n','e','r','s',' ','h'},
+			/*1*/{' ',' ',' ',' ',' ','c',' ',' ',' ',' ',' ',' ','o'},
+			/*2*/{'t','a','h','d','e','r',' ',' ',' ',' ',' ','s','p'},
+			/*3*/{'i','p',' ',' ',' ','u','b','u','n','t','u','y','p'},
+			/*4*/{'m','a',' ',' ',' ','o',' ',' ','i','e',' ','s','e'},
+			/*5*/{' ','c',' ',' ','h','s','a','b','k','c',' ','g','r'},
+			/*6*/{' ','h','k','e','r','n','a','l','e','a',' ','n',' '},
+			/*7*/{' ','e',' ','x',' ','e',' ',' ',' ','r','v','i','m'},
+			/*8*/{' ',' ','u','i',' ','p',' ',' ',' ','g',' ','t',' '},
+			/*9*/{'x','t',' ','n','s','o','s',' ',' ','n',' ','a',' '},
+			/*0*/{' ','u','u','u',' ',' ','c',' ','b','i','n','r',' '},
+			/*1*/{' ',' ','n',' ','e',' ','a',' ',' ','r',' ','e',' '},
+			/*2*/{' ','i','g','i','e',' ','m',' ',' ','u',' ','p',' '},
+			/*3*/{'l',' ',' ',' ','l',' ','e',' ',' ','t',' ','o',' '}
+		};
+
+		allLists[1] = new String[]{"linus","linux","gnu","kernal","opensource","ubuntu",
+				"unix","tux","redhat","nike", "emacs","operatingsys","vim","tim",
+				"berners","lee","turing","grace","hopper","bin","apache"};
+
+		allSolutions[1] = new String[] {
+				"berners : (0, 4) (0, 10)",
+				"hopper : (0, 12) (5, 12)",
+				"tim : (2, 0) (4, 0)",
+				"apache : (2, 1) (7, 1)",
+				"redhat : (2, 5) (2, 0)",
+				"ubuntu : (3, 5) (3, 10)",
+				"nike : (3, 8) (6, 8)",
+				"kernal : (6, 2) (6, 7)",
+				"vim : (7, 10) (7, 12)",
+				"grace : (8, 9) (4, 9)",
+				"tux : (9, 1) (7, 3)",
+				"opensource : (9, 5) (0, 5)",
+				"unix : (10, 3) (7, 3)",
+				"bin : (10, 8) (10, 10)",
+				"gnu : (12, 2) (10, 2)",
+				"linus : (13, 0) (9, 4)",
+				"lee : (13, 4) (11, 4)",
+				"linux : (13, 4) (9, 0)",
+				"emacs : (13, 6) (9, 6)",
+				"turing : (13, 9) (8, 9)",
+		"operatingsys : (13, 11) (2, 11)"};
+
+
+		allBoards[2] = new char[][] {
+			     //0   1   2   3   4   5 
+			/*0*/{' ',' ','m',' ','b',' '},
+			/*1*/{'j','a','v','a','y',' '},
+			/*2*/{' ','d','j',' ','t','e'},
+			/*3*/{' ',' ','k',' ','e','d'},
+			/*4*/{'t','c','e','j','b','o'},
+			/*5*/{' ',' ','r',' ',' ','c'},
+			/*6*/{'t','n','i','s',' ',' '}
+		};
+
+		allLists[2] = new String[] {"int","java","jvm","byte","object","code","src","jdk"};
+
+
+		allSolutions[2] = new String[]{"byte : (0, 4) (3, 4)",
+				"java : (1, 0) (1, 3)",
+				"jdk : (1, 0) (3, 2)",
+				"jvm : (2, 2) (0, 2)",
+				"object : (4, 5) (4, 0)",
+				"code : (5, 5) (2, 5)",
+				"int : (6, 2) (6, 0)",
+		"src : (6, 3) (4, 1)"};
+
+		allBoards[3] = new char[][] {
+			     //0   1   2   3   4   5 
+			/*0*/{'o',' ',' ','o','w','t'},
+			/*1*/{'n',' ',' ',' ',' ','h'},
+			/*2*/{'e',' ',' ',' ',' ','r'},
+			/*3*/{' ',' ',' ','r',' ','e'},
+			/*4*/{' ',' ','u',' ',' ','e'},
+			/*5*/{' ','o',' ',' ',' ',' '},
+			/*6*/{'f','i','v','e',' ',' '}
+		};
+
+		allLists[3] = new String[] {"one", "two", "three", "four", "five"};
+
+
+		allSolutions[3] = new String[]{"one : (0, 0) (2, 0)",
+				"two : (0, 5) (0, 3)",
+				"three : (0, 5) (4, 5)",
+				"four : (6, 0) (3, 3)",
+		"five : (6, 0) (6, 3)"};
+		
+		allBoards[4] = new char[][] {
+		     //0   1   2   3   4   5 
+		/*0*/{'o',' ',' ','o','w','t'},
+		/*1*/{'n',' ',' ',' ',' ','h'},
+		/*2*/{'e',' ',' ',' ',' ','r'},
+		/*3*/{' ',' ',' ','r',' ','e'},
+		/*4*/{' ',' ','u',' ',' ','e'},
+		/*5*/{' ','o',' ',' ',' ',' '},
+		/*6*/{'f','i','v','e',' ',' '}
+	};
+
+	allLists[4] = new String[] {"one"};
+
+
+	allSolutions[4] = new String[]{"one : (0, 0) (2, 0)"};
+
+	}
+
+
+}

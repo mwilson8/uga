@@ -1,0 +1,25 @@
+--  Mitch Wilson  --  8103589550
+--  Trey Speight  
+
+To compile:
+````
+$ make
+````
+
+
+To compile individual files:
+````   
+$ make [file]
+````
+
+
+To remove .o files & executables:
+````
+$ make clean
+````
+
+
+To execute:
+````
+$ ./[executable]
+````

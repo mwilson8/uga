@@ -1,0 +1,213 @@
+/*StringFun.java
+* Author:  Jessica Brown 
+* Submission Date: 3/4/2018  
+*
+* Purpose: This program will take a string from the user and manipulate it with
+* certain commands, also given by the user. After each of the 3 manipulation commands
+* {quit and reverse don't count), manipulated string is stored as the new string to
+* work with.
+*
+* Statement of Academic Honesty:
+*
+* The following code represents my own work. I have neither
+* received nor given inappropriate assistance. I have not copied
+* or modified code from any source other than the course webpage
+* or the course textbook. I recognize that any unauthorized
+* assistance or plagiarism will be handled in accordance with
+* the University of Georgia's Academic Honesty Policy and the
+* policies of this course. I recognize that my work is based
+* on an assignment created by the Department of Computer
+* Science at the University of Georgia. Any publishing 
+* or posting of source code for this project is strictly
+* prohibited unless you have written consent from the Department 
+* of Computer Science at the University of Georgia.  
+*/
+
+import java.util.Scanner;
+
+public class StringFun {
+
+	public static void main(String[] args) {
+		
+		//Can only use length, charAt, substring, and equals/equalsIgnoreCase
+		Scanner keyboard = new Scanner(System.in);
+		System.out.println("Enter the string to be manipulated:");
+		String originalString = keyboard.nextLine();
+		Boolean keepGoing = true;
+		String manipulatedString = originalString;
+		int stringLength = manipulatedString.length();
+
+		while (keepGoing)
+		{
+			System.out.println("Enter your command (quit, print reverse, replace all, replace single, remove)");
+			String commandInput = keyboard.next();
+			char firstCharacter = commandInput.charAt(0);
+			int commandLength = commandInput.length();
+			
+			//Print Reverse
+			if (firstCharacter == 'p' || firstCharacter == 'P')
+			{
+				for (stringLength-- ; stringLength >= 0 ; stringLength--)
+				{
+					System.out.print(manipulatedString.charAt(stringLength));
+				}
+				
+				System.out.print("\n");
+				keyboard.nextLine();
+			}
+			
+			else if (firstCharacter == 'r' || firstCharacter == 'R')
+			{
+				//Remove
+				if (commandLength == 6)
+				{
+					keyboard.nextLine();
+					System.out.println("Enter the character to remove.");
+					String removeString = keyboard.nextLine();
+					char removeCharacter = removeString.charAt(0);
+					int instances = 0;
+					stringLength = manipulatedString.length();
+							
+					for (int index = 0 ; index < stringLength ; index++)
+					{	
+						if (manipulatedString.charAt(index)==(removeCharacter))
+						{
+							instances++;
+							
+							if (instances!=0)
+							{
+								if (manipulatedString.charAt(index)==(removeCharacter))
+								{
+									manipulatedString = (manipulatedString.substring(0,index) + manipulatedString.substring(index+1));
+									stringLength--;
+									index--;
+								}
+							}				
+						}
+					}
+					if (instances != 0)
+						System.out.println("Your new line is: " + manipulatedString);					
+					else
+						System.out.println("Error. Character not found.");
+				}
+				
+				else
+				{
+					String secondWord = keyboard.next();
+					char secondCharacter = secondWord.charAt(0);
+					
+					//Replace All
+					if (secondCharacter == 'a' || secondCharacter == 'A')
+					{	
+						keyboard.nextLine();
+						System.out.println("Enter the character to replace.");
+						String oldLetter = keyboard.nextLine();
+						char oldCharacter = oldLetter.charAt(0);
+						System.out.println("Enter the new character.");
+						String newLetter = keyboard.nextLine();
+						char newCharacter = newLetter.charAt(0);
+						int instances = 0;
+						stringLength = manipulatedString.length();
+						
+						for (int index = 0 ; index < stringLength ; index++)
+						{
+							
+							if (manipulatedString.charAt(index)==(oldCharacter))
+							{
+								instances++;
+								
+								if (instances!=0)
+								{
+									for (index = 0 ; index < stringLength ; index++)
+									{
+										if (manipulatedString.charAt(index)==(oldCharacter))
+											manipulatedString = (manipulatedString.substring(0,index) + newCharacter + manipulatedString.substring(index+1));
+										else
+											continue;
+									}
+									
+								}
+							}
+						}
+						if (instances!=0)
+						{
+							stringLength = stringLength-instances;
+							System.out.println("Your new line is: " + manipulatedString);
+						}
+						else
+							System.out.println("Error. Character not found.");
+					}
+				
+					//Replace Single
+					else if (secondCharacter == 's' || secondCharacter == 'S')
+					{
+						keyboard.nextLine();
+						System.out.println("Enter the character to replace.");
+						String oldLetter = keyboard.nextLine();
+						char oldCharacter = oldLetter.charAt(0);
+						System.out.println("Enter the new character.");
+						String newLetter = keyboard.nextLine();
+						char newCharacter = newLetter.charAt(0);
+						System.out.println("Which instance of " + oldCharacter + " do you want to replace?");
+						String toReplace = keyboard.nextLine();
+						int replaceSpaceLength = toReplace.length();
+						Boolean isDigit = false;
+						char characterToCheck;
+						int instances = 0;
+						stringLength = manipulatedString.length();
+						
+						for (int index = 0 ; index < replaceSpaceLength ; index++)
+						{
+							characterToCheck = toReplace.charAt(index);
+							isDigit = Character.isDigit(characterToCheck);
+							
+							if (isDigit)
+								continue;
+							else
+							{
+								System.out.println("Invlaid input. Try again.");
+								index = replaceSpaceLength;
+							}
+						}
+						if (isDigit)
+						{
+							int spaceToReplace = Integer.parseInt(toReplace);
+							for (int index = 0 ; index < stringLength ; index++)
+							{
+								if (manipulatedString.charAt(index) == oldCharacter)
+									instances++;
+							}						
+							if (instances >= spaceToReplace)
+							{
+								int characterCount = 0;
+								for (int index = 0 ; index < stringLength ; index++)
+								{
+									if (manipulatedString.charAt(index) == oldCharacter)
+									{
+										characterCount++;
+										
+										if (spaceToReplace == characterCount)
+											manipulatedString = (manipulatedString.substring(0,index) + newCharacter + manipulatedString.substring(index+1));
+										else
+											continue;
+									}
+								}	
+								System.out.println("Your new line is: " + manipulatedString);
+								stringLength--;
+							}
+							else
+								System.out.println("Error. Character not found.");
+						}
+					}
+				}
+			}
+			else if (firstCharacter == 'q' || firstCharacter == 'Q')
+			{
+				keepGoing = false;
+			}
+			
+			else
+				System.out.println("Invlaid command. Try again.");
+		}
+	}
+}	

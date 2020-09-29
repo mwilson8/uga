@@ -1,0 +1,72 @@
+project5:
+total 16
+drwx------. 3 ugrad 4096 Jul 28 19:57 html
+-rw-------. 1 ugrad  283 Jul 28 20:04 README.txt
+-rw-------. 1 ugrad 3066 Jul 28 20:00 rec1882
+-rw-------. 1 ugrad    0 Jul 28 20:04 rec2552
+drwxr-xr-x. 3 ugrad 4096 Jul 28 20:01 src
+
+project5/html:
+total 88
+-rw-------. 1 ugrad  1058 Jul 28 20:00 allclasses-frame.html
+-rw-------. 1 ugrad   978 Jul 28 20:00 allclasses-noframe.html
+-rw-------. 1 ugrad  3553 Jul 28 20:00 constant-values.html
+-rw-------. 1 ugrad  3503 Jul 28 20:00 deprecated-list.html
+drwx------. 3 ugrad  4096 Jul 28 19:57 edu
+-rw-------. 1 ugrad  7938 Jul 28 20:00 help-doc.html
+-rw-------. 1 ugrad 14462 Jul 28 20:00 index-all.html
+-rw-------. 1 ugrad  2745 Jul 28 20:00 index.html
+-rw-------. 1 ugrad  5047 Jul 28 20:00 overview-tree.html
+-rw-------. 1 ugrad    23 Jul 28 20:00 package-list
+-rw-------. 1 ugrad   827 Jul 28 20:00 script.js
+-rw-------. 1 ugrad  4922 Jul 28 20:00 serialized-form.html
+-rw-------. 1 ugrad 12842 Jul 28 19:57 stylesheet.css
+
+project5/html/edu:
+total 4
+drwx------. 3 ugrad 4096 Jul 28 19:57 uga
+
+project5/html/edu/uga:
+total 4
+drwx------. 3 ugrad 4096 Jul 28 19:57 cs1302
+
+project5/html/edu/uga/cs1302:
+total 4
+drwx------. 2 ugrad 4096 Jul 28 19:57 mytunes
+
+project5/html/edu/uga/cs1302/mytunes:
+total 88
+-rw-------. 1 ugrad 12743 Jul 28 20:00 MP3Collection.html
+-rw-------. 1 ugrad 18771 Jul 28 20:00 MP3File.html
+-rw-------. 1 ugrad  9765 Jul 28 20:00 MP3Player.html
+-rw-------. 1 ugrad 18779 Jul 28 20:00 MyTunes.html
+-rw-------. 1 ugrad  1146 Jul 28 20:00 package-frame.html
+-rw-------. 1 ugrad  5081 Jul 28 20:00 package-summary.html
+-rw-------. 1 ugrad  5188 Jul 28 20:00 package-tree.html
+
+project5/src:
+total 240
+drwxr-xr-x. 3 ugrad   4096 Jul 28 19:54 edu
+-rw-r--r--. 1 ugrad 105363 Jul 28 19:54 jl1.0.1.jar
+-rw-r--r--. 1 ugrad  24696 Jul 28 19:54 mp3spi1.9.5.jar
+-rw-r--r--. 1 ugrad 102673 Jul 28 19:56 tritonus_share.jar
+
+project5/src/edu:
+total 4
+drwxr-xr-x. 3 ugrad 4096 Jul 28 19:54 uga
+
+project5/src/edu/uga:
+total 4
+drwxr-xr-x. 3 ugrad 4096 Jul 28 19:54 cs1302
+
+project5/src/edu/uga/cs1302:
+total 4
+drwxr-xr-x. 2 ugrad 4096 Jul 28 19:59 mytunes
+
+project5/src/edu/uga/cs1302/mytunes:
+total 20
+-rw-r--r--. 1 ugrad 2164 Jul 28 19:54 MP3Collection.java
+-rw-r--r--. 1 ugrad 3953 Jul 28 19:59 MP3File.java
+-rw-r--r--. 1 ugrad 1755 Jul 28 19:54 MP3Player.java
+-rw-r--r--. 1 ugrad 8031 Jul 28 19:54 MyTunes.java
+/home/ugrads/wilsonm/cs1302/project5:/home/work/cs1302a

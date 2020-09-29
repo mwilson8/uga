@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;ThoughtsBank/WebContent/WEB-INF/templates/index.ftl&apos; to &apos;errorIndex.ftl&apos;" description="Rename resource &apos;index.ftl&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/WEB-INF/templates/index.ftl" name="errorIndex.ftl" stamp="1487000897132" updateReferences="true"/>
+</session>

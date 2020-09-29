@@ -1,0 +1,5 @@
+Mitch Wilson, Daniel Han - Binary Tree project
+
+to compile all files: $ make
+
+to execute: ./main [inputFile]

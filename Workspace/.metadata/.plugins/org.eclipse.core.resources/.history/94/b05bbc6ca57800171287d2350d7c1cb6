@@ -1,0 +1,348 @@
+import java.util.Arrays;
+
+public class Lab13StatTester {
+
+	public static void v2test1() {
+    
+        System.out.println("\nTest 1: ");
+        
+		double[] testArrayOne = { 5.0, 3.0, 6.0, 10.5, 0 };
+		float[] testArrayTwo = { 5.0f, 3.0f, 6.0f, 10.5f, 0 };
+		int[] testArrayThree = { 1, 2, 3, 4, 5, 100 };
+		long[] testArrayFour = { 1, 2, 3, 4, 5, 100 };
+		Stat test;
+		
+		System.err.println("25 total; 5 points per group; null constructor = 2"); 
+		System.out.println("constructor test 1 (default)");
+		
+		try {
+			test = new Stat();
+			System.out.println("data1 = " + test);
+		} catch (Exception e) {
+			System.out.println("constructor test 1 failed");
+		}
+
+		System.out.println();
+		System.out.println("constructor test 2 (double[])");
+		try {
+			test = new Stat(testArrayOne);
+			System.out.println("data1 = " + test);
+			testArrayOne = null;
+			test = new Stat(testArrayOne);
+			System.out.println("data2 = " + test);
+		} catch (Exception e) {
+			System.out.println("constructor test 2 failed");
+		}
+
+		System.out.println();
+		System.out.println("constructor test 3 (float[])");
+		try {
+			test = new Stat(testArrayTwo);
+			System.out.println("data1 = " + test);
+			testArrayTwo = null;
+			test = new Stat(testArrayTwo);
+			System.out.println("data2 = " + test);
+		} catch (Exception e) {
+			System.out.println("constructor test 3 failed");
+		}
+
+		System.out.println();
+		System.out.println("constructor test 4 (int[])");
+		try {
+			test = new Stat(testArrayThree);
+			System.out.println("data1 = " + test);
+			testArrayThree = null;
+			test = new Stat(testArrayThree);
+			System.out.println("data2 = " + test);
+		} catch (Exception e) {
+			System.out.println("constructor test 4 failed");
+		}
+
+		System.out.println();
+		System.out.println("constructor test 5 (long[])");
+		try {
+			test = new Stat(testArrayFour);
+			System.out.println("data1 = " + test);
+			testArrayFour = null;
+			test = new Stat(testArrayFour);
+			System.out.println("data2 = " + test);
+		} catch (Exception e) {
+			System.out.println("constructor test 5 failed");
+		}
+
+	}
+
+	public static void v2test2() {
+        
+        System.out.println("\nTest 2: ");
+        System.err.println("24 total; 3 points for first 2 lines, 3 for last line");
+        
+		double[] testArrayOne = { 5.0, 3.0, 6.0, 10.5, 0 };
+		float[] testArrayTwo = { 5.0f, 3.0f, 6.0f, 10.5f, 0 };
+		int[] testArrayThree = { 1, 2, 3, 4, 5, 100 };
+		long[] testArrayFour = { 1, 2, 3, 4, 5, 100 };
+		Stat test;
+
+		try {
+			test = new Stat();
+		} catch (Exception e) {
+			System.out.println("can't construct Stat object");
+			return;
+		}
+
+		System.out.println("setData(double[] a) test");
+		try {
+			test.setData(testArrayOne);
+			testArrayOne[0] = 0;
+			System.out.println("data1 = " + test);
+			testArrayOne[0] = 0;
+			System.out.println("data2 = " + Arrays.toString(test.getData()));
+			testArrayOne = null;
+			test.setData(testArrayOne);
+			System.out.println("data3 = " + test);
+		} catch (Exception e) {
+			System.out.println("test failed");
+		}
+
+		System.out.println();
+		System.out.println("setData(float[] a) test");
+		try {
+			test.setData(testArrayTwo);
+			System.out.println("data1 = " + test);
+			testArrayTwo[0] = 0;
+			System.out.println("data2 = " + Arrays.toString(test.getData()));
+			testArrayTwo = null;
+			test.setData(testArrayTwo);
+			System.out.println("data3 = " + test);
+		} catch (Exception e) {
+			System.out.println("test failed");
+		}
+
+		System.out.println();
+		System.out.println("setData(int[] a) test");
+		try {
+			test.setData(testArrayThree);
+			System.out.println("data1 = " + test);
+			testArrayThree[0] = 0;
+			System.out.println("data2 = " + Arrays.toString(test.getData()));
+			testArrayThree = null;
+			test.setData(testArrayThree);
+			System.out.println("data3 = " + test);
+		} catch (Exception e) {
+			System.out.println("test failed");
+		}
+
+		System.out.println();
+		System.out.println("setData(long[] a) test");
+		try {
+			test.setData(testArrayFour);
+			System.out.println("data1 = " + test);
+			testArrayFour[0] = 0;
+			System.out.println("data2 = " + Arrays.toString(test.getData()));
+			testArrayFour = null;
+			test.setData(testArrayFour);
+			System.out.println("data3 = " + test);
+		} catch (Exception e) {
+			System.out.println("test failed");
+		}
+
+	}
+
+	public static void v2test3() {
+
+        System.out.println("\nTest 3: ");
+        System.err.println("24 total; 3 points per line");
+    
+		double[] initialArray = { 1, 2, 3, 4 };
+		double[] testArrayOne = { 5, 6, 7, 8, 9 };
+		float[] testArrayTwo = { 50, 6, 7, 8, 9 };
+		int[] testArrayThree = { 500, 6, 7, 8, 9 };
+		long[] testArrayFour = { 5000, 6, 7, 8, 9 };
+		Stat test;
+
+		System.out.println("append(double[] a) test");
+		try {
+			test = new Stat(initialArray);
+			test.append(testArrayOne);
+			System.out.println("data1 = " + test);
+			testArrayOne = null;
+			test.append(testArrayOne);
+			System.out.println("data2 = " + test);
+		} catch (Exception e) {
+			System.out.println("test failed");
+		}
+
+		System.out.println();
+		System.out.println("append(float[] a) test");
+		try {
+			test = new Stat(initialArray);
+			test.append(testArrayTwo);
+			System.out.println("data1 = " + test);
+			testArrayTwo = null;
+			test.append(testArrayTwo);
+			System.out.println("data2 = " + test);
+		} catch (Exception e) {
+			System.out.println("test failed");
+		}
+
+		System.out.println();
+		System.out.println("append(int[] a) test");
+		try {
+			test = new Stat(initialArray);
+			test.append(testArrayThree);
+			System.out.println("data1 = " + test);
+			testArrayThree = null;
+			test.append(testArrayThree);
+			System.out.println("data2 = " + test);
+		} catch (Exception e) {
+			System.out.println("test failed");
+		}
+
+		System.out.println();
+		System.out.println("append(long[] a) test");
+		try {
+			test = new Stat(initialArray);
+			test.append(testArrayFour);
+			System.out.println("data1 = " + test);
+			testArrayFour = null;
+			test.append(testArrayFour);
+			System.out.println("data2 = " + test);
+		} catch (Exception e) {
+			System.out.println("test failed");
+		}
+
+	}
+
+	private static boolean v2test4() {
+
+		boolean passed = true;
+        System.out.println("\nTest 4: ");
+        System.err.println("3 points total; 2 for data, 1 for boolean");
+		double[] testArrayOne = { 1, 2, 3, 4 };
+		Stat test;
+		System.out.println("reset() and isEmpty() test");
+		try {
+			test = new Stat(testArrayOne);
+			System.out.println("data1 = " + test);
+			passed = passed && (test.toString().equals("[1.0, 2.0, 3.0, 4.0]"));
+			test.reset();
+			System.out.println("is empty after reset: " + test.isEmpty());
+			passed = passed && test.isEmpty();
+		} catch (Exception e) {
+			System.out.println("test failed");
+			return false;
+		}
+		return passed;
+	}
+
+	private static boolean v2test5() {
+		boolean passed = true;
+		
+        System.out.println("\nTest 5: ");
+		System.out.println("stats test (null)");
+		System.out.println("--> 6 values: should all be NaN");
+		try {
+			double[] data = null;
+			Stat test = new Stat(data);
+			
+			System.out.println("min:\t" + test.min());
+			passed = passed && Double.isNaN(test.min());
+			
+			System.out.println("max:\t" + test.max());
+			passed = passed && Double.isNaN(test.max());
+			
+			System.out.println("avg:\t" + test.average());
+			passed = passed && Double.isNaN(test.average());
+			
+			System.out.println("mode:\t" + test.mode());
+			passed = passed && Double.isNaN(test.mode());
+			
+			System.out.println("var:\t" + test.variance());
+			passed = passed && Double.isNaN(test.variance());
+			
+			System.out.println("stdev:\t" + test.standardDeviation());
+			passed = passed && Double.isNaN(test.standardDeviation());
+			
+		} catch (Exception e) {
+			System.out.println("test failed");
+			return false;
+		}
+		return passed;
+
+	}
+
+	private static boolean v2test6() {
+    
+		boolean passed = true;
+		
+        System.out.println("\nTest 6: ");
+		System.out.println("stats test (real data)");
+		System.out.println("--> 6 values: should all have valid values");
+		try {
+			double[] data = { -5.3, 2.5, 88.9, 0, 0.0, 28, 16.5, 88.9, 109.5,
+					-90, 88.9, 100.34, 50.01, 50.01, -8 };
+			Stat test = new Stat(data);
+			System.out.print  ("min:\t" + test.min());
+			System.out.println("\t\t\t--" + (test.min() == -90));
+			passed = passed && (test.min() == -90);
+			
+			System.out.print  ("max:\t" + test.max());
+			System.out.println("\t\t\t--" + (test.max() == 109.5));
+			passed = passed && (test.max() == 109.5);
+			
+			System.out.print  ("avg:\t" + test.average());
+			System.out.println("\t\t\t--" + (test.average() == 34.684));
+			passed = passed && (test.average() == 34.684);
+			
+			System.out.print  ("mode:\t" + test.mode());
+			System.out.println("\t\t\t--" + (test.mode() == 88.9));
+			passed = passed && (test.mode() == 88.9);
+			
+			System.out.print  ("var:\t" + test.variance());
+			System.out.println("\t--" + (test.variance() == 2798.6591973333334));
+			passed = passed && (test.variance() == 2798.6591973333334);
+			
+			System.out.print  ("stdev:\t" + test.standardDeviation());
+			System.out.println("\t--" + (test.standardDeviation() == 52.90235530988515));
+			passed = passed && (test.standardDeviation() == 52.90235530988515);
+			
+		} catch (Exception e) {
+			System.out.println("test failed");
+			return false;
+		}
+
+		return passed;
+	}
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		v2test1();
+
+		System.out.println();
+
+		v2test2();
+
+		System.out.println();
+
+		v2test3();
+
+		System.out.println();
+
+		if (!v2test4())
+			System.out.println("test 5 failed (check values - toString dependent)");
+
+		System.out.println();
+
+		if (!v2test5())
+			System.out.println("test 5 failed");
+
+		System.out.println();
+
+		if (!v2test6())
+			System.out.println("test 6 failed (check values due to rounding)");
+	}
+
+}

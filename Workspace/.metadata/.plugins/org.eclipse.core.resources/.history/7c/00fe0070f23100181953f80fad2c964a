@@ -1,0 +1,48 @@
+
+public class Driver {
+
+	public static void main (String[] args){
+		
+			
+			Board b = new Board();
+			
+			//students write one static method, it's signature is below
+			StudentSolution.solve(b);
+			
+			//this prints all the solutions the students found
+			b.printSolutions();
+			
+			//shows if the students found all the correct solutions
+			System.out.println(b.checkSolutions());
+			
+		
+			char[][] board = new char[][] {
+			     //0   1   2   3   4   5 
+			/*0*/{'o',' ',' ','o','w','t'},
+			/*1*/{'n',' ',' ',' ',' ','h'},
+			/*2*/{'e',' ',' ',' ',' ','r'},
+			/*3*/{' ',' ',' ','r',' ','e'},
+			/*4*/{' ',' ','u',' ',' ','e'},
+			/*5*/{' ','o',' ',' ',' ',' '},
+			/*6*/{'f','i','v','e',' ',' '}
+			};
+			
+			String [] list = new String[] {"one", "two", "three", "four", "five"};
+
+
+			String [] solution = new String[]{"one : (0, 0) (2, 0)",
+					"two : (0, 5) (0, 3)",
+					"three : (0, 5) (4, 5)",
+					"four : (6, 0) (3, 3)",
+			"five : (6, 0) (6, 3)"};
+
+			b = new Board(board, list);
+			StudentSolution.solve(b);
+			
+			b.checkSolutions(solution);
+		
+		
+	}
+	
+	
+}

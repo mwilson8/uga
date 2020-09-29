@@ -1,0 +1,101 @@
+/*
+* [GroceryStore].java
+* 
+* 	Author: [Mitch Wilson]
+* 
+* 	Submission Date: [Jan 26 2016] *
+* 
+*	Purpose: This program is designed to compute the amount of money a
+*  	person would owe, given the items they purchased from a menu list.
+*  	The prices of the items are multiplied by the user's "shopping list"
+*  	to compute the pre-tax amount owed. Tax is then added and both values
+*  	are displayed. 
+*  *
+* Statement of Academic Honesty: *
+* The following code represents my own work. I have neither
+* received nor given inappropriate assistance. I have not copied
+* or modified code from any source other than the course webpage
+* or the course textbook. I recognize that any unauthorized
+* assistance or plagiarism will be handled in accordance with
+* the University of Georgia's Academic Honesty Policy and the
+* policies of this course. I recognize that my work is based
+* on an assignment created by the Department of Computer
+* Science at the University of Georgia. Any publishing
+* or posting of source code for this project is strictly
+* prohibited unless you have written consent from the Department
+* of Computer Science at the University of Georgia. */ 
+
+import java.util.Scanner;
+
+public class GroceryStore {
+
+		/*1*/public static final double BANANA_PRICE = .99;
+		/*2*/public static final double APPLE_PRICE = 1.85;
+		/*3*/public static final double YOGURT_PRICE = 2.98;
+		/*4*/public static final double ORANGE_PRICE = 1.25;
+		/*5*/public static final double GRANOLA_PRICE = 3.00;
+		/*6*/public static final double LETTUCE_PRICE = 2.20;
+		/*7*/public static final double KETCHUP_PRICE = .78;
+		/*8*/public static final double PEANUT_PRICE = 3.05;
+		/*9*/public static final double CHICKEN_PRICE = 6.58;
+		/*10*/public static final double SEAFOOD_PRICE = 13.99;
+		
+	public static void main(String[] args) {
+			
+			int bananas, apples, yogurt, oranges, granola, lettuce,
+				ketchup, peanuts, chicken, seafood;
+			
+			double total;
+			
+		System.out.println("Welcome to my store!");
+		System.out.println("The menu is below:");
+		System.out.println(""); //blank line before menu
+		System.out.println("1. Bananas \t $0.99");
+		System.out.println("2. Apples \t $1.85");
+		System.out.println("3. Yogurt \t $2.98");
+		System.out.println("4. Oranges \t $1.25");
+		System.out.println("5. Granola \t $3.00");
+		System.out.println("6. Lettuce \t $2.20");
+		System.out.println("7. Ketchup \t $0.78");
+		System.out.println("8. Peanuts \t $3.05");
+		System.out.println("9. Chicken \t $6.58");
+		System.out.println("10. Seafood \t $13.99");
+		System.out.println("");
+		System.out.println("Enter the number of each item you would like to purchase seperated by spaces:");
+
+		
+		Scanner keyboard = new Scanner(System.in);
+		bananas = keyboard.nextInt();
+		apples = keyboard.nextInt();
+		yogurt = keyboard.nextInt();
+		oranges = keyboard.nextInt();
+		granola = keyboard.nextInt();
+		lettuce = keyboard.nextInt();
+		ketchup = keyboard.nextInt();
+		peanuts = keyboard.nextInt();
+		chicken = keyboard.nextInt();
+		seafood = keyboard.nextInt();
+		
+		total = (bananas * BANANA_PRICE) + (apples * APPLE_PRICE) + (yogurt * YOGURT_PRICE)
+				+ (oranges * ORANGE_PRICE) + (granola * GRANOLA_PRICE) + (lettuce * LETTUCE_PRICE)
+				+ (ketchup * KETCHUP_PRICE) + (peanuts * PEANUT_PRICE) + (chicken * CHICKEN_PRICE)
+				+ (seafood * SEAFOOD_PRICE);
+		
+		System.out.print("Total owed before tax is:" + "\t" + "$"); System.out.printf("%.2f",total);
+		//break in line after formatting number
+		System.out.println("");
+		System.out.print("Total owed after tax is:" + "\t" + "$"); System.out.printf("%.2f",total * 1.07);
+		//break in line after formatting number
+		System.out.println("");
+		
+		int totalInt = (int)total;
+		double totalDecimal = (total % totalInt) * 100;
+		byte totalDecimal2 = (byte) totalDecimal;
+		
+		System.out.println("totalInt = " + totalInt);
+		System.out.println("totalDecimal = " + totalDecimal);
+		System.out.println("totalDecimal2 = " + totalDecimal2);
+		
+	}
+
+}

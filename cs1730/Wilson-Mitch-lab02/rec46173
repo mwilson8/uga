@@ -1,0 +1,28 @@
+Wilson-Mitch-lab02:
+total 676
+-rwx------. 1 ugrad  29271 Aug 29 22:00 degrees
+-rw-------. 1 ugrad    502 Aug 29 13:29 degrees.cpp
+-rw-------. 1 ugrad    490 Aug 29 13:26 degrees.cpp~
+-rw-------. 1 ugrad  36952 Aug 29 22:00 degrees.o
+-rw-------. 1 ugrad    799 Aug 29 21:57 Makefile
+-rw-------. 1 ugrad    594 Aug 29 14:51 Makefile~
+-rwx------. 1 ugrad  59158 Aug 29 22:00 minmax
+-rw-------. 1 ugrad    676 Aug 29 12:13 minmax.cpp
+-rw-------. 1 ugrad    621 Aug 29 12:11 minmax.cpp~
+-rw-------. 1 ugrad  79968 Aug 29 22:00 minmax.o
+-rwx------. 1 ugrad  78725 Aug 29 22:00 numbers
+-rw-------. 1 ugrad   1397 Aug 29 21:45 numbers.cpp
+-rw-------. 1 ugrad   1269 Aug 29 21:42 numbers.cpp~
+-rw-------. 1 ugrad 117360 Aug 29 22:00 numbers.o
+-rw-------. 1 ugrad    688 Aug 29 21:53 README.txt
+-rw-------. 1 ugrad    662 Aug 29 21:51 README.txt~
+-rw-------. 1 ugrad      0 Aug 29 22:03 rec46173
+-rwx------. 1 ugrad  61158 Aug 29 22:00 stat
+-rw-------. 1 ugrad   1285 Aug 29 13:52 stat.cpp
+-rw-------. 1 ugrad   1285 Aug 29 13:52 stat.cpp~
+-rw-------. 1 ugrad  84048 Aug 29 22:00 stat.o
+-rwx------. 1 ugrad  28795 Aug 29 22:00 time
+-rw-------. 1 ugrad    629 Aug 29 13:36 time.cpp
+-rw-------. 1 ugrad    609 Aug 29 13:35 time.cpp~
+-rw-------. 1 ugrad  36488 Aug 29 22:00 time.o
+/home/ugrads/wilsonm/cs1730/Wilson-Mitch-lab02:/home/work/cs1730a

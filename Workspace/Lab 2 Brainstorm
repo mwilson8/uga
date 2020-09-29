@@ -1,0 +1,36 @@
+Lab 2 Brainstorm
+	TEAMMATES LAST NAMES
+		-> Murtha, Isacs-Heyliyer, Batson
+	
+		** note **
+		the variables expressed here may or may not match the variables in the final code
+
+Objectives:
+	1. compute gross pay
+	2. compute all taxes & deductions
+	3. compute net pay
+
+Solutions:
+	1. hoursWorked * wageRate = grossPay
+	2. 
+		a) grossPay * taxRate1 = deduction1
+		b) grossPay * taxRate2 = deduction2
+		c) grossPAy * taxRate3 = deduction3
+		....
+	3. grossPay - sum (2a:2n) = netPay
+
+	4. Output grossPay, deductions 1-n, & netPay
+
+Notes:
+	* most variables will probably have to be doubles --> money uses decimal places
+	* hours could be an int or a double (since all other variables will be doubles, output values will 	
+		have to be doubles anyways)
+	* should make all tax rates 'final'
+	* need to use Scanner to have input of hours
+
+	To start in the code, I'm going to import the scanner class and then initialize all tax rates to be final. All calculations are simple, but I'll write them in a commented out section to be sure. 
+	First interaction with the user will be a out.print of "Hours per week:" and that will store to 'hoursPerWeek'. Next, all calculations will be done, storing to their appropriate variables: grossPay, federalTax, stateTax, ss_Tax, medTax.
+	Then all deductions will be subtracted from grossPay to get netPay.
+	Interaction with the user will then be a bunch of out.println and a combination of words, variables, and tab '\t' which I'll play with until it looks to my liking. 
+
+

@@ -1,0 +1,167 @@
+/*
+* [StringFun].java
+* 
+* 	Author:			 [Mitch Wilson]
+* 
+* 	Submission Date: [Mar 2 2016] 
+* 	Last Updated:	 [Mar 3 2016] 	
+* 
+*	Purpose: This program is designed to read a string inputted and 
+*				then provide the user with different commands to
+*				manipulate the string. The program runs until
+*				the user terminates it.
+*				
+*  *
+* Statement of Academic Honesty: *
+* The following code represents my own work. I have neither
+* received nor given inappropriate assistance. I have not copied
+* or modified code from any source other than the course webpage
+* or the course textbook. I recognize that any unauthorized
+* assistance or plagiarism will be handled in accordance with
+* the University of Georgia's Academic Honesty Policy and the
+* policies of this course. I recognize that my work is based
+* on an assignment created by the Department of Computer
+* Science at the University of Georgia. Any publishing
+* or posting of source code for this project is strictly
+* prohibited unless you have written consent from the Department
+* of Computer Science at the University of Georgia. */
+
+import java.util.Scanner;
+
+public class StringFun {
+
+	public static void main(String[] args) {
+
+		boolean quit = false;
+		Scanner keyboard = new Scanner(System.in);
+		do {
+
+			System.out.println("Enter the string to be manipulated");
+			String originalString = keyboard.nextLine();
+
+			String manipulatedString = originalString;
+			while (quit == false) {
+				System.out.println("Enter your command (quit, print reverse, replace all, replace single, remove)");
+				String command1 = keyboard.nextLine();
+
+				if (command1.equalsIgnoreCase("print reverse")) {
+					// print reverse command
+
+					String reverseString = originalString;
+					for (int count1 = 0; (count1 < originalString.length()); count1++) {
+						// this loop executes while the count is shorter than the length of the original string
+						
+						System.out.print(reverseString.substring(reverseString.length() - 1));
+						reverseString = reverseString.substring(0, reverseString.length() - 1);
+						// print the last character then remove it from the string, repeat
+					}
+					System.out.println();
+				}
+
+				else if (command1.equalsIgnoreCase("replace all")) {
+					// replace all command
+
+					System.out.println("Enter the character to replace");
+					char oldChar = (keyboard.nextLine()).charAt(0);
+
+					System.out.println("Enter the new character");
+					char newChar = (keyboard.nextLine()).charAt(0);
+					boolean newCharNotInString = true;
+					
+					for (int count1 = 0; count1 < originalString.length(); count1++) {
+						if (originalString.charAt(count1) == oldChar) {
+							manipulatedString = manipulatedString.substring(0, count1) + newChar
+									+ manipulatedString.substring(count1 + 1);
+							newCharNotInString = false;
+							// if the old char is in the string, replace it with the new one
+						}
+					}
+					if (newCharNotInString == true)
+						System.out.println("Error: the letter you entered is not in the string");
+						// if the old char is not in the string, return to main command menu
+					
+					else
+						System.out.println("The new string is " + manipulatedString);
+				}
+
+				else if (command1.equalsIgnoreCase("replace single")) {
+					// replace single command
+
+					System.out.println("Enter the character to replace");
+					char oldChar = (keyboard.nextLine()).charAt(0);
+
+					System.out.println("Enter the new character");
+					char newChar = (keyboard.nextLine()).charAt(0);
+					boolean newCharNotInString = true;
+
+					System.out.println("Which " + oldChar + " would you like to replace?");
+					int charIndex = keyboard.nextInt();
+					int count2 = 0;
+					for (int count1 = 0; count1 < manipulatedString.length(); count1++) {
+						// this loop executes until we have gone through the whole word
+						
+						if (manipulatedString.charAt(count1) == oldChar) {
+							count2++;
+							// if we find the letter period, increase the count
+							
+							if (count2 == charIndex) {
+								// when we've found which letter we want (2nd, 3rd, etc)
+								// replace it with the new char
+								
+								manipulatedString = manipulatedString.substring(0, count1) + newChar
+										+ manipulatedString.substring(count1 + 1);
+								newCharNotInString = false;
+								// we've replace the letter
+							}
+						}
+					}
+					if (newCharNotInString == true)
+						System.out.println("Error: the letter and/or space you entered could not be found");
+					// if the old char is not in the string, or not at the space provided, return to main command menu
+					else
+						System.out.println("The new string is " + manipulatedString);
+				}
+
+				else if (command1.equalsIgnoreCase("remove")) {
+					// remove command
+					System.out.println("Enter the character to remove");
+					char oldChar = (keyboard.nextLine()).charAt(0);
+					boolean newCharNotInString = true;
+
+					for (int count1 = 0; count1 < manipulatedString.length(); count1++) {
+						// this executes until it's covered the whole word
+						
+						if (manipulatedString.charAt(count1) == oldChar) {
+							manipulatedString = manipulatedString.substring(0, count1)
+									+ manipulatedString.substring(count1 + 1);
+							newCharNotInString = false;
+							count1--;
+							// if the letter given is in the word, remove it
+							// nullify the count increase since we shortened the word
+								// we have to re-check the same index since it is now a new letter
+						}
+					}
+
+					if (newCharNotInString == true)
+						System.out.println("Error: the letter you entered is not in the string");
+					// if the letter isn't found, return to main command menu
+					
+					else
+						System.out.println("The new string is " + manipulatedString);
+
+				}
+
+				else if (command1.equalsIgnoreCase("quit"))
+					quit = true;
+				// if quit, only from main command menu, currently not allowed from sub-menus
+
+				else
+					System.out.println("That is not a valid command");
+				// if command given does not match, return and re-ask for valid command
+
+			}
+		} while (quit == false);
+
+	}// end public static void
+
+}// end public class

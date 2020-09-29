@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>View Thoughts</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+</head>
+<body>
+
+	<#include "header.ftl">
+
+	<br/>
+<div id = "wrapper">
+<table>	
+	 <tr><th>Thought</th><th>Time</th></tr>
+	<#list thoughts as thought>
+
+	 <tr><td>
+	${thought.getThought()}</td>
+	<td>${thought.getTimestamp()}</td>
+	</tr>
+	
+	<!--</#list>-->
+
+</table>
+<br/><br/>
+<form action ="ThoughtBankServlet" method ="post">
+	<input type="submit" name="clearthought" value = "Clear Thoughts" class = "button"/>
+</form>
+</div>
+	
+</body>
+</html>	

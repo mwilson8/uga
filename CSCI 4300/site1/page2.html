@@ -1,0 +1,89 @@
+<html>
+<head>
+    <title>Page 2</title>
+</head>
+<body onLoad="checkYear()">
+	<p> <br /><br />
+<table style="float:center">
+	<tr> 
+		<th>Year</th>
+		<th colspan="2">Semester</th>
+		<!-- 2nd <td> is colspan from above -->
+	</tr>
+		<tr>  
+
+		<td id="year"> 2015 </td>
+		<td><input type="button" value="Fall"onClick="f15()"/></td>
+		<td><input type="button" value="Spring"onClick="s15()"/></td>
+	</tr>
+	<tr>
+		<td id="year"> 2014 </td>
+		<td><input type="button" value="Fall"onClick="f14()"/></td>
+		<td><input type="button" value="Spring"onClick="s14()"/></td>
+	</tr>	
+	<tr>
+		<td id="year"> 2013 </td>
+		<td><input type="button" value="Fall"onClick="f13()"/></td>
+		<td><input type="button" value="Spring"onClick="s13()"/></td>
+	</tr>
+
+</table>			
+<p>		
+<br> Hover over to see schedules. May be click the button, not sure which will be the final.
+<br>
+</p>
+<!--links button actions to schedule picures-->
+<script type = "text/javascript">
+ function checkYear(){
+    var yearVal = getParameterByName('year');
+    var seasonVal = getParameterByName('season');
+    if(yearVal && seasonVal){
+        document.getElementById("schedule").src = (seasonVal + yearVal + '.png');
+    }
+}
+
+/*http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript*/
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+       results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+
+
+
+        function f15() /*fall 2015*/
+        {
+            document.getElementById("schedule").src = "fall15.png";
+        }
+
+        function s15() /*spring 2015*/
+        {
+            document.getElementById("schedule").src ="spring15.png";
+        } 
+
+        function f14() /*fall 2014*/
+        {
+            document.getElementById("schedule").src = "fall14.png";
+        }
+
+        function s14() /*spring 2014*/
+        {
+            document.getElementById("schedule").src = "spring14.png";
+        }
+		function f13() /*fall 2013*/
+        {
+            document.getElementById("schedule").src = "fall13.png";
+        }
+
+        function s13() /*spring 2013*/
+        {
+            document.getElementById("schedule").src = "spring13.png";
+        }
+        </script>
+			 <div id="sholder" style="float:center">
+			 <img src = "" id = "schedule"/> <!--place where the image goes-->
+			</div>
+		</body>
+		</html>

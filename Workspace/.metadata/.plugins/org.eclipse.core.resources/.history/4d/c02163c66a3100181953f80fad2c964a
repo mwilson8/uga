@@ -1,0 +1,33 @@
+import java.util.Arrays;
+
+public class Driver {
+
+	public static void solve(Board b){
+		char[][] board = b.getBoard();
+		//check for words in 
+		String [] list = b.getList();
+		
+		Wordsearch.printThisBoard(board);
+				
+		b.addSolution("wuxtry", 0, 1, 0, 6);
+		b.addSolution("lazy", 2, 2, 2, 5);
+	}
+	
+	public static void main (String[] args){
+		
+		Board b = new Board();
+		
+		solve(b);
+		
+		System.out.println(b.checkSolutions());
+		
+		/*
+		b.printSolutions();
+		
+		System.out.println(b.checkSolutions());
+		*/
+		
+	}
+	
+	
+}

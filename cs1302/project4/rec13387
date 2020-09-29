@@ -1,0 +1,82 @@
+project4:
+total 16
+drwx------. 3 ugrad 4096 Jul 19 19:53 html
+-rw-------. 1 ugrad  672 Jul 19 19:51 README.txt
+-rw-------. 1 ugrad    0 Jul 28 12:37 rec13387
+-rw-------. 1 ugrad 2909 Jul 19 19:55 rec63437
+drwxr-xr-x. 4 ugrad 4096 Jul 28 12:37 src
+
+project4/html:
+total 76
+-rw-------. 1 ugrad   678 Jul 19 19:54 allclasses-frame.html
+-rw-------. 1 ugrad   658 Jul 19 19:54 allclasses-noframe.html
+-rw-------. 1 ugrad  4742 Jul 19 19:54 constant-values.html
+-rw-------. 1 ugrad  3504 Jul 19 19:54 deprecated-list.html
+drwx------. 3 ugrad  4096 Jul 19 19:53 edu
+-rw-------. 1 ugrad  7939 Jul 19 19:54 help-doc.html
+-rw-------. 1 ugrad  8520 Jul 19 19:54 index-all.html
+-rw-------. 1 ugrad  2746 Jul 19 19:54 index.html
+-rw-------. 1 ugrad  3993 Jul 19 19:54 overview-tree.html
+-rw-------. 1 ugrad    24 Jul 19 19:54 package-list
+-rw-------. 1 ugrad   827 Jul 19 19:54 script.js
+-rw-------. 1 ugrad 12842 Jul 19 19:53 stylesheet.css
+
+project4/html/edu:
+total 4
+drwx------. 3 ugrad 4096 Jul 19 19:53 uga
+
+project4/html/edu/uga:
+total 4
+drwx------. 3 ugrad 4096 Jul 19 19:53 cs1302
+
+project4/html/edu/uga/cs1302:
+total 4
+drwx------. 2 ugrad 4096 Jul 19 19:54 mp3files
+
+project4/html/edu/uga/cs1302/mp3files:
+total 72
+-rw-------. 1 ugrad 18197 Jul 19 19:53 MP3File.html
+-rw-------. 1 ugrad  9162 Jul 19 19:53 MP3Player.html
+-rw-------. 1 ugrad   837 Jul 19 19:54 package-frame.html
+-rw-------. 1 ugrad  4546 Jul 19 19:54 package-summary.html
+-rw-------. 1 ugrad  4101 Jul 19 19:54 package-tree.html
+-rw-------. 1 ugrad 17626 Jul 19 19:54 SimpleArrayList.html
+
+project4/src:
+total 12
+drwxr-xr-x. 3 ugrad 4096 Jul 19 19:28 edu
+-rw-r--r--. 1 ugrad 2655 Jul 28 12:37 MyMP3Files.java
+drwxr-xr-x. 2 ugrad 4096 Jul 19 19:30 sample_music
+
+project4/src/edu:
+total 4
+drwxr-xr-x. 3 ugrad 4096 Jul 19 19:28 uga
+
+project4/src/edu/uga:
+total 4
+drwxr-xr-x. 3 ugrad 4096 Jul 19 19:28 cs1302
+
+project4/src/edu/uga/cs1302:
+total 4
+drwxr-xr-x. 2 ugrad 4096 Jul 19 19:29 mp3files
+
+project4/src/edu/uga/cs1302/mp3files:
+total 24
+-rw-r--r--. 1 ugrad 3920 Jul 19 19:28 MP3File.java
+-rw-r--r--. 1 ugrad 2248 Jul 19 19:28 MP3Player.java
+-rw-r--r--. 1 ugrad 9214 Jul 19 19:28 SimpleArrayList.java
+-rw-r--r--. 1 ugrad 1554 Jul 19 19:29 SimpleArrayListTester.java
+
+project4/src/sample_music:
+total 51408
+-rw-r--r--. 1 ugrad  8582256 Jul 19 19:29 beastieboys-make-some-noise.mp3
+-rw-r--r--. 1 ugrad  6192171 Jul 19 19:29 CheapUmbrellas.mp3
+-rw-r--r--. 1 ugrad  4329668 Jul 19 19:29 Fragile_Meadow.mp3
+-rw-r--r--. 1 ugrad  3218620 Jul 19 19:29 girl-in-a-coma-smart.mp3
+-rw-r--r--. 1 ugrad 10088318 Jul 19 19:30 Heirloom.mp3
+-rw-r--r--. 1 ugrad  6159092 Jul 19 19:30 terraincognita.mp3
+-rw-r--r--. 1 ugrad  3545841 Jul 19 19:30 The_Humms_Horror_Films.mp3
+-rw-r--r--. 1 ugrad  2837423 Jul 19 19:30 The_Humms_Hummwell.mp3
+-rw-r--r--. 1 ugrad  2909730 Jul 19 19:30 The_Humms_Smithway.mp3
+-rw-r--r--. 1 ugrad  4763196 Jul 19 19:30 Venice.mp3
+/home/ugrads/wilsonm/cs1302/project4:/home/work/cs1302a

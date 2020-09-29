@@ -1,0 +1,200 @@
+/*
+* StringFun.java
+* Author: Bradley J Howard
+* Submission Date: March 4, 2018
+*
+* Purpose: This program is to be used to have some fun with strings using four different commands to replace/remove letters and reverse the string.
+*
+*
+* Statement of Academic Honesty:
+*
+* The following code represents my own work. I have neither
+* received nor given inappropriate assistance. I have not copied
+* or modified code from any source other than the course webpage
+* or the course textbook. I recognize that any unauthorized
+* assistance or plagiarism will be handled in accordance with
+* the University of Georgia's Academic Honesty Policy and the
+* policies of this course. I recognize that my work is based
+* on an assignment created by the Department of Computer
+* Science at the University of Georgia. Any publishing
+* or posting of source code for this project is strictly
+* prohibited unless you have written consent from the Department
+* of Computer Science at the University of Georgia.
+*/
+
+import  java.util.Scanner;
+
+public class StringFun {
+	
+	public static void main(String[] args) {
+		
+		String originalString, command;
+		boolean programRun = true;
+		boolean found = false; //found will be the boolean to control the error 
+		
+		
+		Scanner keyboard = new Scanner(System.in);
+		
+		System.out.println("Enter the string to be manipulated. ");
+		originalString = keyboard.nextLine();
+		
+		//loop that runs as long as boolean programRun is true, only way to make programRun false is by typing quit
+		while(programRun) {
+			
+			System.out.println("Enter your command (quit, print reverse, replace all, replace single, remove)");
+			command = keyboard.nextLine();
+			command = command.trim().toLowerCase();
+			
+			switch (command) {
+			
+			//causes boolean to become false to end loop and exit program
+			case "quit":
+			{
+				programRun = false;
+			}
+			break;
+			
+			//for print reverse
+			case "print reverse":
+			{
+				//variable declarations
+				int length, substringA, substringB;
+				String reverseChar;
+				length = originalString.length();
+				
+				//loop to get reverse based on length
+				while(length > 0) {
+					
+					substringB = length;
+					substringA = length - 1;
+					//grabs each character from the back and prints them first 
+					reverseChar = originalString.substring(substringA, substringB);
+					//reverses then prints out each individual character, does not change the string
+					System.out.print(reverseChar);
+					length = length - 1;
+				}
+				System.out.println();
+			}
+			break;
+			
+			case "replace all": 
+			{
+				//variable declaration
+				String charToReplace;
+				String replacementChar;
+				int index = 0;
+				
+				System.out.println("Enter the character you want to replace.");
+				charToReplace = keyboard.nextLine();
+				System.out.println("Enter the new character.");
+				replacementChar = keyboard.nextLine();
+				
+				//for loop that runs on a loop counter that increases one for every string. index goes up by one and runs which are changed
+				for(int loopCounter = 0; loopCounter < originalString.length(); loopCounter++, index++) {
+
+					//if statement for if the index equals character to replace. if it does then it compibes the substrings from before and after the character with the repalcement character in the middle
+					if(originalString.charAt(index) == charToReplace.charAt(0) ) {
+						originalString = originalString.substring(0,index) + replacementChar + originalString.substring(index+1);
+						found = true; //found turns to true meaning an error message will not be displayed
+				}
+					
+				}
+				if(found) {
+				//prints out the string
+				System.out.println("The new string is: " + originalString);	
+				}
+				else {
+					System.out.println("Error: character not in string.");
+				}
+			}
+			break;
+			
+			case "replace single": 
+			{
+				
+				String charToReplace, replacementChar;
+				char whichChar;
+				int replaceNumber = 0, replacementCharQuota = 0, whichCharNum = 0;
+				
+				System.out.println("Enter the character to be replaced");
+				charToReplace = keyboard.nextLine().trim();
+				System.out.println("Enter the new character");
+				replacementChar = keyboard.nextLine().trim();
+				
+				
+				System.out.println("which " + charToReplace + " would you like to replace?");
+				whichChar = keyboard.nextLine().charAt(0);
+				
+				//if the character is a number the code will run if not an error code runs
+				if(Character.isDigit(whichChar)) {
+					 whichCharNum = Character.getNumericValue(whichChar);
+				}
+				else {
+					System.out.println("Error: invalid input.");
+				}
+				
+				//replacementCharQuota holds the number of times the charToReplace is found to get to the correct one to find
+				while(replacementCharQuota < whichCharNum) {
+					
+					if(originalString.charAt(replaceNumber) == charToReplace.charAt(0)) {
+						replacementCharQuota ++;
+						found = true;
+					}
+				//replaceNumber just cycles throught the characters one by one
+				replaceNumber++;
+				}
+				
+				//changes the original string to the original string with the replacement char  in place of the original
+				originalString = originalString.substring(0, replaceNumber-1) + replacementChar + originalString.substring(replaceNumber);
+				
+				if (found) {
+				System.out.println("The new string is: " +originalString);
+				}
+				else {
+					System.out.println("Error: character not in string");
+				}
+			}
+			break;
+			
+			
+			
+			
+			
+			
+			case "remove":
+			{
+			
+				String charToRemove;
+				
+				
+				System.out.println("Enter the character to remove.");
+				charToRemove = keyboard.nextLine();
+				
+				//for loop to find all of the 
+				for(int loopCounter = originalString.length()-1; loopCounter >= 0; loopCounter--) {
+					
+					//takes the two substrings before the character and after the character and concatenates them together
+					if(originalString.charAt(loopCounter) == charToRemove.charAt(0) ) {
+							originalString = originalString.substring(0,loopCounter) + originalString.substring(loopCounter+1);
+							found=true;
+						}
+				}			
+				if(found) { 
+				System.out.println("The new string is: " +originalString);
+				}
+				else {
+					System.out.println("Error: invalid character");
+				}
+			}
+			break;
+			
+			//default case if a correct command is not 
+			default:
+				System.out.println("Error: invalid command.");
+			break;
+			}
+		}	
+		System.exit(0);
+	}
+
+}

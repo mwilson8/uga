@@ -1,0 +1,168 @@
+ /*
+ * FunWithStrings.java
+ * Author: Miranda Biddlecomb
+ * Submission Date: 3/1/18
+ * 
+ * Purpose: This program modifies a string based on the modification commands put in.
+ * 
+ * Statement of Academic Honesty:
+ * 
+ * The following code represents my own work. I have neither
+ * received nor given inappropriate assistance. I have not copied
+ * or modified code from any source other than the course webpage
+ * or the course textbook. I recognize that any unauthorized
+ * assistance or plagiarism will be handled in accordance with
+ * the University of Georgia's Academic Honesty Policy and the
+ * policies of this course. I recognize that my work is based
+ * on an assignment created by the Department of Computer 
+ * Science at the University of Georgia. Any publishing
+ * or posting of source code for this project is strictly
+ * prohibited unless you have written consent from the Department
+ * of Computer Science at the University of Georgia.
+ */
+
+import java.util.Scanner;
+
+public class StringFun {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		
+		String string, action, characterRemove, firstSubstring, lastSubstring, letter, newString, oldLetter, newLetter;
+		int digit, digitRemoved, letterInstance, occurance;
+		
+		System.out.println("Enter string to be manipulated");
+		string = input.nextLine();
+		
+		do
+		{
+			System.out.println("Enter your command (quit, print reverse, replace all, replace single, remove)");
+			action = input.nextLine();
+			action = action.toLowerCase();
+			
+			switch (action)
+			{
+			
+			case "print reverse":
+			
+				digit = string.length();
+				newString = "";
+				while (digit > 0)
+				{
+					letter = string.substring(digit -1, digit);
+					newString += letter;
+					digit --;
+				}
+				System.out.println(newString);
+				break;
+				
+				
+			case "replace all":
+			
+				System.out.println("Enter the character to replace");
+				oldLetter = input.nextLine();
+						
+				System.out.println("Enter the new character");
+				newLetter = input.nextLine();
+				digit = 0;
+				occurance =0;
+				while (digit < string.length())
+				{
+					if  (oldLetter.equals(string.substring(digit, digit +1)))
+					{
+						firstSubstring = string.substring(0, digit);
+						lastSubstring = string.substring(digit +1);
+						string = firstSubstring + newLetter + lastSubstring;
+						continue;
+					}
+					else
+					{
+						occurance ++;
+					}
+					digit ++;
+				}
+				if (occurance == string.length()) {
+					System.out.println("Error: the letter you are trying to replace does not exist");
+				}
+				else {
+					System.out.println("The new string is:  " + string);
+				}
+				break;
+			
+				
+			case "replace single":
+				System.out.println("Enter the character to replace");
+				oldLetter = input.nextLine();
+				System.out.println("Enter the new character");
+				newLetter = input.nextLine();
+				System.out.println("Which " + oldLetter + " would you like to replace?");
+				letterInstance = input.nextInt();
+				occurance = 0;
+				digit =0;
+				while (digit < string.length())
+				{
+					if (string.substring(digit, digit +1).equals(oldLetter))
+					{
+						occurance ++;
+						if (occurance == letterInstance)
+						{
+							firstSubstring = string.substring(0,digit);
+							lastSubstring = string.substring(digit +1);
+							string = firstSubstring + newLetter + lastSubstring;
+							System.out.println("Your new sentence is: " +string);
+						}
+					}
+					digit ++;
+				}
+				if (occurance < letterInstance)
+				{
+					System.out.println("Error: the letter you are trying to replace does not exist");
+				}
+				input.nextLine();
+				break;
+				
+			case "remove":
+				System.out.println("Enter the character to remove");
+				characterRemove = input.nextLine();
+				digit = 0;
+				int noCharacter =0;
+
+				while (digit < string.length())
+				{
+					if (characterRemove.equals(string.substring(digit, digit +1)))
+					{
+						firstSubstring = string.substring(0, digit);
+						lastSubstring = string.substring(digit +1);
+						string = firstSubstring +lastSubstring;
+						noCharacter ++;
+						continue;
+					}
+					digit ++;
+				}
+				if (noCharacter == 0) {
+					System.out.println("Error: the letter you are trying to remove does not exist");
+				}
+				else {
+					System.out.println("The new sentence is: " + string);
+				}
+				break;
+			case "quit":
+				System.exit(0);
+				break;
+			}
+		}
+		while (string.equals(string));
+		
+
+			
+			 
+			
+			
+			
+		
+		
+		
+		
+		}
+	}
+

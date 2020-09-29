@@ -1,0 +1,233 @@
+/*
+* StringFun.java
+* Author: Alexander Coleman
+* Submission Date: 3/2/2018
+*
+* Purpose: The user enters a string and has four basic commands
+* to manipulate that string
+*
+* Statement of Academic Honesty:
+*
+* The following code represents my own work. I have neither
+* received nor given inappropriate assistance. I have not copied
+* or modified code from any source other than the course webpage
+* or the course textbook. I recognize that any unauthorized
+* assistance or plagiarism will be handled in accordance with
+* the University of Georgia's Academic Honesty Policy and the
+* policies of this course. I recognize that my work is based
+* on an assignment created by the Department of Computer
+* Science at the University of Georgia. Any publishing
+* or posting of source code for this project is strictly
+* prohibited unless you have written consent from the Department
+* of Computer Science at the University of Georgia.
+*/
+import java.util.Scanner;
+
+public class StringFun {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner key = new Scanner(System.in);
+
+		//length, chaAt, substring, equalsorIgnoreCase
+		
+		//declare variables
+		String Sent = "";
+		String command = "";
+
+		//Ask user for sentence
+		System.out.println("Enter the string to be manipulated.");
+		Sent = key.nextLine();
+		
+		while(true) {
+		
+			System.out.println("Enter your command(quit, print reverse, replace all, replace single, remove)");
+			command = key.nextLine();
+			// check to see if user wants to quit
+			 if(command.equalsIgnoreCase("quit"))
+			 {
+				 System.exit(0);
+			 }
+			
+			 //print reverse command
+			 if(command.equalsIgnoreCase("print reverse"))
+			 {
+				 //make new string since old one will not be changed
+				 String rev = "";
+				 // loop from the last character of the string
+				 for(int y = Sent.length(); y > 0 ; y--)
+				 {
+					rev += Sent.substring(y-1, y); 
+				 }
+				 
+				 System.out.println(rev);
+			 }
+			 
+			 //replace single command
+			 if(command.equalsIgnoreCase("replace single"))
+			 {
+				 int count = 0;
+				 String step = "";
+				 String g = "";
+				 
+				 String all = Sent;
+				 String NewWord = "";
+				 String nSent = "";
+				 String old = "";
+				 String nEw= "";
+				 
+				int b = all.length();
+				int a = 0;
+				 
+				 System.out.println("Enter the character to replace");
+				 old = key.nextLine();
+				 old = old.substring(0,1);
+				 System.out.println("Enter the new character");
+				 nEw = key.nextLine();
+				 nEw = nEw.substring(0,1);
+				//take at string and change it to numerical value and also check if letter was entered or not
+				 System.out.println("Which " + old  +" would you like to replace?");
+				 step = key.nextLine();
+				 System.out.println(step);
+				 
+				 //loops through string and pull out the numbers and not letters
+				 for(int c = 0; c < step.length();c++)
+				 {
+					 char v  = step.charAt(c);
+					 if(v >= 48 && v <= 57)
+					 {
+						 g += v;
+					 }
+				 }	
+				 //change value of string to int
+				 a = Integer.valueOf(g);
+				 a-=1;
+				
+				 //checks for invalid spot for changing letter
+				 if(a > b)
+				 {
+					 System.out.println("Invalid spot");
+				 }
+				 else
+				 {
+					 for(int y=0; y < Sent.length(); y++)
+					 {
+						 if(old.equals(all.substring(y, y+1)))
+						 {
+							 //count will check to see if this is the right letter to change
+							 //else it will add on that same letter and not change it
+						 	if(count ==a)
+						 	{
+						 		NewWord += nEw;
+						 		count = 100;
+						 	}
+						 	else
+						 	{
+						 	 	NewWord += all.substring(y, y+1);
+						 		count++;
+						 	}
+						 }
+						 else
+						 {
+						 	 	NewWord += all.substring(y, y+1);
+						 }
+					 }
+					 //Changes original string
+					 System.out.println("Your new sentence is: "+ NewWord);
+					 Sent = NewWord;
+				 }
+				 
+				
+			 }
+
+			 //replace all command(*************check to see if this changes the old word)
+			 if(command.equalsIgnoreCase("replace all"))
+			 {
+				 String sentence = Sent;
+				 String sent2 = "";
+				 String NNent = "";
+				 String ol = "";
+				 String New= "";
+				 
+				 System.out.println("Enter the character to replace");
+				 ol = key.nextLine();
+				 ol = ol.substring(0,1);
+				 System.out.println("Enter the new character");
+				 New = key.nextLine();
+				 New = New.substring(0,1);
+				 
+				 for(int y=0; y < Sent.length(); y++)
+				 {
+					//if this character is the one that needs to be changed then
+					 // sent2 will add it on
+					 if(ol.equals(sentence.substring(y, y+1)))
+					 {
+						sent2 += New;
+					 }
+					 else
+					 {
+						 sent2 += sentence.substring(y, y+1);
+					 }
+				 }
+
+				 //Changes original string
+				 System.out.println("Your new sentence is: "+ sent2);
+				 Sent = sent2;
+			 }
+
+			 
+			 //remove command
+			 //prints twice once finished check
+			 if(command.equalsIgnoreCase("remove"))
+			 {
+				 String rem = "";
+				 String pos = "";
+				 int x =0;
+				 System.out.println("Enter the character to remove.");
+				 rem = key.nextLine();
+				 x = rem.charAt(0);
+	//loop through string to remove letter
+				 for(int y=0; y < Sent.length(); y++)
+				 {
+					 if(x == (Sent.charAt(y)))
+					 {
+						 
+					 }
+					 else
+					 {
+						  pos += Sent.substring(y,y+1);
+					 }
+				 }
+				 //invalid letter input
+				 if(pos.equals(Sent))
+				 {
+					 System.out.println("Error: the letter you are trying to remove does not exist.");
+				 }
+				 else
+				 {
+					 System.out.println("The new sentence is: "+ pos);
+					 Sent = pos;
+				 }
+				 //if string becomes empty then program should end
+				 if(pos.equals(""))
+				 {
+					 System.out.println("You made your sentence empty");
+					 System.exit(0);
+				 }
+			 }
+		 
+		
+
+		}
+	
+			 
+			 
+			 
+	    	
+  
+	}	 		 
+}
+	
+
+
+

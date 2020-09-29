@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;VERSION&apos; in &apos;StatTester&apos; to &apos;version&apos;&#x0A;- Original project: &apos;1301StatGrading&apos;&#x0A;- Original element: &apos;StatTester.VERSION&apos;&#x0A;- Renamed element: &apos;StatTester.version&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;VERSION&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;{StatTester.java[StatTester^VERSION" name="version" references="true" setter="false" stamp="1514495753575" textual="false" version="1.0"/>
+</session>

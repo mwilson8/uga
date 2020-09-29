@@ -1,0 +1,116 @@
+html, body {
+	width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-image: url('http://www.halliecrawford.com/wp-content/uploads/2015/08/career-advice1.jpg');
+    background-size: cover;
+}
+
+.error {
+    color: red;
+    font-size: 10pt;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+#wrapper {
+    width: 100%;
+    max-width: 850px;
+    height: auto;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(199,173,136,.6);
+    padding: 10px;
+    position: relative;
+}
+
+#header {
+width: 100%;
+background: rgba(199,173,136,.6);
+height: 50px;
+color: white;
+}
+
+
+h4 {
+    color: black;
+    font-family: cursive;
+    font-size: 30pt;
+    margin: 0;
+    margin-left: 45px;
+}
+
+#rightheader {
+	float: right;
+    font-size: 14pt;
+    margin-right: 30px;
+    margin-top: 20px;
+}
+
+h2 {
+    font-family: cursive;
+    font-size: 20pt;
+    margin: 0pt;
+}
+
+#login {
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    left: 40%;
+    top: 40%;
+    background: rgba(199,173,136,.7);
+
+}
+
+.button {
+    background-color: #e7e7e7;
+    padding: 5px 24px;
+    border-radius: 8px;
+}
+
+.button:hover {
+    background-color: #555555;
+    color: white;
+}
+
+table {
+	width: 100%;
+}
+
+th{
+	border-bottom: 1px solid black;
+    font-size: 20pt;
+    font-family: cursive;
+}
+
+#wrapper h5{
+    margin: 0px;
+    text-align: center;
+}
+
+
+.left {
+  position: absolute;
+  left: 0;
+}
+
+.right {
+  position: absolute;
+  right: 0;
+}
+
+.top {
+  position: absolute;
+  top: 0;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+}

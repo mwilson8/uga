@@ -1,0 +1,38 @@
+package edu.uga.cs4370.objects;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.uga.cs4370.logic.Database;
+
+public class Main {
+
+	public static void main (String[] args){
+	
+		
+		
+		User u1 = new User();
+		u1.setEmail("email1@email");
+		u1.setFirstName("mitch");
+		u1.setLastName("wilson");
+		u1.setPassword("p1");
+		u1.setUsername("mwilson");
+		
+		//System.out.println(Database.userExists(u1.getUsername()));
+		//Database.addUser(u1);
+		
+		//System.out.println(Database.addAllergy(u1, "peanuts"));
+		
+	//	List<Product> list = Database.getProducts();
+		//for (Product p: list)
+			//Database.addAllergy(p, "test_allergy");
+		
+		ArrayList<User> list = Database.getUsers();
+		System.out.println();
+		
+		
+		Database.close();
+		
+	}
+	
+}

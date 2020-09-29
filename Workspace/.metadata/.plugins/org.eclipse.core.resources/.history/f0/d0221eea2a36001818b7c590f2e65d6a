@@ -1,0 +1,136 @@
+// CSCI 1301. java 
+// Author: Chase Crawford
+// Submission Date: 3/4/2018
+//
+// Purpose: The objective of this program is to calculate the pay of a worker depending on the number of hours they work.
+//This program takes into account the various deductions such as social security, state and federal taxes along with medicare.
+//The program is user friendly and asks the user to input the number of hours they work in a week and automatically produces the calculations of gross and net pay
+// along with the various deductions. 
+//
+//Statement of Academic Honesty:
+//
+// The following code represents my own work. I have neither
+// received nor given inappropriate assistance. I have not copied
+// or modified code from any source other than the course webpage 
+// or the course textbook. I recognize that any unauthorized 
+// assistance or plagarism will be handled in accordance with 
+// the University of Georgia's Academic Honesty Policy and the 
+// policies of this course. I recognize that my work is based 
+// on an assignment created by the Department of Computer 
+// Science at the University of Georgia. Any publishing 
+// or posting of source code for this project is strictly 
+// prohibited unless you have written consent from the Department
+// of Computer Science at the University of Georgia. 
+
+import java.util.Scanner;
+
+public class StringFun {
+
+	public static void main(String[] args) {
+		Scanner answer = new Scanner(System.in);
+		// TODO Auto-generated method stub
+		String input,command, reversestring = "", newstring = "", replaceall="";
+
+		System.out.println("Enter the string to be manipulated");
+		input = answer.nextLine();
+
+		while (true) {
+			System.out.println("Enter your command (quit, print reverse, replace all, replace single, remove)");
+			command = answer.nextLine().toLowerCase().trim();
+
+			if (!((command.equalsIgnoreCase("quit") || (command.equalsIgnoreCase("print reverse") || (command.equalsIgnoreCase("replace all")) || (command.equalsIgnoreCase("replace single") || (command.equalsIgnoreCase("remove"))))))) { 
+			}
+			else {
+				switch (command) {
+				case "quit":
+					System.exit(0);
+				case "print reverse":
+					int length = input.length();
+					for (int i = input.length() - 1; i > -1; i--) {
+						reversestring = reversestring + input.charAt(i);
+					}
+					System.out.println("The new string is: " + reversestring);
+					break;
+				case "replace single":
+
+					System.out.println("Enter the character to replace");
+					char letter = answer.nextLine().charAt(0);
+					System.out.println("Enter the new character");
+					char newchar = answer.nextLine().charAt(0);
+					System.out.println("Which instance do you want to replace?");
+					char intGuess = answer.nextLine().charAt(0);
+					int guess = 0;
+					if (Character.isDigit(intGuess)) {
+						guess = Character.getNumericValue(intGuess);
+					} else
+						System.out.println("Invalid");
+					int numberofletters = 0;
+					int i;
+					for (i = 0; i < input.length(); i++) {
+						if (input.charAt(i) == letter) {
+							numberofletters++;
+							if (numberofletters == guess) {
+								input = input.substring(0, i) + newchar + input.substring(i + 1);
+
+								
+
+							}
+
+						}
+					}
+					if (numberofletters == 0 || numberofletters < guess)		{
+						System.out.println("Error: the letter you are trying to replace does not exist.");
+					} 
+					else  {
+						System.out.println("The new string is: " + input);
+					}					break;
+
+
+				case "replace all":
+
+					System.out.println("Enter the character to replace");
+					String aletter = answer.nextLine();
+					System.out.println("Enter the new character");
+					String newletter = answer.nextLine();
+					String newinput="";
+					for (i=0; i < input.length(); i++) {
+						if (input.charAt(i) == aletter.charAt(0)) {
+							newinput = newinput + newletter;}
+						else { newinput = newinput + input.charAt(i);
+						}
+					}
+					if (input.compareTo(newinput) == 0)		{
+						System.out.println("Error the letter you are trying to replace does not exist.");
+					}
+					else {
+						System.out.println("The new string is: " + newinput);
+					}				input=newinput;		break;
+
+
+				case "remove" :
+
+					System.out.println("Enter the character to remove");
+					String removeletter = answer.nextLine();
+					String removeinput = "";
+					for (i = 0; i < input.length(); i++) {
+						if (input.charAt(i) == removeletter.charAt(0)) {
+							removeinput += "";
+						}
+						else { removeinput += input.charAt(i);
+						}	
+
+
+
+					}if (input.compareTo(removeinput) == 0)		{
+						System.out.println("Error the letter you are trying to remove does not exist.");
+					}
+					else {
+						System.out.println("The new string is: " +removeinput);
+					}			input=removeinput;			break;
+
+
+				}}}}}			
+
+
+
+

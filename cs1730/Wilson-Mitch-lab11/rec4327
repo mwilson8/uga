@@ -1,0 +1,14 @@
+Wilson-Mitch-lab10/:
+total 80
+-rwx------. 1 ugrad 28415 Oct 18 18:48 lab10
+-rw-------. 1 ugrad  1722 Oct 18 18:48 lab10.cpp
+-rw-------. 1 ugrad  1733 Oct 18 18:47 lab10.cpp~
+-rw-------. 1 ugrad 36360 Oct 18 18:48 lab10.o
+-rw-------. 1 ugrad  1017 Oct 18 17:43 Makefile
+-rw-------. 1 ugrad     0 Oct 18 17:41 #Makefile#
+-rw-------. 1 ugrad     0 Oct 25 09:32 rec4327
+drwx------. 2 ugrad  4096 Oct 18 18:33 testdir
+
+Wilson-Mitch-lab10/testdir:
+total 0
+/home/ugrads/wilsonm/cs1730/Wilson-Mitch-lab10/:/home/work/cs1730a

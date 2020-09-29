@@ -1,0 +1,255 @@
+package edu.uga.cs4370.objects;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * A class representing a Product in the bakery database. Products have an id,
+ * type, name, price, description, img src, and a list of allergy related ingredients
+ * @author Mitch Wilson
+ *
+ */
+public class Product {
+
+	private int ID;
+	private String type;
+	private String name;
+	private double price;
+	private String description;
+	private String src;
+	private List<String> allergies;
+	
+	
+	
+	
+	/**
+	 * Create a Product with info from the database
+	 * @param iD
+	 * @param type
+	 * @param name
+	 * @param price
+	 * @param description
+	 * @param sRC
+	 */
+	public Product(int iD, String type, String name, double price, String description, String sRC) {
+		super();
+		ID = iD;
+		this.type = type;
+		this.name = name;
+		this.price = price;
+		this.description = description;
+		src = sRC;
+		allergies = new ArrayList<String>();
+	}
+
+
+	public Product(){
+		allergies = new ArrayList<String>();
+	}
+
+
+	/**
+	 * @return the iD
+	 */
+	public int getID() {
+		return ID;
+	}
+
+
+
+
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
+
+
+
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+
+
+
+	/**
+	 * @return the price
+	 */
+	public double getPrice() {
+		return price;
+	}
+
+
+
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+
+
+
+	/**
+	 * @return the sRC
+	 */
+	public String getSRC() {
+		return src;
+	}
+
+
+
+
+	/**
+	 * @param iD the iD to set
+	 */
+	public void setId(int iD) {
+		ID = iD;
+	}
+
+
+
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
+
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+
+
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
+
+	/**
+	 * @param sRC the sRC to set
+	 */
+	public void setSRC(String sRC) {
+		src = sRC;
+	}
+	
+	/**
+	 * Returns a List of allergies for this Product
+	 * @return - a List of allergies for this Product
+	 */
+	public List<String> getAllergies(){
+		return allergies;
+	}
+	
+	/**
+	 * Adds an allergy to this Product's List of allergies
+	 * @param allergy - the allergy to be added
+	 * @usage product.addAllergy("milk");
+	 */
+	public void addAllergy(String allergy){
+		allergies.add(allergy);
+	}
+	
+	/**
+	 * Add the List of allergies to this Product's allergies
+	 * @param allergies - the List of allergies to add
+	 */
+	public void addAllergy(List<String> allergies){
+			this.allergies.addAll(allergies);
+	}
+	
+	
+	/**
+	 * Returns whether or not this Product contains the given item
+	 * @param allergy - the allergic item to check for
+	 * @return {@code true} if this Product contains {@code allergy},
+	 * {@code false} otherwise
+	 * @usage product.containsAllergy("milk");
+	 */
+	public boolean containsAllergy(String allergy){
+		return allergies.contains(allergy);
+	}
+	
+	
+	/**
+	 * Returns the number of ingredients this User is allergic to
+	 * @return - the number of ingredients this User is allergic to
+	 */
+	public int getNumberAllergies(){
+		return allergies.size();
+	}
+	
+	/**
+	 * Returns a String representation of this Product
+	 */
+	public String toString(){
+		String s = ID + "] " + name + ": " + type + " " + price;
+		s += " -> " + description;
+		s += "\nAllergies: " + Arrays.toString(allergies.toArray());
+		return s + "\n";
+	}
+	
+	/**
+	 * Returns if another Product is equal to this User
+	 * @param product - the other Product to compare to
+	 * @return - {@code true} if all attributes are equal, and the allergies are the same
+	 */
+	public boolean equals(Product product){
+		
+		if ( this.ID == product.ID 
+				&& this.type.equals(product.type) 
+				&& this.name.equals(product.name) 
+				&& this.price == product.price
+				&& this.description.equals(product.description) 
+				&& this.src.equals(product.src) ){
+			
+			//if all attributes are the same, check that the allergies are the same
+			//order doesn't matter so we don't use .equals 
+			for (String allergy : allergies)
+				if ( ! product.allergies.contains(allergy))
+					return false;
+			
+			//if all attributes are the same & both have the same allergies
+			return true;
+		}
+		
+		return false;
+			
+				
+	}
+	
+	
+}

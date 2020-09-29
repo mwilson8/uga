@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;seed1.txt&apos; to &apos;Minesweeper&apos;&#x0A;- Original project: &apos;1302Minesweeper&apos;&#x0A;- Destination element: &apos;Minesweeper&apos;&#x0A;- Original element: &apos;seed1.txt&apos;" description="Copy file" destination="=Minesweeper" element1="seed1.txt" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1507223808870" units="0" version="1.0"/>
+</session>

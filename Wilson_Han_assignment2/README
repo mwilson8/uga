@@ -1,0 +1,9 @@
+CircularLinkedList for some reason doesn't add in sorted order.. although we logically tried to implement a sorted list. If you 
+		   look at the code you will see that we use CompareTo and attempt to put the numbers in the list in order..
+		   but for some reason it just doesn't do it
+
+DoublyLinkedList : I can't get it to accept any more than 2 list items without crashing.. I have been working on moving the
+		 pointers  and checking that theyre not null but somehow it always crashes. It'll read the first 2 values but most
+		 likely crash after that. Becuase of this, I can't really debug any other errors
+
+I'm not really proud of it, but don't see myself figuring out the problem before the deadline

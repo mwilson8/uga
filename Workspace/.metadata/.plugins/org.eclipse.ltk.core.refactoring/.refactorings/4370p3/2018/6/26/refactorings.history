@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;query&apos; in &apos;DatabaseAccess.initialize(...)&apos; to &apos;insert&apos;&#x0A;- Original project: &apos;4370p3&apos;&#x0A;- Original element: &apos;DatabaseAccess.initialize(String).query&apos;&#x0A;- Renamed element: &apos;query&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;query&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{DatabaseAccess.java[DatabaseAccess~initialize~QString;@query!5151!5210!5158!5162!QString;!0!false" name="insert" references="true" stamp="1530306162733" version="1.0"/>
+</session>

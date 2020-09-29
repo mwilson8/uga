@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bakery Title</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<!--<#include "header.ftl">-->
+<br/>
+Shopping cart 
+
+    <div id = "wrapper">
+
+
+<!--<#assign sum = 0>
+<#list products as product>
+-->
+    
+<form action ="MainServlet" method ="post">
+<li>
+<!--${product.name}-->
+<input type="submit" value="Remove" name="remove" />
+<input type="hidden" name="id[]" value=${product.ID} />
+<!--${product.price}--> 5
+<!--<#assign sum += product.price>-->
+</li>
+</form>
+
+
+Total: ${sum}
+
+<form action ="MainServlet" method="post">
+<input type="submit" value="Checkout" name="checkout" />
+
+</form>
+
+    </div>
+</body>
+</html>

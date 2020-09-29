@@ -1,0 +1,88 @@
+#include <cstdlib>
+#include "CircularLinkedList.h"
+#include "ItemType.h"
+#include <cstdio>
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main(int argc, char* argv[]){
+
+  CircularLinkedList list;
+  ItemType item;
+  
+  int input;
+  std::fstream fs;
+  fs.open(argv[1], std::fstream::in);
+
+	  if (fs.is_open()){
+
+	    fs >> input;
+	    while (!fs.eof()){
+	      item.initialize(input);
+	      list.insertItem(item);
+	      fs >> input;
+
+	    }//while
+	  } else {
+
+	    cout << "Failed to open file" << endl;
+ 	    
+ 	    return 0;
+	    //	  }//else
+	  /*
+  for (int i = 0; i < 10; i++){
+
+    item.initialize(i * 2);
+    list.insertItem(item);
+    //    cout << "added '"<<item.getValue() << "' length: " << list.lengthIs() << endl;
+
+  }//for
+
+  list.print();
+  cout << "done" <<endl;
+	  */
+
+	  char command;
+	  while (true){
+	    cout << "\n(i)nsert, (d)elete, (l)ength, (p)rint, (q)uit\n"<< endl;
+	    cout << "Enter command: ";
+	    cin>>command;
+
+	    switch (command){
+	    case 'i': 
+	      cout << "Number to insert: ";
+	      int x;
+	      cin >> x;
+	      item.initialize(x);
+	      list.insertItem(item);
+	      cout << endl;
+	      break;
+
+	    case 'd':
+	      cout << "Number to delete: ";
+	      int y;
+	      cin >> y;
+	      item.initialize(y);
+	      list.deleteItem(item);
+	      cout << endl;
+	      break;
+
+	    case 'l':
+	      cout << "Length is " << list.lengthIs() << endl;
+	      break;
+
+	    case 'p':
+	      list.print();
+	      break;
+
+	    case 'q':
+	      return 0;
+
+	    }//switch
+	  }//while
+  return 0;
+
+}//main
+

@@ -1,0 +1,230 @@
+/*
+* StringFun .java
+* Author: Liam Fernandez
+* Submission Date: 2/26/18
+*
+* Purpose: A brief paragraph description of the
+* program. What does it do?
+* This program takes in a string and then does one of 4 commands to manipulate that string
+* until the user inputs "quit" to stop the program.
+*
+* Statement of Academic Honesty:
+*
+* The following code represents my own work. I have neither
+* received nor given inappropriate assistance. I have not copied
+* or modified code from any source other than the course webpage
+* or the course textbook. I recognize that any unauthorized
+* assistance or plagiarism will be handled in accordance with
+* the University of Georgia's Academic Honesty Policy and the
+* policies of this course. I recognize that my work is based
+* on an assignment created by the Department of Computer
+* Science at the University of Georgia. Any publishing
+* or posting of source code for this project is strictly
+* prohibited unless you have written consent from the Department
+* of Computer Science at the University of Georgia.
+*/
+import java.util.Scanner;
+public class StringFun {
+	
+	//I made methods for each of the 4 commands so that it would be easier to manage
+	//than just leaving a big jumble in the main method.
+	//I never use any of the forbidden string methods such as replace() etc etc
+	//I did all the maniulation using charAt(), substring(), lenght() and concatenation.
+	public static void printReverse(String map)
+	{
+		String newWord = "";
+		for (int i = map.length()-1; i>=0;i--)
+		{	
+			String letterAdded = map.charAt(i)+"";
+			newWord = newWord+letterAdded;
+		}
+		System.out.println(newWord);
+	}
+	public static String replaceAllInstances(String sentence, char before, char after)
+	{
+		for (int i = 0; i<sentence.length();i++)
+		{
+			if (sentence.charAt(i)==before)
+			{
+				String part1 = sentence.substring(0, i);
+				String part2 = sentence.substring(i+1);
+				sentence = part1 +after+part2;
+			}
+		}
+		return sentence;
+	}
+	public static String replaceSingle(String sentence, char before, char after,int placement)
+	{
+		int counter= 0;
+		for (int i = 0; i<sentence.length();i++)
+		{
+			if (sentence.charAt(i)==before)
+			{
+				counter++;
+				if (counter == placement)
+				{
+				String part1 = sentence.substring(0, i);
+				String part2 = sentence.substring(i+1);
+				sentence = part1 +after+part2;
+				}
+				else
+				{
+					
+				}
+			}
+		}
+		return sentence;
+	}
+	public static String removeAllInstances(String sentence, char letterToRemove)
+	{
+		for (int i = 0; i<sentence.length();i++)
+		{
+			if(sentence.charAt(0)==letterToRemove)
+			{
+				sentence= sentence.substring(1);
+				i--;
+			}
+			else if(sentence.charAt(sentence.length()-1)==letterToRemove)
+			{
+				sentence= sentence.substring(0,sentence.length()-1);
+				i--;
+			}
+			else if (sentence.charAt(i)==letterToRemove)
+			{
+				String part1 = sentence.substring(0, i);
+				String part2 = sentence.substring(i+1);
+				sentence = part1 +part2;
+			}
+		}
+		return sentence;
+	}
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String response = "";
+		System.out.println("Enter the string to be manipulated.");
+		String sentenceToManipulate = scan.nextLine();
+		while (!(response.equalsIgnoreCase("quit")))
+		{
+		System.out.println("Enter your command (quit, print reverse, replace all, replace single, remove)");
+		response = scan.nextLine();
+		if (response.equalsIgnoreCase("print reverse"))
+		{
+		printReverse(sentenceToManipulate);
+		}
+		else if(response.equalsIgnoreCase("replace all"))
+		{
+			boolean check = false;
+			char replaceLetterWith = ' ';
+			
+			System.out.println("Enter the character to replace");
+			char replaceLetter = scan.nextLine().charAt(0);
+			for (int i = 0; i<sentenceToManipulate.length();i++)
+			{
+				if (sentenceToManipulate.charAt(i) == replaceLetter)
+				{
+					check = true;
+				}
+				else
+				{
+					
+				}
+			}
+			if (check == false)
+			{
+				System.out.println("Error: the letter you are trying to replace does not exist");
+			}
+			else
+			{
+				System.out.println("Enter the new character");
+				replaceLetterWith = scan.nextLine().charAt(0);
+				sentenceToManipulate = replaceAllInstances(sentenceToManipulate,replaceLetter,replaceLetterWith);
+				System.out.println("The new string is: "+ sentenceToManipulate);
+			}
+			
+			
+		}
+		else if(response.equalsIgnoreCase("remove"))
+		{
+			boolean check = false;
+			
+			
+			System.out.println("Enter the character to remove");
+			char removeLetter = scan.nextLine().charAt(0);
+			for (int i = 0; i<sentenceToManipulate.length();i++)
+			{
+				if (sentenceToManipulate.charAt(i) == removeLetter)
+				{
+					check = true;
+				}
+				else
+				{
+					
+				}
+			}
+			if (check == false)
+			{
+				System.out.println("Error: the letter you are trying to remove does not exist");
+			}
+			else
+			{
+				
+				sentenceToManipulate = removeAllInstances(sentenceToManipulate,removeLetter);
+				System.out.println("The new string is: "+ sentenceToManipulate);
+			}	
+		}
+		else if(response.equalsIgnoreCase("replace single"))
+		{
+			boolean check = false;
+			char replaceLetterWith = ' ';
+			int occurrenceOfReplacement= 0;
+			
+			System.out.println("Enter the character to replace");
+			char replaceLetter = scan.nextLine().charAt(0);
+			for (int i = 0; i<sentenceToManipulate.length();i++)
+			{
+				if (sentenceToManipulate.charAt(i) == replaceLetter)
+				{
+					check = true;
+				}
+				else
+				{
+				}
+			}
+			if (check == false)
+			{
+				System.out.println("Error: the letter you are trying to replace does not exist");
+			}
+			else
+			{
+				System.out.println("Enter the new character");
+				replaceLetterWith = scan.nextLine().charAt(0);
+				System.out.println("Which "+replaceLetter+" would you like to replace?");
+				occurrenceOfReplacement= Character.getNumericValue(scan.nextLine().charAt(0));
+				String sentenceWithSingleReplacement = replaceSingle(sentenceToManipulate,replaceLetter,replaceLetterWith,occurrenceOfReplacement);
+				if (sentenceWithSingleReplacement.equals(sentenceToManipulate))
+				{
+					System.out.println("Error: the letter you are trying to replace does not exist");
+				}
+				else
+				{
+					System.out.println("Your new sentence is: "+sentenceWithSingleReplacement);
+					sentenceToManipulate = sentenceWithSingleReplacement;
+				}
+			}	
+		}
+		else if(!(response.equalsIgnoreCase("quit")))
+		{
+			System.out.println("Error, that isn't a command.");
+		}
+		}
+	scan.close();
+	}
+}
+
+
+
+
+
+
+

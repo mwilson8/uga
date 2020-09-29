@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css" />
+<title>Thoughts Bank</title>
+
+
+</head>
+<body>
+<div id = "header">
+<h4>Thoughts Bank Application <div id = "rightheader">Welcome, ${user}</div></h4>
+</div>
+    
+	<!--<#include "header.ftl">-->
+	<br/>
+	<div id="wrapper">
+	<form action ="ThoughtBankServlet" method ="post">
+	<input type="text" name="thought" size = "75"/>
+	<input type="submit" name="addthought" value = "Add Thought" />
+	<input type="submit" name="viewthought" value="View Thoughts" />
+</form>
+    </div>
+	
+</body>
+</html>	

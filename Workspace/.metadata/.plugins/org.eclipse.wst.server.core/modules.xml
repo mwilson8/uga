@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modules>
+  <module moduleId="org.eclipse.jst.jee.server:FirstDatabase" serverId="WildFly 10.x"/>
+  <module moduleId="org.eclipse.jst.jee.server:StudentDatabase" serverId="WildFly 10.x"/>
+  <module moduleId="org.eclipse.jst.jee.server:MovieDatabase" serverId="WildFly 10.x"/>
+  <module moduleId="org.eclipse.jst.jee.server:StudentDatabase2" serverId="WildFly 10.x"/>
+  <module moduleId="org.eclipse.jst.jee.server:StudentLoginApp" serverId="WildFly 10.x"/>
+  <module moduleId="org.eclipse.jst.jee.server:FirstServlet" serverId="WildFly 10.x"/>
+  <module moduleId="org.eclipse.jst.jee.server:Bakery" serverId="WildFly 10.x"/>
+  <module moduleId="org.eclipse.jst.jee.server:ThoughtsBank" serverId="WildFly 10.x"/>
+</modules>

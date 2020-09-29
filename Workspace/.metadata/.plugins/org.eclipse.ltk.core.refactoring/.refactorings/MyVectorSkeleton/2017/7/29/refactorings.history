@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 elements from project &apos;MyVectorSkeleton&apos;&#x0A;- Original project: &apos;MyVectorSkeleton&apos;&#x0A;- Original elements:&#x0A;     jl1.0.1.jar&#x0A;     mp3spi1.9.5.jar&#x0A;     tritonus_share.jar" description="Delete elements" element1="src/mp3spi1.9.5.jar" element2="src/jl1.0.1.jar" element3="src/tritonus_share.jar" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="3" stamp="1500401428620" subPackages="false" version="1.0"/>
+</session>

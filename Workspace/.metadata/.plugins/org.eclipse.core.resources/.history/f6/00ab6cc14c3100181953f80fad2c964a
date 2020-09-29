@@ -1,0 +1,41 @@
+import java.util.Arrays;
+
+public class Driver {
+
+	public static void main (String[] args){
+		
+		String[] words = {"HELLO", "DOG", "CAT", "BAT", "ACE", "FOUR", "RED", "CAR", "RAT"};
+		String[] words1 = {"hi"};
+		
+		Wordsearch wsg = new Wordsearch(words);
+		System.out.println("words: " + wsg.getNumOfWords() + " " + Arrays.toString(wsg.getList()));
+		
+		Wordsearch.printThisBoard(wsg.getSimpleBoard());
+		
+		System.out.println("------after hiding the words---------");
+		Wordsearch.printThisBoard(wsg.getBoard());
+
+		wsg = new Wordsearch();
+		System.out.println("words: " + wsg.getNumOfWords() + " " + Arrays.toString(wsg.getList()));
+		
+		Wordsearch.printThisBoard(wsg.getSimpleBoard());
+		
+		System.out.println("------after hiding the words---------");
+		Wordsearch.printThisBoard(wsg.getBoard());
+		
+		Wordsearch ws2 = new Wordsearch(3);
+		Wordsearch ws3 = new Wordsearch(Wordsearch.medList);
+		
+		System.out.println("words: " + ws2.getNumOfWords() + " " + Arrays.toString(ws2.getList()));
+		
+		Wordsearch.printThisBoard(ws2.getSimpleBoard());
+		
+		System.out.println("words: " + ws3.getNumOfWords() + " " + Arrays.toString(ws3.getList()));
+		
+		Wordsearch.printThisBoard(ws3.getSimpleBoard());
+
+		
+	}
+	
+	
+}

@@ -1,0 +1,95 @@
+#include <iostream> 
+#include <cstdlib>
+#include <string>
+
+using namespace std;
+
+int main ()
+{
+  /*
+  cout << "1:" << endl;
+  //part 1
+
+   cout << "(a) char   : " << sizeof ( char ) << " byte(s)"  << endl;
+   cout << "(b) char & : " << sizeof ( char & ) << " byte(s)" << endl; 
+   cout << "(c) char * : " << sizeof ( char *) << " byte(s)" << endl;
+   cout << "(d) short  : " << sizeof ( short ) << " byte(s)" << endl;
+   cout << "(e) short &: " << sizeof ( short & ) << " byte(s)" << endl;
+   cout << "(f) short *: " << sizeof ( short * ) << " byte(s)" << endl; 
+   cout << "(g) int    : " << sizeof ( int ) << " byte(s)" << endl; 
+   cout << "(h) int &  : " << sizeof ( int & ) << " byte(s)" << endl; 
+   cout << "(i) int *  : " << sizeof ( int * ) << " byte(s)" << endl; 
+   cout << "(j) long   : " << sizeof ( long ) << " byte(s)" << endl; 
+   cout << "(k) long & : " << sizeof ( long & ) << " byte(s)" << endl; 
+   cout << "(l) long * : " << sizeof ( long * ) << " byte(s)" << endl; 
+   cout << "(m) int ** : " << sizeof ( int ** ) << " byte(s)" << endl; 
+   cout << "(n) int ***: " << sizeof ( int *** ) << " byte(s)\n" << endl; 
+
+  
+   cout << "2:" << endl;
+   //part2
+
+   short s = 5;
+   short * sp = &s;
+  sp =  reinterpret_cast<short *> (0x00007ffd0f811b84);
+   cout << ( sp )   << endl;  // 0x00007ffd0f811b84
+   cout << (sp + 1) << endl;
+   cout << (sp + 2) << endl;
+   cout << (sp + 3) << endl;
+   cout << (sp + 4) << endl;
+
+   cout<< "3:" << endl;
+   int i = 5;
+   int * ip = &i;
+   ip = reinterpret_cast<int *> (0x00007ffd0f811b84);
+   cout << ( ip )   << endl;
+   cout << (ip + 1) << endl;
+   cout << (ip + 2) << endl;
+   cout << (ip + 3) << endl;
+   cout << (ip + 4) << endl;
+
+
+   cout << "5(1): " << endl;
+   cout << "(a)" << endl;
+   int integer1, * p1, ** p2;
+   integer1 = 10; //line 11
+   p1 = &integer1; //line 12
+   p2 = &p1; //line 12
+
+   cout << "integer1 = " << integer1 << endl; //line 15
+   cout << "p1 = " << p1 << endl;            // line 16
+   cout << "p2 = " << p2 << endl;            // line 17
+
+   cout << "(b)" << endl;
+   (*p1)++;
+   cout << "integer1 = " << *p1 << endl;
+
+
+   cout << "(c)" << endl;
+   integer1++;
+   cout << "integer1 = " << *p1 << endl;
+
+
+   cout << "(d)" << endl;
+   *p2++;
+   cout << "integer1 = " << integer1 << endl;
+
+   
+   cout << "5(3)" << endl;
+   
+   int * p1;
+   int ** p2;
+   p2 = p1;
+   */ //wont compile
+
+   int iarray [10], * p1, * p2;
+   p1 = iarray;
+   p2 = &iarray[0];
+
+   for ( int i = 0; i < 10; ++i) iarray[i] = i;
+   for ( int i = 0; i < 10; ++i) cout << *(p2 + i) << endl;
+
+
+
+ return 0;
+}//main

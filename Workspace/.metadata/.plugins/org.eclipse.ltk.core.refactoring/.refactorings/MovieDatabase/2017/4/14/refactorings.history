@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;DatabaseAccess.java&apos; to &apos;Bakery/src/edu.uga.cs4300.Bakery&apos;&#x0A;- Original project: &apos;MovieDatabase&apos;&#x0A;- Destination element: &apos;Bakery/src/edu.uga.cs4300.Bakery&apos;&#x0A;- Original element: &apos;edu.uga.cs4300.MovieDatabase.DatabaseAccess.java&apos;" description="Copy compilation unit" destination="=Bakery/src&lt;edu.uga.cs4300.Bakery" element1="/src&lt;edu.uga.cs4300.MovieDatabase{DatabaseAccess.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1491259860407" units="1" version="1.0"/>
+</session>

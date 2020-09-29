@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;reflection.BagelsMethodCheck.foo(...)&apos; to &apos;constructorTest&apos;&#x0A;- Original project: &apos;1301Labs&apos;&#x0A;- Original element: &apos;reflection.BagelsMethodCheck.foo(...)&apos;&#x0A;- Renamed element: &apos;reflection.BagelsMethodCheck.constructorTest(...)&apos;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;foo&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;reflection{BagelsMethodCheck.java[BagelsMethodCheck~foo~QClass\&lt;*&gt;;~QString;" name="constructorTest" references="true" stamp="1509564227992" version="1.0"/>
+</session>

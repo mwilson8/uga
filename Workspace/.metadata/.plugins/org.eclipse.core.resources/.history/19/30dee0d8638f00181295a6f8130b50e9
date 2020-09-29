@@ -1,0 +1,81 @@
+package edu.uga.cs4370.logic;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import edu.uga.cs4370.objects.Product;
+
+public class DatabaseInitialization {
+
+	
+	public static boolean initialize(){
+		
+		initializeProducts();
+		return true;
+		
+	}
+	
+	
+	private static boolean initializeProducts(){
+		
+		ArrayList<Product> list = new ArrayList<Product>();
+		
+		String filePath = "resources/products.csv";
+		
+		String line = "";
+		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+
+			Product p = new Product();
+			
+            while ((line = br.readLine()) != null) {
+
+                // use comma as separator
+                String[] split = line.split(",");
+
+                try{
+                	
+                	p.setId(Integer.parseInt(split[0]));
+                	p.setType(split[1]);
+                	p.setType(split[2]);
+                	p.setDescription(split[3]);
+                	p.setPrice(Double.parseDouble(split[4]));
+                	p.setSRC(split[4]);
+                	
+                	list.add(p);
+                	
+                	
+                } catch (Exception e){
+                	e.printStackTrace();
+                	continue;
+                }
+                
+                
+                System.out.println(Arrays.toString(split));
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+		
+		initializeProductAllergies();
+		return true;
+	}
+	
+	private static boolean initializeBakeries(){
+		
+		String filePath = "/4370Bakery/resources/bakeries.csv";
+	}
+	
+	private static boolean initializeMenus(){
+		
+		String filePath = "/4370Bakery/resources/menus.csv";
+	}
+	
+	private static boolean initializeProductAllergies(){
+		
+		String filePath = "/4370Bakery/resources/product_allergies.csv";
+	}
+}

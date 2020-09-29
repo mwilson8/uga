@@ -1,0 +1,48 @@
+import java.util.Arrays;
+
+public class Driver {
+
+	public static void main (String[] args){
+		char[][] board1 = new char [][]{
+            {' ','w','u','x','t','r','y',' ',' ',' '},
+            {' ',' ',' ',' ','r','e','v','l',' ','s'},
+            {' ','y','l','a','z','y',' ',' ','a','a'},
+            {' ','k','a','m','i','c','i','i',' ','n'},
+            {' ','s',' ',' ',' ','d','l',' ','o','d'},
+            {' ','e',' ',' ','a','o',' ','h','r','b'},
+            {' ','u',' ','o','n',' ','a',' ','t','a'},
+            {' ','l','r','g',' ','w',' ',' ','n','r'},
+            {' ','b','a','g','r','i','l','l','e',' '},
+            {' ','m','h','e','d','g','e','s','c',' '}
+    };
+    String[] list1 = new String [] {"bluesky","magnolias","sandbar","wuxtry","broad",
+            "hedges","lazy","centro","grill", "amici","waho", };
+    
+    String[] solution1 = new String [] {"wuxtry : (0, 1) (0, 6)",
+    								 "lazy : (2, 2) (2, 5)"};
+		
+		
+		Board b = new Board();
+		
+		StudentSolution.solve(b);
+		
+		System.out.println(b.checkSolutions());
+		
+		
+		Rubric r1 = new this.Rubric(board1, list1, solution1);
+		
+		
+	}
+	
+	private class Rubric extends Board{
+		char[][] board;
+		String[] list;
+		String[] solution;
+		private Rubric(char[][] board, String[] list, String[] solution){
+			this.board = board;
+			this.list = list;
+			this.solution = solution;
+		}
+	}
+	
+}

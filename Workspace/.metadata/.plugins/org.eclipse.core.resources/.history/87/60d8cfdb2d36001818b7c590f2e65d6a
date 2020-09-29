@@ -1,0 +1,309 @@
+/*
+ * StringFun.java
+ * Author: Kevin Doyle
+ * Submission Date: 3/2/18 
+ * 
+ * 
+ * Purpose: This program allows for the user to input a string and then change it around in a few different ways. Overall use of this program
+ * is for string parsing. The first main action that the user can do is printing the string in reverse. The second action is replace all, which will
+ * replace all instances of a certain character with another wanted character. The third action is the replace single action, which is very similar to 
+ * the replace all action, but this one allows the user to chose a specific instance of a certain character to replace in the string. This action will
+ * only replace one character with one other wanted character. The next command is the remove command, which will remove all instances of a certain 
+ * character within the string. Lastly the user can input quit to quit/end the program. Note: all of these actions are case-sensitive.
+ * 
+ * Statement of Academic Honesty:
+ * 
+ *  The following code represents my own work. I have neither
+ * received nor given inappropriate assistance. I have not copied
+ * or modified code from any source other than the course webpage
+ * or the course textbook. I recognize that any unauthorized
+ * assistance or plagiarism will be handled in accordance with
+ * the University of Georgia's Academic Honesty Policy and the
+ * policies of this course. I recognize that my work is based
+ * on an assignment created by the Department of Computer
+ * Science at the University of Georgia. Any publishing
+ * or posting of source code for this project is strictly
+ * prohibited unless you have written consent from the Department
+ * of Computer Science at the University of Georgia.
+ */
+
+//importing the scanner class
+import java.util.Scanner;
+
+public class StringFun {
+
+	public static void main(String[] args) {
+		
+		//creating the scanner
+		Scanner scan = new Scanner(System.in);
+	
+		//Asking the user to input a string
+		String input;
+		System.out.println("Enter the string to be manipulated");
+		input = scan.nextLine();
+		
+		//creating the loop to run the program multiple times
+		while(true) {
+		
+		//setting a new empty string to help parse the original string
+		String command, newString = "";
+		
+		//asking the user to input the wanted command
+		System.out.println("Enter your command (quit, print reverse, replace all, replace single, remove)");
+		command = scan.nextLine();
+		
+		//testing to see if the command is a valid one
+		boolean test1 = command.equalsIgnoreCase("quit");
+		boolean test2 = command.equalsIgnoreCase("print reverse");
+		boolean test3 = command.equalsIgnoreCase("replace all");
+		boolean test4 = command.equalsIgnoreCase("replace single");
+		boolean test5 = command.equalsIgnoreCase("remove");
+		boolean overall;
+		
+		//if one of the booleans are false, then the program will continue without running into the input error
+		if(test1 == true)
+			overall = false;
+		else if(test2 == true)
+			overall = false;
+		else if(test3 == true)
+			overall = false;
+		else if(test4 == true)
+			overall = false;
+		else if(test5 == true)
+			overall = false;
+		else 
+			overall = true;
+		
+		//loop to keep asking the user for a valid command until a proper one is entered
+		while(overall) {
+
+			System.out.println("Invalid command! Please enter a valid command (quit, print reverse, replace all, replace single, remove)");
+			command = scan.nextLine();
+			
+			test1 = command.equalsIgnoreCase("quit");
+			test2 = command.equalsIgnoreCase("print reverse");
+			test3 = command.equalsIgnoreCase("replace all");
+			test4 = command.equalsIgnoreCase("replace single");
+			test5 = command.equalsIgnoreCase("remove");
+			
+			if(test1 == true)
+				overall = false;
+			else if(test2 == true)
+				overall = false;
+			else if(test3 == true)
+				overall = false;
+			else if(test4 == true)
+				overall = false;
+			else if(test5 == true)
+				overall = false;
+			else 
+				overall = true;		
+		}
+		
+		
+		//first command of printing the string in reverse
+		int count = 0;
+		if(command.equalsIgnoreCase("print reverse"))
+		{
+			count = input.length();
+			
+		
+			//creating the new string by adding the characters to a new string in reverse
+			while(count > 0){
+				newString += input.charAt(count-1);
+				count--;
+			}
+			
+			//printing out the new string, and setting the new string as the first input condition
+			System.out.println(newString);
+			input = newString;
+		}
+			
+		
+		//testing to see if the user input the second possible command
+		if(command.equalsIgnoreCase("replace all")) {
+			count = 0;
+			
+			//asking the user what character they want to replace
+			System.out.println("Enter the character to replace");
+			char replaceOld = scan.nextLine().charAt(0);
+			
+			//asking the user what character they want to replace it with
+			System.out.println("Enter the new character");
+			char replaceNew = scan.nextLine().charAt(0);
+			boolean test = true;
+			
+				//testing to see if the character that the user wants to change is in the string or not
+				while(count < input.length())
+					if(input.charAt(count) == replaceOld) {
+						count++;
+						test = false;
+						break;
+					}
+					else
+						count++;
+			
+				//if the character is not in the string, the program will pring this out, and go back to the start of the loop without changing the string
+				if(test == true) {
+					System.out.println("That character is not in the string!");
+					System.out.println("The string is still " + input);
+					continue;
+				}
+				
+				//This will replace each instance of the character with the new character by looping through and testing every character in the string	
+				count = 0;
+				while(count < input.length()) {
+					if(input.charAt(count) == replaceOld) {
+						newString += replaceNew;
+						count++; 
+					}
+						else {
+							newString += input.charAt(count);
+							count++;
+						}
+					}
+				
+				//printing out the new string, and setting the new string as the first input condition
+				System.out.println("The new string is: " + newString);
+				input = newString;
+				}
+				
+			
+		//This is the third command that could be input by the user
+		if(command.equalsIgnoreCase("replace single")) {
+			
+			//asking the user what character they want to replace
+			System.out.println("Enter the character to replace");
+			char replaceOld = scan.nextLine().charAt(0);
+			
+			//asking the user what character they want to replace the original character with
+			System.out.println("Enter the new character");
+			char replaceNew = scan.nextLine().charAt(0);
+			
+			//initializing two variables that will help with testing to see if the inputs are valid
+			int count2 = 0;
+			int instances = 0;
+			
+			//finding out how many instances of the original character there are in the string
+			while(count2 < input.length()) {
+				if(input.charAt(count2) == replaceOld)
+					instances++;
+				count2++;
+			}
+			
+			//if there are no instances of the original variable in the string, then the code will end here and loop back up to the start
+			if(instances == 0) {
+				System.out.println("there are no " + replaceOld + "'s in this string!");
+				newString = input;
+				System.out.println("The string is still: " + newString);
+				continue;
+			}
+				
+			//asking the user what instanace of the character they want to change
+			System.out.println("Which " + replaceOld + " would you like to replace?");
+				char instanceCheck = scan.nextLine().charAt(0);
+				
+				//setting up a variable to store what intance the user wants to replace
+				int instance;
+				
+				//checking to see if the instance input is a number (errors if it is a letter, special character, etc.)
+				//if it is not, then the program will loop back up to the top
+				if(!(Character.isDigit(instanceCheck))) {
+					System.out.println("Invalid input");
+					continue;
+				}
+				
+				//properly assigning the instance that the user wants to change
+				instance = Character.getNumericValue(instanceCheck);
+			
+					//tests to see if the input instance if larger/ more than the highest instance of the character that is wanted to be changed
+					if(instance > instances) {
+						System.out.println("Invalid instance");
+						continue;
+					}
+				
+			
+			//variables to help loop through the string that creates the new output string
+			count = 0;
+			int instanceCheck1 = 0;
+			
+			//looping through the input string to create the new string
+			while(count < input.length()) {
+				if(input.charAt(count) == replaceOld){ 
+					
+					instanceCheck1++;
+					
+				//testing to see if the instance of the proper character matches with the one that the user wants to change. 
+				//if they match, then the character will be replaced, otherwise, nothing will be replaced
+				if(instanceCheck1 == instance) 
+					newString += replaceNew;
+				else
+					newString += input.charAt(count);
+				}
+				
+				else {
+					newString += input.charAt(count);
+				}
+				
+				count++;
+					
+			}
+				
+			//printing out the new string, and setting the new string as the first input condition			
+			System.out.println("The new string is: " + newString);
+			input = newString;
+			}
+		
+		//testing to see if the user input the fourth command which will remove all instances of a character in the string
+		if(command.equalsIgnoreCase("remove")) {
+			//helps to loop through each character in the string
+			count = 0;
+			
+			//asking the user which character they want to remove
+			System.out.println("Enter the character to remove");
+			char remove = scan.nextLine().charAt(0);
+			boolean removeCheck = false;
+			
+			//looping through the string to see if the character that is wanted to be removed even exists within the string
+			while(count < input.length())
+				if(input.charAt(count) == remove) {
+					removeCheck = false;
+					break;
+				}
+				else {
+					removeCheck = true;
+					count++;
+				}
+			//If the character doesn't exist in the string, then the program will output that it doesnt exist, and loop back up the top
+			if(removeCheck)
+				System.out.println("Error: the letter you are trying to remove does not exist");
+
+			//loop to remove all instances of the certain character in the string
+			int counter2 = 1;
+			while(counter2 < input.length()+1) {
+				char temp = input.charAt(counter2-1);
+				if(!(input.charAt(counter2-1) == remove))
+					newString = newString + temp;
+				counter2++;
+			}	
+			
+			//printing out the new string, and setting the new string as the first input condition
+			System.out.println("The new string is: " + newString);
+			input = newString;
+				
+		}
+		
+		//testing to see if the user has input the fifth and final command of the program
+		//this program will exit the loop, and end the program all together
+		if(command.equalsIgnoreCase("quit"))	
+			System.exit(0);
+			
+		}
+	}
+	
+}
+
+
+
+
+

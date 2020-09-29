@@ -1,0 +1,18 @@
+#include <cstdlib>
+#include <stdio.h>
+#include <unistd.h>
+#include <pwd.h>
+#include <sys/types.h>
+int main( const int argc, const char * argv[] ) {
+  struct passwd *pw = getpwuid(getuid());
+  const char *homedir = pw->pw_dir;	
+  setvbuf( stdout, NULL, _IONBF, 0 );
+
+	char * cwd = get_current_dir_name();
+
+	fprintf( stdout, "%s\n", cwd );
+	fprintf( stdout, " %s\n", homedir );
+	free( cwd );
+
+	return EXIT_SUCCESS;
+} // end main

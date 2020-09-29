@@ -1,0 +1,172 @@
+/*
+* StringFun.java
+* Author: Tina Giang
+* Submission Date: 2/28/18
+*
+* Purpose: A brief paragraph description of the
+* program. What does it do?
+* This is a program designed to allow the user to play with strings.
+* It takes in the string as an entire line and displays asks the user
+* what they want to do with the string. The options are to replace certain
+* letters, replace all instances of the letter, print it in reverse, remove
+* a few letters, or simply quit and exit the program.
+*
+* Statement of Academic Honesty:
+*
+* The following code represents my own work. I have neither
+* received nor given inappropriate assistance. I have not copied
+* or modified code from any source other than the course webpage
+* or the course textbook. I recognize that any unauthorized
+* assistance or plagiarism will be handled in accordance with
+* the University of Georgia's Academic Honesty Policy and the
+* policies of this course. I recognize that my work is based
+* on an assignment created by the Department of Computer
+* Science at the University of Georgia. Any publishing
+* or posting of source code for this project is strictly
+* prohibited unless you have written consent from the Department
+* of Computer Science at the University of Georgia.
+*/
+import java.util.Scanner;
+public class StringFun {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner (System.in);
+		System.out.println("Enter the string to be manipulated: ");
+		String word = input.nextLine();
+		String copyWord = word;
+		String command = "";
+
+		while (true)
+		{
+			System.out.println("Enter your command: (quit, print reverse, replace all, replace single, remove)");
+			command = input.nextLine();
+			
+			if (!(command.equalsIgnoreCase("quit")) && !(command.equalsIgnoreCase("print reverse")) && !(command.equalsIgnoreCase("replace all"))
+					&& !(command.equalsIgnoreCase("replace single")) && !(command.equalsIgnoreCase("remove")))
+				{
+				System.out.println("Invalid");
+				}
+			//print reverse
+			if (command.equalsIgnoreCase("print reverse"))
+			{
+				for (int counter = copyWord.length()-1; counter >= 0; counter--)
+				{
+					System.out.print(copyWord.charAt(counter));
+				}
+				System.out.println();
+			}
+			
+			//replace all
+			if (command.equalsIgnoreCase("replace all"))
+			{
+				System.out.println("Enter the character to replace: ");
+				String replacedLetter = input.nextLine();
+				System.out.println("Enter the new character: ");
+				String newLetter = input.nextLine(); 
+				for (int i = 0; i < copyWord.length(); i++)
+				{
+					if (copyWord.charAt(i) == replacedLetter.charAt(0))
+					{
+						copyWord =  copyWord.substring(0, i) + newLetter + copyWord.substring(i+1);
+					}
+								
+				}
+				System.out.println("The new sentence is: " + copyWord);
+			}
+			
+			//replace single
+			if (command.equalsIgnoreCase("replace single"))
+			{
+				System.out.println("Enter the character to replace: ");
+				String replacedLetter2 = input.nextLine();
+				System.out.println("Enter the new character: ");
+				String newLetter2 = input.nextLine(); 
+				int guess = 0;
+				while(true)
+				{
+				System.out.println("Which " + replacedLetter2 + " would you like to replace?");
+				char indexReplaced = input.nextLine().charAt(0);
+				
+				
+				//if invalid
+				if (Character.isDigit(indexReplaced))
+				{
+					guess = Character.getNumericValue(indexReplaced);
+					break;
+				}
+				else
+				{
+					System.out.println("Invalid. Not a number");
+				}
+				
+				}
+				
+				int counter = 0;
+				int counter2=0;
+
+				for (int i = 0; i < copyWord.length(); i++)
+				{
+					if (copyWord.charAt(i) == replacedLetter2.charAt(0))
+					{
+						counter ++;
+						if (counter == guess)
+						{
+							copyWord =  copyWord.substring(0, i) + newLetter2 + copyWord.substring(i+1);
+							break;
+						}
+						
+					}
+					counter2++;
+				}
+				if(counter2>=copyWord.length())
+				{
+					System.out.println("Error. The letter you're replacing does not exist");
+				}
+				else
+				{
+					System.out.println("The new string is: " + copyWord);
+				}
+			}
+			
+			//remove
+			if (command.equalsIgnoreCase("remove"))
+			{
+				while(true)
+				{
+					System.out.println("Enter the character to remove: ");
+					String removedLetter = input.nextLine();
+					int count = 0;
+					String temp="";
+					for (int i = 0; i < copyWord.length(); i++)
+					{
+						if (!(copyWord.charAt(i) == removedLetter.charAt(0)))
+						{	
+							count++;
+							temp+=copyWord.charAt(i);
+						}
+					}
+					//if invalid
+					if (count == copyWord.length())
+					{
+						System.out.println("Error: the letter you're removing does not exist");
+						break;
+					}
+					else
+					{
+						System.out.println("Your new sentence is: " + temp);
+						copyWord = temp;
+						break;
+					}
+			}
+				
+		}
+			if (command.equalsIgnoreCase("quit"))
+			{
+				System.exit(0);
+			}
+			
+			
+	}
+
+	}
+}

@@ -1,0 +1,26 @@
+
+public class Driver {
+
+	public static void main (String[] args){
+		
+			
+			Board b = new Board();
+			
+			//students write one static method, it's signature is below
+			StudentSolution.solve(b);
+			
+			//this prints all the solutions the students found
+			b.printSolutions();
+			
+			//shows if the students found all the correct solutions
+			System.out.println(b.checkSolutions());
+		
+
+
+	
+		
+		
+	}
+	
+	
+}

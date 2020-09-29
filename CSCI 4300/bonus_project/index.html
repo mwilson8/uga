@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>  
+    <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="square.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript">
+     
+       
+	function updateChart() {
+        var ln1 = parseInt($("#Ln1").val());
+        var ln2 = parseInt($("#Ln2").val());
+        var ln3 = parseInt($("#Ln3").val());
+        
+        
+        
+        
+		var chart = new CanvasJS.Chart("chartContainer", {
+
+			title:{
+				text:"Graph"				
+
+			},
+                        animationEnabled: true,
+			axisX:{
+				interval: 1,
+				gridThickness: 0,
+				labelFontSize: 10,
+				labelFontStyle: "normal",
+				labelFontWeight: "normal",
+				labelFontFamily: "Lucida Sans Unicode"
+
+			},
+			axisY2:{
+				interlacedColor: "rgba(1,77,101,.2)",
+				gridColor: "rgba(1,77,101,.1)"
+
+			},
+
+			data: [
+			{     
+				type: "bar",
+                name: "values",
+				axisYType: "secondary",
+				color: "#014D65",				
+				dataPoints: [
+				
+				{y: ln1, label: "Ln1"  },
+				{y: ln2, label: "Ln2"  },
+				{y: ln3, label: "Ln3"  }
+				
+				]
+			}
+			
+			]
+		});
+
+        if (ln1 > 0 && ln2 > 0 && ln3 > 0) chart.render();
+        
+        
+}
+  
+        
+        
+        //$('Ln1').change(updateChart);
+        
+        
+$(document).ready(function()
+{
+    
+    function updateValuesFromLn1()
+    {
+         $("#Ln1").css("background-color", "white");
+        $("#Ln2").css("background-color", "white");
+        $("#Ln3").css("background-color", "white");
+        var ln1 = parseInt($("#Ln1").val());
+       // var ln2 = parseInt($("#Ln2").val());
+       // var ln3 = parseInt($("#Ln3").val());
+        
+         if (ln1 <= 0){
+             $("#Ln1").css("background-color", "yellow");
+         } 
+        else{
+        
+        var ln2 = ln1 * 5;
+        var ln3 = ln2 * 5;
+        
+       // $("#test_out1").val(ln1);
+        $("#Ln2").val(ln2);
+        $("#Ln3").val(ln3);
+        
+        updateChart();
+        }//else
+ 
+    }
+    function updateValuesFromLn2()
+    {
+        $("#Ln1").css("background-color", "white");
+        $("#Ln2").css("background-color", "white");
+        $("#Ln3").css("background-color", "white");
+        //var ln1 = parseInt($("#Ln1").val());
+        var ln2 = parseInt($("#Ln2").val());
+       // var ln3 = parseInt($("#Ln3").val());
+        
+         if (ln2 <= 0){
+             $("#Ln2").css("background-color", "yellow");
+
+         } 
+        else {
+        
+        var ln1 = ln2 / 5;
+        var ln3 = ln2 * 5;
+        
+        $("#Ln1").val(ln1);
+       // $("#test_out2").val(ln2);
+        $("#Ln3").val(ln3);
+        
+        updateChart();
+        }//else
+ 
+    }
+    function updateValuesFromLn3()
+    {
+        $("#Ln1").css("background-color", "white");
+        $("#Ln2").css("background-color", "white");
+        $("#Ln3").css("background-color", "white");
+        //var ln1 = parseInt($("#Ln1").val());
+       // var ln2 = parseInt($("#Ln2").val());
+        var ln3 = parseInt($("#Ln3").val());
+        
+         if (ln3 <= 0){
+             $("#Ln3").css("background-color", "yellow");
+         } 
+        else {
+            
+        var ln2 = ln3 / 5;
+        var ln1 = ln2 / 5;
+        
+        $("#Ln1").val(ln1);
+        $("#Ln2").val(ln2);
+        //$("#test_out3").val(ln3);
+ 
+        updateChart();
+        }//else
+    }
+    
+    
+    //$(document).on("change, keyup", "#Ln1", updatePrice);
+    $("#Ln1").on("change, keyup", updateValuesFromLn1);
+    $("#Ln2").on("change, keyup", updateValuesFromLn2);
+    $("#Ln3").on("change, keyup", updateValuesFromLn3);
+    
+
+    
+    
+});
+        
+    
+        
+        
+        
+        
+    
+</script>
+
+    <style>
+        #error{
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+        <input type = "number" placeholder = "Ln1" id ="Ln1">
+        <input type = "number" placeholder = "Ln2" id ="Ln2">
+        <input type = "number" placeholder = "Ln3" id ="Ln3">
+    
+	<div id="chartContainer" style="height: 300px; width: 100%;">
+	</div>
+    
+    
+</body>
+</html>

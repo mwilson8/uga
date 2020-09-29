@@ -1,0 +1,9 @@
+
+public class StudentSolution {
+	
+	public static void solve(Board board){
+		board.addSolution("wuxtry", 0, 1, 0, 6);
+		board.addSolution("lazy", 2, 2, 2, 5);
+	}
+	
+}

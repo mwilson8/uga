@@ -1,0 +1,57 @@
+<html>
+<head>
+    <title>Square Assignment</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style type="text/css">
+          #custom-handle {
+            width: 3em;
+            height: 1.6em;
+            top: 50%;
+            margin-top: -.8em;
+            text-align: center;
+            line-height: 1.6em;
+          }
+        
+        #squareArea{
+            height: 500px;
+            width: 90%;
+            border: 3pt solid black;
+            overflow: hidden;
+            position: relative;
+            margin:auto;
+        }
+        
+        .btn{
+            background-color: darkcyan;
+            border-radius: 10pt;
+        }
+        
+        #btnWrap{
+            text-align: center;
+        }
+        
+        #slider{
+            width: 300px;
+            margin-right: 0;
+        }
+        
+    </style>
+     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="square.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    
+</head>
+    <body onload="fillArea()">
+
+    <div id = "squareArea"></div>
+        <div id ="btnWrap">
+        <button class = "btn" id = "Add Square" onClick= "makeSquare()" >Add Square</button>
+        
+        <button class = "btn" id = "Change Color" onClick ="changeColor()">Change Color</button>
+            
+        </div>
+    </body>
+</html>

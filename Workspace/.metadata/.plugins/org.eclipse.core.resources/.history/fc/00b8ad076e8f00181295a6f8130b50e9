@@ -1,0 +1,253 @@
+package edu.uga.cs4370.objects;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * A class representing a user. Users have a first name, last name,
+ * username, password, email, ID, and a List of allergies (stored as strings)
+ * @author Mitch Wilson
+ *
+ */
+public class User {
+
+	private String 
+					firstName,
+					lastName,
+					username,
+					password,
+					email;
+	//private int ID = -1;
+	private ArrayList<String> allergies;
+	private ArrayList<Product> cart;
+
+	
+	/**
+	 * Creates a new User with no attributes, should be avoided if possible
+	 */
+	public User(){
+		allergies = new ArrayList<String>();
+		cart = new ArrayList<Product>();
+	}
+	
+	
+	/**
+	 * Create a user when the ID is not known
+	 * @see User (String, String, String, String, String, int)
+	 */
+	public User(String firstName, String lastName, String username, 
+			String password, String email) {
+		this();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+	}
+	
+	/**
+	 * Returns the username of this User
+	 * @return the username of this User
+	 */
+	public String getUsername() {
+		return username;
+	}
+
+	/**
+	 * Sets the username of this User (likely not called often)
+	 * @param username - the new username of this User
+	 */
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	/**
+	 * Returns the password of this User
+	 * @return - the password of this User
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * Sets the password of this User
+	 * @param password - the new password of this User
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
+	 * Returns the email of this User
+	 * @return - the email of this User
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * Sets the email of this User
+	 * @param email - the new email of this User
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * Returns the first name of this User
+	 * @return - the first name of this User
+	 */
+	public String getFirstName() {
+		return firstName;
+	}
+
+	/**
+	 * Sets the first name of this User
+	 * @param firstName - the new first name of this User
+	 */
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	/**
+	 * Returns the last name of this User
+	 * @return - the last name of this User
+	 */
+	public String getLastName() {
+		return lastName;
+	}
+
+	/**
+	 * Sets the last name of this User
+	 * @param lastName - the new last name of this User
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	/**
+	 * Returns the ID of this User
+	 * @return - the ID of this User
+	 */
+	public int getID(){
+		return ID;
+	}
+
+	/**
+	 * Sets the ID of this User
+	 * @param iD - the ID of this User
+	 */
+	public void setId(int iD){
+		ID = iD;
+	}
+	
+	/**
+	 * Returns the cart of this User
+	 * @return the cart of this User
+	 */
+	public ArrayList<Product> getCart() {
+		return cart;
+	}
+
+	/**
+	 * Add a product to this User's cart
+	 * @param - the product to add to the cart
+	 */
+	public void addToCart(Product product) {
+		cart.add(product);
+	}
+
+	/**
+	 * Add all the products to this User's cart
+	 * @param products - the list of products to add
+	 */
+	public void addToCart(ArrayList<Product> products){
+		cart.addAll(products);
+	}
+	/**
+	 * Returns a List of allergies for this User
+	 * @return - a List of allergies for this User
+	 */
+	public List<String> getAllergies(){
+		return allergies;
+	}
+	
+	/**
+	 * Adds an allergy to this User's List of allergies
+	 * @param allergy - the allergy to be added
+	 * @usage user.addAllergy("milk");
+	 */
+	public void addAllergy(String allergy){
+		allergies.add(allergy);
+	}
+	
+	/**
+	 * Add the List of allergies to this User's allergies
+	 * @param allergies - the List of allergies to add
+	 */
+	public void addAllergy(List<String> allergies){
+			this.allergies.addAll(allergies);
+	}
+	
+	
+	/**
+	 * Returns whether or not this User is allergic to the given item
+	 * @param allergy - the allergic item to check for
+	 * @return {@code true} if this User is allergic to {@code allergy},
+	 * {@code false} otherwise
+	 * @usage user.isAllergicTo("milk");
+	 */
+	public boolean isAllergicTo(String allergy){
+		return allergies.contains(allergy);
+	}
+	
+	
+	/**
+	 * Returns the number of ingredients this User is allergic to
+	 * @return - the number of ingredients this User is allergic to
+	 */
+	public int getNumberAllergies(){
+		return allergies.size();
+	}
+	
+	/**
+	 * Returns a String representation of this User
+	 */
+	public String toString(){
+		String s = ID + "] " + username + ": " + firstName + " " + lastName;
+		s += " -> " + email;
+		s += "\nAllergies: " + Arrays.toString(allergies.toArray());
+		return s;
+	}
+	
+	/**
+	 * Returns if another User is equal to this User
+	 * @param user - the other user to compare to
+	 * @return - {@code true} if all attributes are equal, and the allergies are the same
+	 */
+	public boolean equals(User user){
+		
+		if ( this.ID == user.ID 
+				&& this.firstName.equals(user.firstName) 
+				&& this.lastName.equals(user.lastName) 
+				&& this.username.equals(user.username) 
+				&& this.password.equals(user.password) 
+				&& this.email.equals(user.email) ){
+			
+			//if all attributes are the same, check that the allergies are the same
+			//order doesn't matter so we don't use .equals 
+			for (String allergy : allergies)
+				if ( ! user.allergies.contains(allergy))
+					return false;
+			
+			//if all attributes are the same & both have the same allergies
+			return true;
+		}
+		
+		return false;
+			
+				
+	}
+	
+}

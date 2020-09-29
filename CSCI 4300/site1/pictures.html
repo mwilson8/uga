@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Gallery</title>
+	<link rel="stylesheet" href="styles.css">
+	
+
+</head>
+<body>
+	<!--begin nav panel-->
+		<div id="wrap">
+		  <ul class="navbar">
+			 <li><a href="index.html">Home</a></li>
+			 <li><a href="bio.html">About Me</a>
+				<ul>
+				   <li><a href="bio.html">Bio</a></li>
+				   <li><a href="pictures.html">Pictures</a></li>
+				</ul>         
+			 </li>
+			 <li><a href="schedules.html">Class Schedules</a>
+				<ul>
+				  <li><a href="schedules.html?year=15&amp;season=fall">2015 Fall</a></li>
+				   		<li><a href="schedules.html?year=15&amp;eason=spring">2015 Spring</a></li>
+				   	
+				   <li><a href="schedules.html?year=14&amp;season=fall">2014 Fall</a></li> 
+			       <li><a href="schedules.html?year=14&amp;season=spring">2014 Spring</a></li>
+			       <li><a href="schedules.html?year=13&amp;season=fall">2013 Fall</a></li> 
+			       <li><a href="schedules.html?year=13&amp;season=spring">2013 Spring</a></li>
+			       <li><a href="schedules.html?year=12&amp;season=fall">2012 Fall</a></li>
+				</ul>         
+			 </li>
+			 <li><a href="index.html">Useful Resources</a>
+				<ul>
+				   <li><a href="https://validator.w3.org">HTML Validation</a></li>
+				   <li><a href="http://www.w3schools.com/tags/default.asp">HTML Code Help</a></li>
+				   <li><a href="https://jigsaw.w3.org/css-validator/#validate_by_upload">CSS Validation</a></li>
+				   <li><a href="http://www.w3schools.com/css/">CSS Code Help</a></li>
+				   <li><a href="https://www.dropbox.com/">DropBox</a></li>
+				   <li><a href="https://github.com">GitHub</a></li>
+				</ul>         
+			 </li>
+			 <li><a href="mailto:mitch.wilson94@gmail.com?Subject=Website">Contact Me</a>
+				<ul>
+				   <li><a href="mailto:mitch.wilson94@gmail.com?Subject=Website">Email</a></li>
+				   <li><a href="contact.html">Social Media</a></li>
+				</ul>         
+			 </li>
+			 <li><a href="">Quick Links</a>
+				<ul>
+				   <li><a href="https://www.google.com">Google</a></li>
+				   <li><a href="http://www.cs.uga.edu">UGA Computer Science</a></li>
+				</ul>         
+			 </li>
+		  </ul>
+</div>
+				<!--end of navigation panel-->
+<p> <br></p> <!-- due to nav locked at top, need a break so not to run over title. try to work around this-->
+<p>
+<br>
+<br>
+</p>
+<p class="caps" onClick = "A()">Photo Gallery</p>
+
+<!-- java start-->
+
+
+<script type="text/javascript">
+R=0;
+x1=1;
+y1=.05;
+x2=.25;
+y2=.24;
+x3=1.6;
+y3=.24;
+x4=300;
+y4=200;
+x5=30;
+y5=20;
+
+DI=document.images;
+DIL=DI.length;
+
+function A() {
+	for (i=0; i - DIL; i++)
+	{
+		DIS=DI [ i ].style; 
+		DIS.position='absolute';
+		DIS.left = (Math.sin(R*x1+i*x2+x3)*x4+x5)+"px";
+		DIS.top = (Math.cos(R*y1+i*y2+y3)+"px")
+	}
+	R++;
+}
+setInterval('A()', 5);
+void(0)
+
+
+</script>
+
+<!--end java-->
+
+<table class="pictures">
+	<tr>
+		<td><figure>
+		<img src="images/picture1.jpg" alt="" height="500" width="auto">
+		<figcaption>St. Simons before GA-FL game 2015</figcaption>
+	</figure></td>	
+		<td><figure>
+		<img src="images/picture2.jpg" alt="" height="400" width="auto">
+		<figcaption>Looking up from 120 feet down!</figcaption>
+	</figure></td>
+	</tr>
+
+	<tr>
+		<td><figure>
+		<img src="images/picture3.jpg" alt="" height="400" width="auto">
+		<figcaption>Family vacation 2015</figcaption>
+	</figure></td>	
+		<td><figure>
+		<img src="images/picture4.jpg" alt="" height="400" width="auto">
+		<figcaption>Friends celebrating birthdays</figcaption>
+	</figure></td>
+	</tr>
+
+	<tr>
+		<td><figure>
+		<img src="images/picture5.jpg" alt="" height="500" width="auto">
+		<figcaption>Governor Deal's Inaguration Ball</figcaption>
+	</figure></td>	
+		<td><figure>
+		<img src="images/picture6.jpg" alt="" height="500" width="auto">
+		<figcaption>Coaching my 12 year old boys, 2nd place overall!</figcaption>
+	</figure></td>
+	</tr>
+
+	<tr>
+		<td><figure>
+		<img src="images/picture7.jpg" alt="" height="500" width="auto">
+		<figcaption>Spending some quality family time Thanksgiving 2014</figcaption>
+	</figure></td>	
+		<td><figure>
+		<img src="images/picture8.jpg" alt="" height="500" width="auto">
+		<figcaption>Sister's Cotillion</figcaption>
+	</figure></td>
+	</tr>
+
+	<tr>
+		<td><figure>
+		<img src="images/picture9.jpg" alt="" height="400" width="auto">
+		<figcaption>Friends all together for a field party</figcaption>
+	</figure></td>	
+		<td><figure>
+		<img src="images/picture10.jpg" alt="" height="400" width="auto">
+		<figcaption>Friends &amp; brothers make the best dive buddies</figcaption>
+	</figure></td>
+	</tr>
+
+	<tr>
+		<td><figure>
+		<img src="images/picture11.jpg" alt="" height="400" width="auto">
+		<figcaption>Spring break 2014</figcaption>
+	</figure></td>	
+		<td><figure>
+		<img src="images/picture12.jpg" alt="" height="400" width="auto">
+		<figcaption>1st time in New Orleans</figcaption>
+	</figure></td>
+	</tr>
+
+	<tr>
+		<td><figure>
+		<img src="images/picture13.jpg" alt="" height="400" width="auto">
+		<figcaption>Cotillion 2013</figcaption>
+	</figure></td>	
+		<td><figure>
+		<img src="images/picture14.jpg" alt="" height="400" width="auto">
+		<figcaption>Vacation 2013</figcaption>
+	</figure></td>
+	</tr>
+
+	<tr>
+		<td><figure>
+		<img src="images/picture15.jpg" alt="" height="400" width="auto">
+		<figcaption>Dive group minus the photographer</figcaption>
+	</figure></td>	
+		<td><figure>
+		<img src="images/picture16.jpg" alt="" height="400" width="auto">
+		<figcaption>UGA vs Missouri 2015</figcaption>
+	</figure></td>
+	</tr>
+
+	<tr>
+		<td><figure>
+		<img src="images/picture17.jpg" alt="" height="400" width="auto">
+		<figcaption>AOSM Golf tournament 2014 (3rd place)</figcaption>
+	</figure></td>	
+		<td><figure>
+		<img src="images/picture18.jpg" alt="" height="400" width="auto">
+		<figcaption>Our last high school football game</figcaption>
+	</figure></td>
+	</tr>
+
+	<tr>
+		<td><figure>
+		<img src="images/picture19.jpg" alt="" height="400" width="auto">
+		<figcaption>Sea tutle in Turks &amp; Caicos</figcaption>
+	</figure></td>	
+		<td><figure>
+		<img src="images/picture20.jpg" alt="" height="400" width="auto">
+		<figcaption>Okay? Okay. Okay!</figcaption>
+	</figure></td>
+	</tr>
+
+	<tr>
+		<td><figure>
+		<img src="images/picture23.jpg" alt="" height="400" width="auto">
+		<figcaption>In we go...</figcaption>
+	</figure></td>	
+		<td><figure>
+		<img src="images/picture24.jpg" alt="" height="400" width="auto">
+		<figcaption>Made a new friend (over my right shoulder)</figcaption>
+	</figure></td>
+	</tr>
+
+	<tr>
+		<td><figure>
+		<img src="images/picture21.jpg" alt="" height="400" width="auto">
+		<figcaption>He sure likes the camera</figcaption>
+	</figure></td>	
+		<td><figure>
+		<img src="images/picture22.jpg" alt="" height="400" width="auto">
+		<figcaption>Came back for one more...</figcaption>
+	</figure></td>
+	</tr>
+</table>	
+
+<p><br> I have many more pictures, especially of us SCUBA diving, but I just tried to include the ones that summarize what I like to do, while also showing you some cool stuff! <br><br></p>
+
+
+<!--HTML validation certificate-->
+<p class="footer">
+    <a href="http://validator.w3.org/check?uri=referer"><img
+      src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01 Strict" height="31" width="88"></a>
+  </p>	
+
+</body>
+</html>				

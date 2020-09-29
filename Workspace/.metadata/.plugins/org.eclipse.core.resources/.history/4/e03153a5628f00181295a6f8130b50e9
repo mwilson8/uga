@@ -1,0 +1,5 @@
+package edu.uga.cs4370.logic;
+
+public class DatabaseInitialization {
+
+}

@@ -1,0 +1,104 @@
+/**
+ * My solution to WordSearch.
+ *
+ * Originally WordSearchSolution - renamed 2018-04-05
+ * 
+ * @author Austin Hardaway
+ * @since 2018-03-24
+ */
+public class StudentSolution {
+ 
+    public static void solve(Board b) {
+        char[][] board = b.getBoard();
+        String[] list = b.getList();
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                search(i, j, b);
+            }
+        }
+       
+    }
+ 
+    /**
+     * Searches. Ya' Know for like words
+     * Looks at every direction from a given space in the
+     * board (i,j) and compares them to the hidden
+     * word list. ergo words not on the list do not count
+     * as a finding a hidden word. TECHNICALLY words which
+     * appear twice due to generating the board randomly
+     * count as finding a hidden word in this manner a
+     * word may appear on the found words list twice, but
+     * will not have the same beginning and end coordinates.
+     * <p>
+     * There are probably more efficient solutions. I'm checking every
+     * length for potential words in every direction for every space.
+     *
+     * @param i row
+     * @param j col
+     */
+    private static void search(int i, int j, Board b) {
+        check(i, j, 0, 1, b); //Right
+        check(i, j, 0, -1, b); //Left
+        check(i, j, -1, 0, b); //Up
+        check(i, j, 1, 0, b); //Down
+        check(i, j, 1, 1, b); //Down and right
+        check(i, j, 1, -1, b); //Down and Left
+        check(i, j, -1, 1, b); //Up and Right
+        check(i, j, -1, -1, b); //up and Left
+    }
+ 
+    /**
+     * Checks to see row contains a word in a given direction.
+     * upDown and leftRight are stupid names, but they are the
+     * increment for k and l in the ugly monstrosity of a for
+     * loop below.
+     * I expect 1301 students will have different methods for
+     * different directions, I generalized it.
+     *
+     * @param i         row of space we are interested in
+     * @param j         col of space we are interested in
+     * @param upDown    increment for the Vertical direction (-1 goes up) (0 stays constant) (1 goes down)
+     * @param leftRight increment for the Horizontal direction (-1 goes left) (0 stays constant) (1 goes right)
+     */
+    private static void check(int i, int j, int upDown, int leftRight, Board b) {
+        char[][] board = b.getBoard();
+        String[] list = b.getList();
+        String row = "";
+        for (int k = i, l = j; (((upDown != -1) ? (k < board.length) : (k >= 0)) && ((leftRight != -1) ? (l < board[k].length) : (l >= 0))); k += upDown, l += leftRight) {
+            // changes the bounds if we have to count towards 0 or a away from 0.
+            row += board[k][l];
+            Boolean foundWord = false;
+            for (String s : list) {
+                if (foundWord) break;
+                if (row.equals(s)) {
+                    b.addSolution(s, i, j, k, l);
+                    foundWord = true;
+                    break;
+                }
+            }
+        }
+    }
+ 
+    private static void printBoard(Board b) {
+        for (char[] i : b.getBoard()) {
+            for (char c : i) {
+                System.out.print(c + " ");
+            }
+            System.out.println();
+        }
+    }
+ 
+    /**
+     * Drives Word Search
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        Board b = new Board();
+        StudentSolution.printBoard(b);
+        System.out.println();
+        StudentSolution.solve(b);
+        b.printSolutions();
+        System.out.println(b.checkSolutions());
+    }
+}

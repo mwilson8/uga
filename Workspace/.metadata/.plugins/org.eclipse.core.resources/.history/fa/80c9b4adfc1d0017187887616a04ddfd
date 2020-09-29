@@ -1,0 +1,9 @@
+package test2;
+
+public class A {
+
+	public A() {
+		System.out.println("In A: Creating A");
+	}
+
+}

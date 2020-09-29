@@ -1,0 +1,35 @@
+project2:
+total 8
+-rw-------. 1 ugrad  820 Jun 28 17:26 README.txt
+-rw-------. 1 ugrad    0 Jun 28 17:50 rec11783
+drwx------. 3 ugrad 4096 Jun 22 11:10 src
+
+project2/src:
+total 4
+drwx------. 3 ugrad 4096 Jun 22 11:10 edu
+
+project2/src/edu:
+total 4
+drwx------. 3 ugrad 4096 Jun 22 11:11 uga
+
+project2/src/edu/uga:
+total 4
+drwx------. 3 ugrad 4096 Jun 28 17:28 cs1302
+
+project2/src/edu/uga/cs1302:
+total 4
+drwx------. 2 ugrad 4096 Jun 28 17:16 vehicles
+
+project2/src/edu/uga/cs1302/vehicles:
+total 44
+-rw-------. 1 ugrad 1150 Jun 28 17:04 Airplane.java
+-rw-------. 1 ugrad 1395 Jun 28 17:06 Amphibious.java
+-rw-------. 1 ugrad  625 Jun 28 17:06 Automobile.java
+-rw-------. 1 ugrad  135 Jun 28 17:06 Floatable.java
+-rw-------. 1 ugrad  211 Jun 28 17:07 Flyable.java
+-rw-------. 1 ugrad 1169 Jun 28 17:07 Helicopter.java
+-rw-------. 1 ugrad  807 Jun 28 17:07 Ship.java
+-rw-------. 1 ugrad  220 Jun 28 17:08 Transporter.java
+-rw-------. 1 ugrad 4862 Jun 28 17:16 VehicleDriver.java
+-rw-------. 1 ugrad 1735 Jun 28 17:10 Vehicle.java
+/home/ugrads/wilsonm/cs1302/project2:/home/work/cs1302a

@@ -1,0 +1,199 @@
+body {
+    background-color: #CCCCCC;
+}
+
+h1 {
+    text-align: center;
+    font-family:"Comic Sans MS";
+}
+
+.panel {
+    position: relative;
+    float: left;
+
+}
+
+#wrapper {
+  background-color: #FFFFFF;
+  overflow: hidden;
+  width: 100%;
+  max-width: 800px;
+  margin-right: auto;
+  margin-left: auto;
+  border: 1px dotted red;
+  border-radius: 15px;
+}
+
+#about {
+  float: left;
+  overflow: hidden;
+  padding: 10px;  
+}
+
+/* menu bar */
+#menu {
+    overflow: hidden;
+    width = 800px;
+    background-color: #111111;
+}
+
+#menu ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#menu ul li {
+    display: inline;
+    float:left;
+    padding: 0px;
+    margin: 0px;
+    width: 100px;
+    text-align: center;
+}
+
+#menu ul li ul {
+    display: none;
+    position: absolute; 
+    width: inherit;
+    background-color: black;
+    z-index: 1;
+}
+
+#menu ul li ul li {
+    display: block;
+}
+
+#menu ul li a {
+    text-decoration: none;
+    padding: 10px;
+    color: #FFFFFF;
+    display: block;
+}
+
+
+
+#menu ul li a:hover {
+    background-color: gray;
+}
+
+#menu ul li:hover ul {
+    display: block;
+}
+
+/* end menu bar */
+
+#home {
+    height: 150px;
+    width: 100%;
+}
+
+#home img {
+    height: 150px;
+    width: auto;
+    float: right;
+}
+
+.general {
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 2px;
+}
+#info {
+    position: relative;
+    margin: 10px;
+    width: 150px;
+    float: left;
+    background-color: yellow;
+}
+
+#about {
+    
+}
+
+#interests {
+    
+}
+
+#courses {
+    padding: 5px;
+}
+
+.coursediv {
+    height: 170px;
+    padding: 0px;
+    background-color: orange;
+    text-align: justify;
+}
+
+.coursediv img {
+    position: relative;
+    float: right;
+    margin-top: 0px;
+    margin-right: 0px;
+    height: 150px;
+    width: 120px;
+}
+
+#courses h4 {
+    background-color: red;
+    margin: 0px;
+    margin: 0px;
+    height: 20px;
+}
+
+.coursediv p {
+    position: relative;
+    float: left;
+    width: 650px;
+    font-size: 17px;
+    margin-top: 0px;
+    background-color: blue;
+}
+
+#experience {
+      
+}
+
+.expdiv {
+    
+}
+
+#skills {
+    
+}
+
+#connect {
+    
+}
+
+#connect img {
+    height: 50px;
+    width: 50px;
+}
+
+
+
+
+
+
+.left {
+  position: absolute;
+  left: 0;
+}
+
+.right {
+  position: absolute;
+  right: 0;
+}
+
+.top {
+  position: absolute;
+  top: 0;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+}
+

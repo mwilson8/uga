@@ -1,0 +1,25 @@
+import java.util.Arrays;
+
+public class Driver {
+
+	public static void main (String[] args){
+		
+		for (int i = 0; ; i++){
+			try{	
+			Board b = new Board(i);
+			
+			StudentSolution.solve(b);
+			System.out.println(b.checkSolutions());
+		
+			b.printSolutions();
+			//b.printSolutions(true);
+			}catch (Exception e){
+				break;
+			}
+		}
+		
+		
+	}
+	
+	
+}
